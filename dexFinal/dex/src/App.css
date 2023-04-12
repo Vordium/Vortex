@@ -352,3 +352,45 @@ header {
   width: 30
 }
 
+.burgerLine {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px;
+  transition: transform 0.2s ease;
+}
+
+.open {
+  transform: rotate(45deg);
+}
+
+.mobileBurgerMenu {
+  display: none;
+  cursor: pointer;
+}
+
+/* Mobile menu items */
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #111;
+  padding: 1rem;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.open {
+  display: flex;
+}
+
+.mobileMenu .link {
+  text-align: center;
+}
+
+.mobileMenu .headerItem {
+  color: #fff;
+}
