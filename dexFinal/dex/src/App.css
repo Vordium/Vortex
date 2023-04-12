@@ -266,3 +266,25 @@ header {
   font-weight: 300;
   color: #51596f;
 }
+
+
+/* Media Query for Small Devices */
+@media (max-width: 767px) {
+  .mainWindow {
+      margin: 10px;
+  }
+}
+
+/* Media Query for Medium Devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mainWindow {
+      margin: 15px;
+  }
+}
+
+/* Media Query for Large Devices */
+@media (min-width: 1024px) {
+  .mainWindow {
+      margin: 20px;
+  }
+}
