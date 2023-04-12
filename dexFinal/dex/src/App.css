@@ -288,3 +288,40 @@ header {
       margin: 20px;
   }
 }
+
+/*new menu burger*/
+.main-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.main-menu li:last-child {
+  margin-right: 0;
+}
+
+.main-menu a {
+  color: #000;
+  text-decoration: none;
+}
+
+.burger-icon {
+  display: none; /* Hide the burger icon by default */
+}
+
+ /*mobile*/
+
+ @media (max-width: 768px) {
+  .main-menu ul {
+    display: none; /* Hide the menu items on mobile */
+  }
+  
+  .burger-icon {
+    display: block; /* Show the burger icon on mobile */
+  }
+}
