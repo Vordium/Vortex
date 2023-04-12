@@ -373,3 +373,46 @@ header {
 .burgerMenu.open .mobileMenu {
   transform: translateX(50) rotate(0deg);
 }
+
+/* CSS for the menu */
+.header {
+  /* ... existing styles ... */
+  position: relative; /* Added position property */
+}
+
+.burgerMenu {
+  /* ... existing styles ... */
+  position: absolute; /* Added position property */
+  top: 0; /* Position at top of header */
+  right: 0; /* Position at right of header */
+  cursor: pointer;
+  z-index: 10;
+}
+
+.burgerMenu.open {
+  /* Styles for open menu */
+  transform: translateX(-70%); /* Slide menu in from right */
+}
+
+.mobileMenu {
+  /* ... existing styles ... */
+  position: fixed; /* Added position property */
+  top: 0; /* Position at top of viewport */
+  right: 0; /* Position at right of viewport */
+  height: 100%; /* Set height to 100% to cover entire viewport */
+  width: 70%; /* Set width to 70% for the sliding effect */
+  background-color: #000; /* Add background color to the menu */
+  padding: 2rem; /* Add padding for menu items */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%); /* Initial position outside viewport */
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth sliding effect */
+  z-index: 9;
+}
+
+.mobileMenu.open {
+  /* Styles for open menu */
+  transform: translateX(0%); /* Slide menu in from right */
+}
