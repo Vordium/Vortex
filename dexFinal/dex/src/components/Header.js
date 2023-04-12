@@ -41,8 +41,6 @@ function Header(props) {
 
   );
 }
-$('.burger-icon').click(function() {
-  $('.main-menu ul').toggle(); /* Toggle the visibility of the menu items */
-});
+
 
 export default Header;
