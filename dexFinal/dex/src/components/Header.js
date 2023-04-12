@@ -26,16 +26,16 @@ function Header(props) {
         <div className="connectButton" onClick={connect}>
           {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
         </div>
-      </div>
-      <div className="headerItem">
-        <nav class="main-menu">
-          <ul>
-          <li><a href="https://swap.vordium.com/swap">Swap</a></li>
-          <li><a href="https://swap.vordium.com/tokens">Tokens</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>
+        <div className="headerItem">
+          <nav class="main-menu">
+            <ul>
+             <li><a href="https://swap.vordium.com/swap">Swap</a></li>
+             <li><a href="https://swap.vordium.com/tokens">Tokens</a></li>
+             <li><a href="#">Services</a></li>
+             <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
 
