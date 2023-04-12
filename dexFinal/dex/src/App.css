@@ -414,5 +414,11 @@ header {
 
 .mobileMenu.open {
   /* Styles for open menu */
-  transform: translateX(0%); /* Slide menu in from right */
+  transform: translateX(75%); /* Slide menu in from right */
+}
+@media (max-width: 767px) {
+  .mobileMenu.open {
+    /* Styles for open menu */
+    transform: translateX(20%); /* Slide menu in from right */
+  }
 }
