@@ -370,6 +370,6 @@ header {
   transform: translateX(50) rotate(0deg);
 }
 
-/*.burgerMenu.open .menuOverlay {
-  transform: translateX(0) rotate(0deg);
+.burgerMenu.open .mobileMenu {
+  transform: translateX(50) rotate(0deg);
 }
