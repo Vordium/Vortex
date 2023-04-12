@@ -289,39 +289,46 @@ header {
   }
 }
 
-/*new menu burger*/
-.main-menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+/* Mobile burger menu */
+.burgerLine {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px;
+  transition: transform 0.2s ease;
 }
 
-.main-menu li {
-  display: inline-block;
-  margin-right: 20px;
+.open {
+  transform: rotate(45deg);
 }
 
-.main-menu li:last-child {
-  margin-right: 0;
+.mobileBurgerMenu {
+  display: none;
+  cursor: pointer;
 }
 
-.main-menu a {
-  color: #000;
-  text-decoration: none;
+/* Mobile menu items */
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #111;
+  padding: 1rem;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  z-index: 100;
 }
 
-.burger-icon {
-  display: none; /* Hide the burger icon by default */
+.open {
+  display: flex;
 }
 
- /*mobile*/
+.mobileMenu .link {
+  text-align: center;
+}
 
- @media (max-width: 768px) {
-  .main-menu ul {
-    display: none; /* Hide the menu items on mobile */
-  }
-  
-  .burger-icon {
-    display: block; /* Show the burger icon on mobile */
-  }
+.mobileMenu .headerItem {
+  color: #fff;
 }

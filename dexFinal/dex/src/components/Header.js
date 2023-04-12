@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 
 function Header(props) {
+  const { address, isConnected, connect } = props;
+  const [isOpen, setIsOpen] = useState(false);
 
-  const {address, isConnected, connect} = props;
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <header>
@@ -24,21 +28,34 @@ function Header(props) {
           Ethereum
         </div>
         <div className="connectButton" onClick={connect}>
-          {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
+          {isConnected ? (
+            address.slice(0, 4) + "..." + address.slice(38)
+          ) : (
+            "Connect"
+          )}
         </div>
-        <div className="headerItem">
-          <nav class="main-menu">
-            <ul>
-             <li><a href="https://swap.vordium.com/swap">Swap</a></li>
-             <li><a href="https://swap.vordium.com/tokens">Tokens</a></li>
-             <li><a href="#">Services</a></li>
-             <li><a href="#">Contact</a></li>
-            </ul>
-          </nav>
+        {/* Mobile burger menu */}
+        <div className="mobileBurgerMenu" onClick={toggleMenu}>
+          <div className={isOpen ? "burgerLine open" : "burgerLine"}></div>
+          <div className={isOpen ? "burgerLine open" : "burgerLine"}></div>
+          <div className={isOpen ? "burgerLine open" : "burgerLine"}></div>
         </div>
       </div>
+      {/* Mobile menu items */}
+      <div className={isOpen ? "mobileMenu open" : "mobileMenu"}>
+        <Link to="/" className="link">
+          <div className="headerItem" onClick={toggleMenu}>
+            Swap
+          </div>
+        </Link>
+        <Link to="/tokens" className="link">
+          <div className="headerItem" onClick={toggleMenu}>
+            Tokens
+          </div>
+        </Link>
+      </div>
     </header>
-
+    
   );
 }
 

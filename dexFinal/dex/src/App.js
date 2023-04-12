@@ -26,7 +26,5 @@ function App() {
     </div>
   )
 }
-$('.burger-icon').click(function() {
-  $('.main-menu ul').toggle(); /* Toggle the visibility of the menu items */
-});
+
 export default App;
