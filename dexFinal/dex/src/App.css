@@ -366,7 +366,7 @@ header {
   transform: translateY(0) rotate(-180deg);
 }
 
-.burgerMenu.open .menuOverlay {
+.burgerMenu.open .menuContent {
   transform: translateX(50) rotate(0deg);
 }
 
