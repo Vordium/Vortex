@@ -365,3 +365,11 @@ header {
 .burgerMenu.open .burgerLine:last-child {
   transform: translateY(0) rotate(-180deg);
 }
+
+.burgerMenu.open .menuOverlay {
+  transform: translateX(50) rotate(0deg);
+}
+
+/*.burgerMenu.open .menuOverlay {
+  transform: translateX(0) rotate(0deg);
+}
