@@ -27,7 +27,7 @@ function Header(props) {
           {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
         </div>
       </div>
-      <div className="menu">
+      <div className="headerItem">
         <nav class="main-menu">
           <ul>
           <li><a href="https://swap.vordium.com/swap">Swap</a></li>
