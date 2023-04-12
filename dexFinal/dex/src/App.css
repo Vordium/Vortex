@@ -382,16 +382,16 @@ header {
 
 .burgerMenu {
   /* ... existing styles ... */
-  position: absolute; /* Added position property */
-  top: 0; /* Position at top of header */
-  right: 0; /* Position at right of header */
-  cursor: pointer;
-  z-index: 10;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 35px;
+    z-index: 10;
 }
 
 .burgerMenu.open {
   /* Styles for open menu */
-  transform: translateX(-70%); /* Slide menu in from right */
+  transform: translateX(0%); /* Slide menu in from right */
 }
 
 .mobileMenu {
@@ -401,7 +401,7 @@ header {
   right: 0; /* Position at right of viewport */
   height: 100%; /* Set height to 100% to cover entire viewport */
   width: 70%; /* Set width to 70% for the sliding effect */
-  background-color: #000; /* Add background color to the menu */
+  background-color: #192134; /* Add background color to the menu */
   padding: 2rem; /* Add padding for menu items */
   display: flex;
   flex-direction: column;
