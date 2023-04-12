@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 function Header(props) {
   const { address, isConnected, connect } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -28,34 +28,27 @@ function Header(props) {
           Ethereum
         </div>
         <div className="connectButton" onClick={connect}>
-          {isConnected ? (
-            address.slice(0, 4) + "..." + address.slice(38)
-          ) : (
-            "Connect"
-          )}
-        </div>
-        {/* Mobile burger menu */}
-        <div className="mobileBurgerMenu" onClick={toggleMenu}>
-          <div className={isOpen ? "burgerLine open" : "burgerLine"}></div>
-          <div className={isOpen ? "burgerLine open" : "burgerLine"}></div>
-          <div className={isOpen ? "burgerLine open" : "burgerLine"}></div>
+          {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
         </div>
       </div>
-      {/* Mobile menu items */}
-      <div className={isOpen ? "mobileMenu open" : "mobileMenu"}>
-        <Link to="/" className="link">
-          <div className="headerItem" onClick={toggleMenu}>
+      <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
+        <div className="menuOverlay" onClick={handleMenuClick}></div>
+        <div className="menuContent">
+          <Link to="/" className="mobileMenuItem">
             Swap
-          </div>
-        </Link>
-        <Link to="/tokens" className="link">
-          <div className="headerItem" onClick={toggleMenu}>
+          </Link>
+          <Link to="/tokens" className="mobileMenuItem">
             Tokens
-          </div>
-        </Link>
+          </Link>
+        </div>
+      </div>
+      <div className={`burgerMenu ${isMenuOpen ? "open" : ""}`} onClick={handleMenuClick}>
+        <div className="burgerLine"></div>
+        <div className="burgerLine"></div>
+        <div className="burgerLine"></div>
       </div>
     </header>
-    
+
   );
 }
 
