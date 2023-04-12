@@ -32,7 +32,7 @@ function Header(props) {
         </div>
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
-        <div className="menuOverlay" onClick={handleMenuClick}></div>
+        <div className="menuOverlay" onClick={toggleMenu}></div>
         <div className="menuContent">
           <Link to="/" className="mobileMenuItem">
             Swap
@@ -42,7 +42,7 @@ function Header(props) {
           </Link>
         </div>
       </div>
-      <div className={`burgerMenu ${isMenuOpen ? "open" : ""}`} onClick={handleMenuClick}>
+      <div className={`burgerMenu ${isMenuOpen ? "open" : ""}`} onClick={toggleMenu}>
         <div className="burgerLine"></div>
         <div className="burgerLine"></div>
         <div className="burgerLine"></div>
