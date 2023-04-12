@@ -27,14 +27,16 @@ function Header(props) {
           {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
         </div>
       </div>
-      <nav className="main-menu">
-       <ul>
-        <li><a href="https://swap.vordium.com/swap">Swap</a></li>
-        <li><a href="https://swap.vordium.com/tokens">Tokens</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-       </ul>
-      </nav>
+      <div className="menu">
+        <nav class="main-menu">
+          <ul>
+          <li><a href="https://swap.vordium.com/swap">Swap</a></li>
+          <li><a href="https://swap.vordium.com/tokens">Tokens</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
   );
