@@ -319,7 +319,7 @@ header {
   flex-direction: column;
   height: 100%;
   padding-top: 50px;
-  padding-right: 625px;
+  padding-right: 50rem;
   
 }
 
@@ -428,4 +428,29 @@ header {
 .rightH {
   justify-content: flex-end;
   padding-right: 15px;
+}
+
+
+/* Media Query for Small Devices menu itms */
+@media (max-width: 767px) {
+  .menuContent {
+    padding-right: 0rem;
+    
+  }
+}
+
+/* Media Query for Medium Devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .menuContent {
+    padding-right: 40rem;
+    
+  }
+}
+
+/* Media Query for Large Devices */
+@media (min-width: 1024px) {
+  .menuContent {
+    padding-right: 50rem;
+    
+  }
 }
