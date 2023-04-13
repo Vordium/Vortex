@@ -351,11 +351,11 @@ header {
 }
 
 .burgerLine:first-child {
-  transform: translateY(-8px) rotate(0deg);
+  transform: translateY(-8px) translateX(-5px) rotate(0deg);
 }
 
 .burgerLine:last-child {
-  transform: translateY(8px) rotate(0deg);
+  transform: translateY(8px) translateX(-5px) rotate(0deg);
 }
 
 /* Add the "open" class to the burger menu when the menu is open */
