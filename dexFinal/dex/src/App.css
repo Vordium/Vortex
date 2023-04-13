@@ -423,3 +423,8 @@ header {
     transform: translateX(20%); /* Slide menu in from right */
   }
 }
+
+.rightH {
+  justify-content: flex-end;
+  padding-right: 15px;
+}
