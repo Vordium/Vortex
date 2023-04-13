@@ -319,7 +319,7 @@ header {
   flex-direction: column;
   height: 100%;
   padding-top: 50px;
-  padding-right: 570px;
+  padding-right: 625px;
   
 }
 
@@ -415,7 +415,7 @@ header {
 
 .mobileMenu.open {
   /* Styles for open menu */
-  transform: translateX(75%); /* Slide menu in from right */
+  transform: translateX(70%); /* Slide menu in from right */
 }
 @media (max-width: 767px) {
   .mobileMenu.open {
