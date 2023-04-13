@@ -28,7 +28,7 @@ function Header(props) {
           Ethereum
         </div>
         <div className="connectButton" onClick={connect}>
-          {isConnected ? `${address.slice(0, 4)}...${address.slice(38)}` : "Connect"}
+          {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
         </div>
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
