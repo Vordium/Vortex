@@ -401,7 +401,7 @@ header {
   top: 0; /* Position at top of viewport */
   right: 0; /* Position at right of viewport */
   height: 100%; /* Set height to 100% to cover entire viewport */
-  width: 70%; /* Set width to 70% for the sliding effect */
+  width: 100%; /* Set width to 70% for the sliding effect */
   background-color: #192134; /* Add background color to the menu */
   padding: 2rem; /* Add padding for menu items */
   display: flex;
