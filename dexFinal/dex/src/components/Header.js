@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 
 function Header(props) {
-  const { address, isConnected, connect } = props;
+  const {address, isConnected, connect} = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
