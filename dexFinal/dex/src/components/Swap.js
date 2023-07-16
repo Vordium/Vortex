@@ -85,7 +85,7 @@ function Swap(props) {
 
   async function fetchPrices(one, two){
 
-      const res = await axios.get(`http://swap.vordium.com/tokenPrice`, {
+      const res = await axios.get(`http://swap.vordium.com:3001/tokenPrice`, {
         params: {addressOne: one, addressTwo: two}
       })
 
