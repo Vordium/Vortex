@@ -454,3 +454,11 @@ header {
     
   }
 }
+
+
+/* Media Query for Small Devices menu itms */
+@media (max-width: 767px) {
+  .headerItem {
+    display: none;
+  }
+}
