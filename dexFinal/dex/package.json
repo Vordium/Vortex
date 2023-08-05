@@ -2,7 +2,6 @@
   "name": "dex",
   "version": "0.1.0",
   "private": true,
-  "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "^5.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -16,11 +15,8 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "wagmi": "^0.10.11",
-    "web-vitals": "^2.1.4",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "moralis": "^2.11.1"
+    "web-vitals": "^2.1.4"
+    
   },
   "scripts": {
     "start": "react-scripts start",
