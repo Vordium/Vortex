@@ -1,12 +1,12 @@
 const Moralis = require("moralis").default;
 
-const { MORALIS_KEY } = process.env;
-
 module.exports = async (req, res) => {
   try {
     const { query } = req;
 
     console.log("Received request with query:", query);
+
+    console.log("Moralis API Key:", process.env.MORALIS_KEY); // Add this line
 
     if (!query.addressOne || !query.addressTwo) {
       return res.status(400).json({ error: "Both addresses are required" });
