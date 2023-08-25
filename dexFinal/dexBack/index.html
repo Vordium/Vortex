@@ -1,13 +1,56 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+  <link rel="stylesheet" href="styles.css">
   <title>Token Price Tester</title>
 </head>
 <body>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background-color: #f0f0f0;
+        }
+      
+        .container {
+          background-color: white;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+          text-align: center;
+        }
+      
+        input[type="text"] {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      
+        button {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      
+        button:hover {
+          background-color: #0056b3;
+        }
+      
+        #result {
+          margin-top: 20px;
+        }
+      </style>
+      
   <div class="container">
     <h1>Token Price Tester</h1>
     <div>
@@ -23,7 +66,20 @@
   </div>
 
   <script>
-    // Your JavaScript code remains unchanged
+    document.getElementById("getPrices").addEventListener("click", async () => {
+      const addressOne = document.getElementById("addressOne").value;
+      const addressTwo = document.getElementById("addressTwo").value;
+
+      const response = await fetch(`/api/tokenPrice?addressOne=${addressOne}&addressTwo=${addressTwo}`);
+      const data = await response.json();
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `
+        <p>Token One Price: $${data.tokenOne}</p>
+        <p>Token Two Price: $${data.tokenTwo}</p>
+        <p>Price Ratio: ${data.ratio.toFixed(2)}</p>
+      `;
+    });
   </script>
 </body>
 </html>
