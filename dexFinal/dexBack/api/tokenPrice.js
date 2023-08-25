@@ -8,6 +8,10 @@ module.exports = async (req, res) => {
 
     console.log("Received request with query:", query);
 
+    if (!query.addressOne || !query.addressTwo) {
+      return res.status(400).json({ error: "Both addresses are required" });
+    }
+
     const responseOne = await Moralis.EvmApi.token.getTokenPrice({
       address: query.addressOne,
     });
@@ -27,6 +31,6 @@ module.exports = async (req, res) => {
     res.status(200).json(usdPrices);
   } catch (error) {
     console.error("An error occurred:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error", detailedError: error.message });
   }
 };
