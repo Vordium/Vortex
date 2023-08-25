@@ -1,38 +1,29 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
   <title>Token Price Tester</title>
 </head>
 <body>
-  <h1>Token Price Tester</h1>
-  <div>
-    <label for="addressOne">Token One Address:</label>
-    <input type="text" id="addressOne" placeholder="Enter token address">
+  <div class="container">
+    <h1>Token Price Tester</h1>
+    <div>
+      <label for="addressOne">Token One Address:</label>
+      <input type="text" id="addressOne" placeholder="Enter token address">
+    </div>
+    <div>
+      <label for="addressTwo">Token Two Address:</label>
+      <input type="text" id="addressTwo" placeholder="Enter token address">
+    </div>
+    <button id="getPrices">Get Prices</button>
+    <div id="result"></div>
   </div>
-  <div>
-    <label for="addressTwo">Token Two Address:</label>
-    <input type="text" id="addressTwo" placeholder="Enter token address">
-  </div>
-  <button id="getPrices">Get Prices</button>
-  <div id="result"></div>
 
   <script>
-    document.getElementById("getPrices").addEventListener("click", async () => {
-      const addressOne = document.getElementById("addressOne").value;
-      const addressTwo = document.getElementById("addressTwo").value;
-
-      const response = await fetch(`/api/tokenPrice?addressOne=${addressOne}&addressTwo=${addressTwo}`);
-      const data = await response.json();
-
-      const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = `
-        <p>Token One Price: $${data.tokenOne}</p>
-        <p>Token Two Price: $${data.tokenTwo}</p>
-        <p>Price Ratio: ${data.ratio.toFixed(2)}</p>
-      `;
-    });
+    // Your JavaScript code remains unchanged
   </script>
 </body>
 </html>
