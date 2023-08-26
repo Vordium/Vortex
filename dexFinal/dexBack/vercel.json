@@ -1,10 +1,13 @@
 {
     "version": 2,
-    "routes": [
+    "builds": [
       {
-        "src": "/api/tokenPrice",
-        "dest": "api/tokenPrice.js"
+        "src": "api/tokenPrice/index.js",
+        "use": "@vercel/node"
       }
+    ],
+    "routes": [
+      { "src": "/api/tokenPrice", "dest": "api/tokenPrice/index.js" }
     ]
   }
   
