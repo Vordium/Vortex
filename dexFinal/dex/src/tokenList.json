@@ -180,5 +180,397 @@
         "name": "Celsius Network",
         "address": "0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d",
         "decimals": 4
+    },
+    {
+        "ticker": "ENJ",
+        "img": "https://cdn.moralis.io/eth/0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c.png",
+        "name": "Enjin Coin",
+        "address": "0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c",
+        "decimals": 18
+    },
+    {
+        "ticker": "FTM",
+        "img": "https://cdn.moralis.io/eth/0x4e15361fd6b4bb609fa63c81a2be19d873717870.png",
+        "name": "Fantom",
+        "address": "0x4e15361fd6b4bb609fa63c81a2be19d873717870",
+        "decimals": 18
+    },
+    {
+        "ticker": "RVN",
+        "img": "https://cdn.moralis.io/eth/0x2b6ff7e9b6e16b816e3c2d3cb6a856eb6c5dc163.png",
+        "name": "Ravencoin",
+        "address": "0x2b6ff7e9b6e16b816e3c2d3cb6a856eb6c5dc163",
+        "decimals": 18
+    },
+    {
+        "ticker": "MANA",
+        "img": "https://cdn.moralis.io/eth/0x0f5d2fb29fb7d3cfee444a200298f468908cc942.png",
+        "name": "Decentraland",
+        "address": "0x0f5d2fb29fb7d3cfee444a200298f468908cc942",
+        "decimals": 18
+    },
+    {
+        "ticker": "KSM",
+        "img": "https://cdn.moralis.io/eth/0x56d811088235f11c8920698a204a5010a788f4b3.png",
+        "name": "Kusama",
+        "address": "0x56d811088235f11c8920698a204a5010a788f4b3",
+        "decimals": 12
+    },
+    {
+        "ticker": "HOT",
+        "img": "https://cdn.moralis.io/eth/0x6c6ee5e31d828de241282b9606c8e98ea48526e2.png",
+        "name": "Holo",
+        "address": "0x6c6ee5e31d828de241282b9606c8e98ea48526e2",
+        "decimals": 18
+    },
+    {
+        "ticker": "OCEAN",
+        "img": "https://cdn.moralis.io/eth/0x967da4048cd07ab37855c090aaf366e4ce1b9f48.png",
+        "name": "Ocean Protocol",
+        "address": "0x967da4048cd07ab37855c090aaf366e4ce1b9f48",
+        "decimals": 18
+    },
+    {
+        "ticker": "BAT",
+        "img": "https://cdn.moralis.io/eth/0x0d8775f648430679a709e98d2b0cb6250d2887ef.png",
+        "name": "Basic Attention Token",
+        "address": "0x0d8775f648430679a709e98d2b0cb6250d2887ef",
+        "decimals": 18
+    },
+    {
+        "ticker": "CEL",
+        "img": "https://cdn.moralis.io/eth/0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d.png",
+        "name": "Celsius Network",
+        "address": "0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d",
+        "decimals": 4
+    },
+    {
+        "ticker": "HT",
+        "img": "https://cdn.moralis.io/eth/0x6f259637dcd74c767781e37bc6133cd6a68aa161.png",
+        "name": "Huobi Token",
+        "address": "0x6f259637dcd74c767781e37bc6133cd6a68aa161",
+        "decimals": 18
+    },
+    {
+        "ticker": "DASH",
+        "img": "https://cdn.moralis.io/eth/0x8d08fca07f5ffce76f54439a79d15df2f96eb2bf.png",
+        "name": "Dash",
+        "address": "0x8d08fca07f5ffce76f54439a79d15df2f96eb2bf",
+        "decimals": 18
+    },
+    {
+        "ticker": "FLOW",
+        "img": "https://cdn.moralis.io/eth/0x22e6823c75f6f34e3b17f6a7b020bbf26e8de3fc.png",
+        "name": "Flow",
+        "address": "0x22e6823c75f6f34e3b17f6a7b020bbf26e8de3fc",
+        "decimals": 18
+    },
+    {
+        "ticker": "ONE",
+        "img": "https://cdn.moralis.io/eth/0x0e2298e3b3390e3b945a5456fbf59ecc3f55da16.png",
+        "name": "Harmony",
+        "address": "0x0e2298e3b3390e3b945a5456fbf59ecc3f55da16",
+        "decimals": 18
+    },
+    {
+        "ticker": "LRC",
+        "img": "https://cdn.moralis.io/eth/0xbbbbca6a901c926f240b89eacb641d8aec7aeafd.png",
+        "name": "Loopring",
+        "address": "0xbbbbca6a901c926f240b89eacb641d8aec7aeafd",
+        "decimals": 18
+    },
+    {
+        "ticker": "MKR",
+        "img": "https://cdn.moralis.io/eth/0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2.png",
+        "name": "Maker",
+        "address": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+        "decimals": 18
+    },
+    {
+        "ticker": "UST",
+        "img": "https://cdn.moralis.io/eth/0xa47c8bf37f92aBed4A126BDA807A7b7498661acD.png",
+        "name": "TerraUSD",
+        "address": "0xa47c8bf37f92aBed4A126BDA807A7b7498661acD",
+        "decimals": 18
+    },
+    {
+        "ticker": "ZRX",
+        "img": "https://cdn.moralis.io/eth/0xe41d2489571d322189246dafa5ebde1f4699f498.png",
+        "name": "0x",
+        "address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+        "decimals": 18
+    },
+    {
+        "ticker": "XEM",
+        "img": "https://cdn.moralis.io/eth/0x4a42d2c580f83dce404acad18dab26db11a1750e.png",
+        "name": "NEM",
+        "address": "0x4a42d2c580f83dce404acad18dab26db11a1750e",
+        "decimals": 6
+    },
+    {
+        "ticker": "OKB",
+        "img": "https://cdn.moralis.io/eth/0x75231f58b43240c9718dd58b4967c5114342a86c.png",
+        "name": "OKB",
+        "address": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+        "decimals": 18
+    },
+    {
+        "ticker": "BTG",
+        "img": "https://cdn.moralis.io/eth/0x6b9af3d25a2ec7cc988f7f8c6e919baba579841f.png",
+        "name": "Bitcoin Gold",
+        "address": "0x6b9af3d25a2ec7cc988f7f8c6e919baba579841f",
+        "decimals": 18
+    },
+    {
+        "ticker": "SUSHI",
+        "img": "https://cdn.moralis.io/eth/0x6b3595068778dd592e39a122f4f5a5cf09c90fe2.png",
+        "name": "SushiSwap",
+        "address": "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2",
+        "decimals": 18
+    },
+    {
+        "ticker": "STMX",
+        "img": "https://cdn.moralis.io/eth/0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6.png",
+        "name": "StormX",
+        "address": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+        "decimals": 18
+    },
+    {
+        "ticker": "KAVA",
+        "img": "https://cdn.moralis.io/eth/0x5fd896d248fbfa54d26855b11db06a69e0d5d8c0.png",
+        "name": "Kava",
+        "address": "0x5fd896d248fbfa54d26855b11db06a69e0d5d8c0",
+        "decimals": 6
+    },
+    {
+        "ticker": "DGB",
+        "img": "https://cdn.moralis.io/eth/0x1e797Ce986C3CFF4472F7D38d5C4aba55DfEFE40.png",
+        "name": "DigiByte",
+        "address": "0x1e797Ce986C3CFF4472F7D38d5C4aba55DfEFE40",
+        "decimals": 18
+    },
+    {
+        "ticker": "QNT",
+        "img": "https://cdn.moralis.io/eth/0x4a220e6096b25eadb88358cb44068a3248254675.png",
+        "name": "Quant",
+        "address": "0x4a220e6096b25eadb88358cb44068a3248254675",
+        "decimals": 18
+    },
+    {
+        "ticker": "HNT",
+        "img": "https://cdn.moralis.io/eth/0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1.png",
+        "name": "Helium",
+        "address": "0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1",
+        "decimals": 18
+    },
+    {
+        "ticker": "QTUM",
+        "img": "https://cdn.moralis.io/eth/0x9a642d6b3368ddc662CA244bAdf32cDA716005BC.png",
+        "name": "Qtum",
+        "address": "0x9a642d6b3368ddc662CA244bAdf32cDA716005BC",
+        "decimals": 18
+    },
+    {
+        "ticker": "NXM",
+        "img": "https://cdn.moralis.io/eth/0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b.png",
+        "name": "Nexus Mutual",
+        "address": "0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b",
+        "decimals": 18
+    },
+    {
+        "ticker": "BTT",
+        "img": "https://cdn.moralis.io/eth/0x8595f9da7b868b1822194faed312235e43007b49.png",
+        "name": "BitTorrent",
+        "address": "0x8595f9da7b868b1822194faed312235e43007b49",
+        "decimals": 18
+    },
+    {
+        "ticker": "HUSD",
+        "img": "https://cdn.moralis.io/eth/0xdf574c24545e5ffecb9a659c229253d4111d87e1.png",
+        "name": "HUSD",
+        "address": "0xdf574c24545e5ffecb9a659c229253d4111d87e1",
+        "decimals": 8
+    },
+    {
+        "ticker": "ANKR",
+        "img": "https://cdn.moralis.io/eth/0x8290333cef9e6d528dd5618fb97a76f268f3edd4.png",
+        "name": "Ankr",
+        "address": "0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
+        "decimals": 18
+    },
+    {
+        "ticker": "FET",
+        "img": "https://cdn.moralis.io/eth/0x1d287cc25dad7ccaf76a26bc660c5f7c8e2a05bd.png",
+        "name": "Fetch.ai",
+        "address": "0x1d287cc25dad7ccaf76a26bc660c5f7c8e2a05bd",
+        "decimals": 18
+    },
+    {
+        "ticker": "CKB",
+        "img": "https://cdn.moralis.io/eth/0x0000000000000000000000000000000000000000.png",
+        "name": "Nervos Network",
+        "address": "0x0000000000000000000000000000000000000000",
+        "decimals": 8
+    },
+    {
+        "ticker": "CELO",
+        "img": "https://cdn.moralis.io/eth/0x471ece3750da237f93b8e339c536989b8978a438.png",
+        "name": "Celo",
+        "address": "0x471ece3750da237f93b8e339c536989b8978a438",
+        "decimals": 18
+    },
+    {
+        "ticker": "SAND",
+        "img": "https://cdn.moralis.io/eth/0x3845badade8e6dff049820680d1f14bd3903a5d0.png",
+        "name": "The Sandbox",
+        "address": "0x3845badade8e6dff049820680d1f14bd3903a5d0",
+        "decimals": 18
+    },
+    {
+        "ticker": "SRM",
+        "img": "https://cdn.moralis.io/eth/0x476c5e26a75bd202a9683ffd34359c0cc15be0ff.png",
+        "name": "Serum",
+        "address": "0x476c5e26a75bd202a9683ffd34359c0cc15be0ff",
+        "decimals": 6
+    },
+    {
+        "ticker": "CHZ",
+        "img": "https://cdn.moralis.io/eth/0x3506424f91fd33084466f402d5d97f05f8e3b4af.png",
+        "name": "Chiliz",
+        "address": "0x3506424f91fd33084466f402d5d97f05f8e3b4af",
+        "decimals": 18
+    },
+    {
+        "ticker": "FORTH",
+        "img": "https://cdn.moralis.io/eth/0x77f41d8a529fc1f77bf32992c9d98ca666bb053f.png",
+        "name": "Ampleforth Governance Token",
+        "address": "0x77f41d8a529fc1f77bf32992c9d98ca666bb053f",
+        "decimals": 18
+    },
+    {
+        "ticker": "XVS",
+        "img": "https://cdn.moralis.io/eth/0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63.png",
+        "name": "Venus",
+        "address": "0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63",
+        "decimals": 18
+    },
+    {
+        "ticker": "ZIL",
+        "img": "https://cdn.moralis.io/eth/0x05f4a42e251f2d52b8ed15E9FEdAacFcEF1FAD27.png",
+        "name": "Zilliqa",
+        "address": "0x05f4a42e251f2d52b8ed15E9FEdAacFcEF1FAD27",
+        "decimals": 12
+    },
+    {
+        "ticker": "RLC",
+        "img": "https://cdn.moralis.io/eth/0x607F4C5BB672230e8672085532f7e901544a7375.png",
+        "name": "iExec RLC",
+        "address": "0x607F4C5BB672230e8672085532f7e901544a7375",
+        "decimals": 9
+    },
+    {
+        "ticker": "NMR",
+        "img": "https://cdn.moralis.io/eth/0x1776e1f26f98b1a5df9cd347953a26dd3cb46671.png",
+        "name": "Numeraire",
+        "address": "0x1776e1f26f98b1a5df9cd347953a26dd3cb46671",
+        "decimals": 18
+    },
+    {
+        "ticker": "PAX",
+        "img": "https://cdn.moralis.io/eth/0x8e870d67f660d95d5be530380d0ec0bd388289e1.png",
+        "name": "Paxos Standard",
+        "address": "0x8e870d67f660d95d5be530380d0ec0bd388289e1",
+        "decimals": 18
+    },
+    {
+        "ticker": "WIN",
+        "img": "https://cdn.moralis.io/eth/0xaeF0d72a118ce24feE3cD1d43D383897D05B4e99.png",
+        "name": "WINk",
+        "address": "0xaeF0d72a118ce24feE3cD1d43D383897D05B4e99",
+        "decimals": 6
+    },
+    {
+        "ticker": "ARDR",
+        "img": "https://cdn.moralis.io/eth/0x0000000000000000000000000000000000000000.png",
+        "name": "Ardor",
+        "address": "0x0000000000000000000000000000000000000000",
+        "decimals": 18
+    },
+    {
+        "ticker": "NEXO",
+        "img": "https://cdn.moralis.io/eth/0xb62132e35a6c13ee1ee0f84dc5d40bad8d815206.png",
+        "name": "Nexo",
+        "address": "0xb62132e35a6c13ee1ee0f84dc5d40bad8d815206",
+        "decimals": 18
+    },
+    {
+        "ticker": "STMX",
+        "img": "https://cdn.moralis.io/eth/0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6.png",
+        "name": "StormX",
+        "address": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+        "decimals": 18
+    },
+    {
+        "ticker": "KAVA",
+        "img": "https://cdn.moralis.io/eth/0x5fd896d248fbfa54d26855b11db06a69e0d5d8c0.png",
+        "name": "Kava",
+        "address": "0x5fd896d248fbfa54d26855b11db06a69e0d5d8c0",
+        "decimals": 6
+    },
+    {
+        "ticker": "DGB",
+        "img": "https://cdn.moralis.io/eth/0x1e797Ce986C3CFF4472F7D38d5C4aba55DfEFE40.png",
+        "name": "DigiByte",
+        "address": "0x1e797Ce986C3CFF4472F7D38d5C4aba55DfEFE40",
+        "decimals": 18
+    },
+    {
+        "ticker": "QNT",
+        "img": "https://cdn.moralis.io/eth/0x4a220e6096b25eadb88358cb44068a3248254675.png",
+        "name": "Quant",
+        "address": "0x4a220e6096b25eadb88358cb44068a3248254675",
+        "decimals": 18
+    },
+    {
+        "ticker": "HNT",
+        "img": "https://cdn.moralis.io/eth/0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1.png",
+        "name": "Helium",
+        "address": "0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1",
+        "decimals": 18
+    },
+    {
+        "ticker": "QTUM",
+        "img": "https://cdn.moralis.io/eth/0x9a642d6b3368ddc662CA244bAdf32cDA716005BC.png",
+        "name": "Qtum",
+        "address": "0x9a642d6b3368ddc662CA244bAdf32cDA716005BC",
+        "decimals": 18
+    },
+    {
+        "ticker": "NXM",
+        "img": "https://cdn.moralis.io/eth/0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b.png",
+        "name": "Nexus Mutual",
+        "address": "0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b",
+        "decimals": 18
+    },
+    {
+        "ticker": "BTT",
+        "img": "https://cdn.moralis.io/eth/0x8595f9da7b868b1822194faed312235e43007b49.png",
+        "name": "BitTorrent",
+        "address": "0x8595f9da7b868b1822194faed312235e43007b49",
+        "decimals": 18
+    },
+    {
+        "ticker": "HUSD",
+        "img": "https://cdn.moralis.io/eth/0xdf574c24545e5ffecb9a659c229253d4111d87e1.png",
+        "name": "HUSD",
+        "address": "0xdf574c24545e5ffecb9a659c229253d4111d87e1",
+        "decimals": 8
+    },
+    {
+        "ticker": "ANKR",
+        "img": "https://cdn.moralis.io/eth/0x8290333cef9e6d528dd5618fb97a76f268f3edd4.png",
+        "name": "Ankr",
+        "address": "0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
+        "decimals": 18
     }
 ]
