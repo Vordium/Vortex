@@ -1,4 +1,4 @@
-const Moralis = require("moralis").default;
+const fetch = require("node-fetch");
 
 module.exports = async (req, res) => {
   const { addressOne, addressTwo } = req.query;
@@ -8,20 +8,30 @@ module.exports = async (req, res) => {
   }
 
   try {
-    Moralis.initialize(process.env.MORALIS_KEY);
+    const responseOne = await fetch(
+      `https://deep-index.moralis.io/api/v2/token/${addressOne}`,
+      {
+        headers: {
+          "X-API-Key": process.env.MORALIS_KEY,
+        },
+      }
+    );
+    const dataOne = await responseOne.json();
 
-    const responseOne = await Moralis.EvmApi.token.getTokenPrice({
-      address: addressOne,
-    });
-
-    const responseTwo = await Moralis.EvmApi.token.getTokenPrice({
-      address: addressTwo,
-    });
+    const responseTwo = await fetch(
+      `https://deep-index.moralis.io/api/v2/token/${addressTwo}`,
+      {
+        headers: {
+          "X-API-Key": process.env.MORALIS_KEY,
+        },
+      }
+    );
+    const dataTwo = await responseTwo.json();
 
     const usdPrices = {
-      tokenOne: responseOne.raw.usdPrice,
-      tokenTwo: responseTwo.raw.usdPrice,
-      ratio: responseOne.raw.usdPrice / responseTwo.raw.usdPrice,
+      tokenOne: dataOne.data.price,
+      tokenTwo: dataTwo.data.price,
+      ratio: dataOne.data.price / dataTwo.data.price,
     };
 
     res.status(200).json(usdPrices);
@@ -32,3 +42,4 @@ module.exports = async (req, res) => {
       .json({ error: "Internal server error", detailedError: error.message });
   }
 };
+
