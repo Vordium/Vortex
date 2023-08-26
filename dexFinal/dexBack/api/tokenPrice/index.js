@@ -8,7 +8,7 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
-app.get("/tokenPrice", async (req, res) => {
+app.get("api/tokenPrice", async (req, res) => {
   const { query } = req;
 
   console.log("Received request with query:", query);
