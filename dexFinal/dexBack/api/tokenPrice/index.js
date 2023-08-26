@@ -1,11 +1,15 @@
 const express = require("express");
 const Moralis = require("moralis").default;
 const app = express();
-const cors = require("cors");
+const cors = require("cors"); // Import the cors middleware
 require("dotenv").config();
 const port = 3001;
 
-app.use(cors());
+const corsOptions = {
+  origin: "https://swap.vordium.com", // Allow requests only from this origin
+};
+
+app.use(cors(corsOptions)); // Use the cors middleware with specific origin
 app.use(express.json());
 
 app.get("/api/tokenPrice", async (req, res) => {
