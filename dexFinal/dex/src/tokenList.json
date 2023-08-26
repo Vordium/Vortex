@@ -89,7 +89,96 @@
         "name": "AAVE",
         "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
         "decimals": 18
+    },
+    {
+        "ticker": "YFI",
+        "img": "https://cdn.moralis.io/eth/0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e.png",
+        "name": "yearn.finance",
+        "address": "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e",
+        "decimals": 18
+    },
+    {
+        "ticker": "FTT",
+        "img": "https://cdn.moralis.io/eth/0x50d1c9771902476076ecfc8b2a83ad6b9355a4c9.png",
+        "name": "FTX Token",
+        "address": "0x50d1c9771902476076ecfc8b2a83ad6b9355a4c9",
+        "decimals": 18
+    },
+    {
+        "ticker": "COMP",
+        "img": "https://cdn.moralis.io/eth/0xc00e94cb662c3520282e6f5717214004a7f26888.png",
+        "name": "Compound",
+        "address": "0xc00e94cb662c3520282e6f5717214004a7f26888",
+        "decimals": 18
+    },
+    {
+        "ticker": "SNX",
+        "img": "https://cdn.moralis.io/eth/0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f.png",
+        "name": "Synthetix Network Token",
+        "address": "0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f",
+        "decimals": 18
+    },
+    {
+        "ticker": "DOGE",
+        "img": "https://cdn.moralis.io/eth/0xba2ae424d960c26247dd6c32edc70b295c744c43.png",
+        "name": "Dogecoin",
+        "address": "0xba2ae424d960c26247dd6c32edc70b295c744c43",
+        "decimals": 8
+    },
+    {
+        "ticker": "ALGO",
+        "img": "https://cdn.moralis.io/eth/0x00c4b398500645eb5da00a1b650d30b10db1d8f4.png",
+        "name": "Algorand",
+        "address": "0x00c4b398500645eb5da00a1b650d30b10db1d8f4",
+        "decimals": 6
+    },
+    {
+        "ticker": "ICP",
+        "img": "https://cdn.moralis.io/eth/0x0000000000000000000000000000000000000000.png",
+        "name": "Internet Computer",
+        "address": "0x0000000000000000000000000000000000000000",
+        "decimals": 8
+    },
+    {
+        "ticker": "LTC",
+        "img": "https://cdn.moralis.io/eth/0x4338665cbb7b2485a8855a139b75d5e34ab0db94.png",
+        "name": "Litecoin",
+        "address": "0x4338665cbb7b2485a8855a139b75d5e34ab0db94",
+        "decimals": 18
+    },
+    {
+        "ticker": "BCH",
+        "img": "https://cdn.moralis.io/eth/0x6e0e0e0231dc7cc6e079b96d6b579ccaffe84f6b.png",
+        "name": "Bitcoin Cash",
+        "address": "0x6e0e0e0231dc7cc6e079b96d6b579ccaffe84f6b",
+        "decimals": 8
+    },
+    {
+        "ticker": "RUNE",
+        "img": "https://cdn.moralis.io/eth/0x3155ba85d5f96b2d030a4966af206230e46849cb.png",
+        "name": "THORChain",
+        "address": "0x3155ba85d5f96b2d030a4966af206230e46849cb",
+        "decimals": 18
+    },
+    {
+        "ticker": "VET",
+        "img": "https://cdn.moralis.io/eth/0xd850942ef8811f2a866692a623011bde52a462c1.png",
+        "name": "VeChain",
+        "address": "0xd850942ef8811f2a866692a623011bde52a462c1",
+        "decimals": 18
+    },
+    {
+        "ticker": "ATOM",
+        "img": "https://cdn.moralis.io/eth/0x44017500f85c5fc6c2b6c8c408e6b22afdc318c6.png",
+        "name": "Cosmos",
+        "address": "0x44017500f85c5fc6c2b6c8c408e6b22afdc318c6",
+        "decimals": 18
+    },
+    {
+        "ticker": "CEL",
+        "img": "https://cdn.moralis.io/eth/0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d.png",
+        "name": "Celsius Network",
+        "address": "0xaaaebe6fe48e54f431b0c390cfaf0b017d09d42d",
+        "decimals": 4
     }
-
-
 ]
