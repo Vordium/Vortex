@@ -252,13 +252,6 @@
         "decimals": 18
     },
     {
-        "ticker": "DASH",
-        "img": "https://cdn.moralis.io/eth/0x8d08fca07f5ffce76f54439a79d15df2f96eb2bf.png",
-        "name": "Dash",
-        "address": "0x8d08fca07f5ffce76f54439a79d15df2f96eb2bf",
-        "decimals": 18
-    },
-    {
         "ticker": "FLOW",
         "img": "https://cdn.moralis.io/eth/0x22e6823c75f6f34e3b17f6a7b020bbf26e8de3fc.png",
         "name": "Flow",
@@ -308,13 +301,6 @@
         "decimals": 6
     },
     {
-        "ticker": "OKB",
-        "img": "https://cdn.moralis.io/eth/0x75231f58b43240c9718dd58b4967c5114342a86c.png",
-        "name": "OKB",
-        "address": "0x75231f58b43240c9718dd58b4967c5114342a86c",
-        "decimals": 18
-    },
-    {
         "ticker": "BTG",
         "img": "https://cdn.moralis.io/eth/0x6b9af3d25a2ec7cc988f7f8c6e919baba579841f.png",
         "name": "Bitcoin Gold",
@@ -354,48 +340,6 @@
         "img": "https://cdn.moralis.io/eth/0x4a220e6096b25eadb88358cb44068a3248254675.png",
         "name": "Quant",
         "address": "0x4a220e6096b25eadb88358cb44068a3248254675",
-        "decimals": 18
-    },
-    {
-        "ticker": "HNT",
-        "img": "https://cdn.moralis.io/eth/0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1.png",
-        "name": "Helium",
-        "address": "0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1",
-        "decimals": 18
-    },
-    {
-        "ticker": "QTUM",
-        "img": "https://cdn.moralis.io/eth/0x9a642d6b3368ddc662CA244bAdf32cDA716005BC.png",
-        "name": "Qtum",
-        "address": "0x9a642d6b3368ddc662CA244bAdf32cDA716005BC",
-        "decimals": 18
-    },
-    {
-        "ticker": "NXM",
-        "img": "https://cdn.moralis.io/eth/0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b.png",
-        "name": "Nexus Mutual",
-        "address": "0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b",
-        "decimals": 18
-    },
-    {
-        "ticker": "BTT",
-        "img": "https://cdn.moralis.io/eth/0x8595f9da7b868b1822194faed312235e43007b49.png",
-        "name": "BitTorrent",
-        "address": "0x8595f9da7b868b1822194faed312235e43007b49",
-        "decimals": 18
-    },
-    {
-        "ticker": "HUSD",
-        "img": "https://cdn.moralis.io/eth/0xdf574c24545e5ffecb9a659c229253d4111d87e1.png",
-        "name": "HUSD",
-        "address": "0xdf574c24545e5ffecb9a659c229253d4111d87e1",
-        "decimals": 8
-    },
-    {
-        "ticker": "ANKR",
-        "img": "https://cdn.moralis.io/eth/0x8290333cef9e6d528dd5618fb97a76f268f3edd4.png",
-        "name": "Ankr",
-        "address": "0x8290333cef9e6d528dd5618fb97a76f268f3edd4",
         "decimals": 18
     },
     {
@@ -529,34 +473,6 @@
         "img": "https://cdn.moralis.io/eth/0x4a220e6096b25eadb88358cb44068a3248254675.png",
         "name": "Quant",
         "address": "0x4a220e6096b25eadb88358cb44068a3248254675",
-        "decimals": 18
-    },
-    {
-        "ticker": "HNT",
-        "img": "https://cdn.moralis.io/eth/0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1.png",
-        "name": "Helium",
-        "address": "0x6af52a20fda0e564da2d0a6b7c8b24384737b2b1",
-        "decimals": 18
-    },
-    {
-        "ticker": "QTUM",
-        "img": "https://cdn.moralis.io/eth/0x9a642d6b3368ddc662CA244bAdf32cDA716005BC.png",
-        "name": "Qtum",
-        "address": "0x9a642d6b3368ddc662CA244bAdf32cDA716005BC",
-        "decimals": 18
-    },
-    {
-        "ticker": "NXM",
-        "img": "https://cdn.moralis.io/eth/0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b.png",
-        "name": "Nexus Mutual",
-        "address": "0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b",
-        "decimals": 18
-    },
-    {
-        "ticker": "BTT",
-        "img": "https://cdn.moralis.io/eth/0x8595f9da7b868b1822194faed312235e43007b49.png",
-        "name": "BitTorrent",
-        "address": "0x8595f9da7b868b1822194faed312235e43007b49",
         "decimals": 18
     },
     {
