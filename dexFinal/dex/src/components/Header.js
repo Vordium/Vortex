@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 // Import the connectors from wagmi
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { TrustWalletConnector } from "wagmi/connectors/trustWallet";
+import { InjectedConnector } from "wagmi/connectors/Injected";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 
 function Header(props) {
@@ -46,7 +46,7 @@ function Header(props) {
           ) : (
             <div>
               <div onClick={() => handleWalletConnect(new MetaMaskConnector())}>MetaMask</div>
-              <div onClick={() => handleWalletConnect(new TrustWalletConnector())}>Trust Wallet</div>
+              <div onClick={() => handleWalletConnect(new InjectedConnector())}>Injected</div>
               <div onClick={() => handleWalletConnect(new CoinbaseWalletConnector())}>Coinbase Wallet</div>
             </div>
           )}
