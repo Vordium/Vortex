@@ -22,6 +22,7 @@ const logoStyle = {
 
 const infoStyle = {
   flex: '1',
+  fontSize: '14px', // Adjust the font size here
 };
 
 const rowStyle = {
@@ -38,7 +39,7 @@ function Tokens() {
           <div key={token.id} style={cardStyle}>
             <img src={token.logo} alt={`${token.name} Logo`} style={logoStyle} />
             <div style={infoStyle}>
-              <h3>{token.name}</h3>
+              <h3 style={{ fontSize: '16px' }}>{token.name}</h3>
               <p>{token.address}</p>
             </div>
           </div>
