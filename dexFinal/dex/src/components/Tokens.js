@@ -36,6 +36,8 @@ const infoStyle = {
 const rowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
+  margin: '100px',
+  padding: '50px',
 };
 
 function Tokens() {
