@@ -1,8 +1,16 @@
 import React from 'react';
 import tokenList from '../tokenList.json'; // Make sure to adjust the path based on your project structure
 
+const containerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '100vh', // Ensure that the container takes up at least the viewport height
+};
+
 const cardStyle = {
-  border: 'none',
+  border: '1px',
   borderRadius: '5px',
   boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
   padding: '10px',
@@ -32,7 +40,7 @@ const rowStyle = {
 
 function Tokens() {
   return (
-    <div>
+    <div style={containerStyle}>
       <h2>Tokens</h2>
       <div style={rowStyle}>
         {tokenList.map(token => (
