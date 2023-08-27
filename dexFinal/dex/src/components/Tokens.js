@@ -11,7 +11,7 @@ const containerStyle = {
 
 const cardStyle = {
   border: '1px',
-  borderRadius: '5px',
+  borderRadius: '8px',
   boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.5)',
   padding: '10px',
   margin: '10px',
@@ -24,7 +24,7 @@ const logoStyle = {
   width: '50px',
   height: '50px',
   marginRight: '10px',
-  borderRadius: '70%',
+  borderRadius: '50%',
   objectFit: 'cover',
 };
 
@@ -47,7 +47,7 @@ const searchStyle = {
   background: 'transparent',
   color: '#F0FFFF',
   marginBottom: '20px',
-  borderRadius: '70%',
+  borderRadius: '8px',
 };
 
 function Tokens() {
