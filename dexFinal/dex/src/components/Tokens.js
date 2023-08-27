@@ -50,12 +50,9 @@ function Tokens() {
           <div className="tokenChoice" key={i}>
             <img src={e.img} alt={e.ticker} className="tokenLogo" />
             <div className="tokenChoiceNames">
-              <div className="tokenName">{e.name}</div>
+              <div className="tokenName">{e.name} <p>{token.address}</p> </div>
               <div className="tokenTicker">{e.ticker}</div>
-              <div style={infoStyle}>
-              <h3 style={{ fontSize: '16px' }}>{token.name}</h3>
-              <p>{token.address}</p>
-            </div>
+              
             </div>
           </div>
         ))}
