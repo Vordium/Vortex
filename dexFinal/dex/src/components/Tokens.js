@@ -41,12 +41,13 @@ const rowStyle = {
 };
 
 const searchStyle = {
-  width: '100%',
+  width: '74%',
   padding: '10px',
   border: '1px solid #ccc',
   background: 'transparent',
-  color: '#000',
+  color: '#F0FFFF',
   marginBottom: '20px',
+  borderradius: '8px',
 };
 
 function Tokens() {
