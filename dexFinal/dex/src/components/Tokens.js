@@ -47,7 +47,7 @@ const searchStyle = {
   background: 'transparent',
   color: '#F0FFFF',
   marginBottom: '20px',
-  borderradius: '70%',
+  borderRadius: '70%',
 };
 
 function Tokens() {
