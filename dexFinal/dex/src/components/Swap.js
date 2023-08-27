@@ -186,37 +186,42 @@ function Swap(props) {
     <>
       {contextHolder}
       <Modal
-        open={isOpen}
-        footer={null}
-        onCancel={() => setIsOpen(false)}
-        title="Select a token"
-      >
-        <div className="modalContent">
-          <Input
-            placeholder="Search tokens..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="tokenSearchInput"
-          />
-          {tokenList
-            ?.filter(
-              (token) =>
-                token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                token.address.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .map((e, i) => {
-              return (
-                <div className="tokenChoice" key={i} onClick={() => modifyToken(i)}>
-                  <img src={e.img} alt={e.ticker} className="tokenLogo" />
-                  <div className="tokenChoiceNames">
-                    <div className="tokenName">{e.name}</div>
-                    <div className="tokenTicker">{e.ticker}</div>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </Modal>
+  open={isOpen}
+  footer={null}
+  onCancel={() => setIsOpen(false)}
+  title="Select a token"
+>
+  <div className="modalContent">
+    <Input
+      placeholder="Search tokens..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      style={{
+        fontSize: "16px",
+        height: "50px",
+        borderRadius: "0",
+      }}
+      className="tokenSearchInput"
+    />
+    {tokenList
+      ?.filter(
+        (token) =>
+          token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          token.address.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .map((e, i) => {
+        return (
+          <div className="tokenChoice" key={i} onClick={() => modifyToken(i)}>
+            <img src={e.img} alt={e.ticker} className="tokenLogo" />
+            <div className="tokenChoiceNames">
+              <div className="tokenName">{e.name}</div>
+              <div className="tokenTicker">{e.ticker}</div>
+            </div>
+          </div>
+        );
+      })}
+  </div>
+</Modal>
       <div className="tradeBox">
         <div className="tradeBoxHeader">
           <h4>Swap</h4>
