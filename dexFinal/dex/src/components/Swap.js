@@ -73,15 +73,27 @@ function Swap(props) {
     setPrices(null);
     setTokenOneAmount(null);
     setTokenTwoAmount(null);
+    const selectedToken = tokenList
+      .filter(
+        (token) =>
+          token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          token.address.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      [i];
+    if (!selectedToken) {
+      return;
+    }
+  
     if (changeToken === 1) {
-      setTokenOne(tokenList[i]);
-      fetchPrices(tokenList[i].address, tokenTwo.address);
+      setTokenOne(selectedToken);
+      fetchPrices(selectedToken.address, tokenTwo.address);
     } else {
-      setTokenTwo(tokenList[i]);
-      fetchPrices(tokenOne.address, tokenList[i].address);
+      setTokenTwo(selectedToken);
+      fetchPrices(tokenOne.address, selectedToken.address);
     }
     setIsOpen(false);
   }
+  
 
   async function fetchPrices(one, two) {
     const res = await axios.get(`https://api.vordium.com/api/tokenPrice`, {
