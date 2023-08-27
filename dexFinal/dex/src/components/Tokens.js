@@ -24,7 +24,7 @@ const logoStyle = {
   width: '50px',
   height: '50px',
   marginRight: '10px',
-  borderRadius: '50%',
+  borderRadius: '70%',
   objectFit: 'cover',
 };
 
@@ -47,7 +47,7 @@ const searchStyle = {
   background: 'transparent',
   color: '#F0FFFF',
   marginBottom: '20px',
-  borderradius: '8px',
+  borderradius: '70%',
 };
 
 function Tokens() {
