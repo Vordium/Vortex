@@ -25,6 +25,7 @@ function Swap(props) {
     data: null,
     value: null,
   });
+  const [searchTerm, setSearchTerm] = useState(""); // Added search term state
 
   const { data, sendTransaction } = useSendTransaction({
     request: {
@@ -238,7 +239,9 @@ function Swap(props) {
             <DownOutlined />
           </div>
         </div>
-        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={fetchDexSwap}>Swap</div>
+        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={fetchDexSwap}>
+          Swap
+        </div>
       </div>
     </>
   );
