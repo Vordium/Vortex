@@ -40,7 +40,7 @@ function Tokens() {
             <img src={token.img} alt={`${token.name} Logo`} style={logoStyle} />
             <div style={infoStyle}>
               <h3 style={{ fontSize: '16px' }}>{token.name}</h3>
-              <p>{token.address}</p>
+              <p>{token.ticker}</p>
             </div>
           </div>
         ))}
