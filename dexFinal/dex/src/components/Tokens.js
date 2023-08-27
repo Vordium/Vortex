@@ -40,6 +40,15 @@ const rowStyle = {
   padding: '50px',
 };
 
+const searchStyle = {
+  width: '100%',
+  padding: '10px',
+  border: '1px solid #ccc',
+  background: 'transparent',
+  color: '#000',
+  marginBottom: '20px',
+};
+
 function Tokens() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredTokens, setFilteredTokens] = useState(tokenList);
@@ -61,7 +70,7 @@ function Tokens() {
         placeholder="Search by name or address"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        style={{ marginBottom: '20px' }}
+        style={searchStyle}
       />
       <div style={rowStyle}>
         {filteredTokens.map((token) => (
