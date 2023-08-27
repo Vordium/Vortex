@@ -45,18 +45,6 @@ function Tokens() {
           </div>
         ))}
       </div>
-      <div className="modalContent">
-        {tokenList?.map((e, i) => (
-          <div className="tokenChoice" key={i}>
-            <img src={e.img} alt={e.ticker} className="tokenLogo" />
-            <div className="tokenChoiceNames">
-              <div className="tokenName">{e.name} </div>
-              <div className="tokenTicker">{e.ticker}</div>
-              <div className="tokenTicker">{e.address}</div>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
