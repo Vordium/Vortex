@@ -2,10 +2,26 @@ import React from 'react';
 import tokenList from '../tokenList.json'; // Make sure to adjust the path based on your project structure
 
 const cardStyle = {
-  border: '1px solid #ccc',
+  border: 'none',
+  borderRadius: '5px',
+  boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
   padding: '10px',
   margin: '10px',
-  width: '200px',
+  width: '300px',
+  display: 'flex',
+  alignItems: 'center',
+};
+
+const logoStyle = {
+  width: '50px',
+  height: '50px',
+  marginRight: '10px',
+  borderRadius: '50%',
+  objectFit: 'cover',
+};
+
+const infoStyle = {
+  flex: '1',
 };
 
 const rowStyle = {
@@ -20,8 +36,11 @@ function Tokens() {
       <div style={rowStyle}>
         {tokenList.map(token => (
           <div key={token.id} style={cardStyle}>
-            <h3>{token.name}</h3>
-            <p>{token.description}</p>
+            <img src={token.logo} alt={`${token.name} Logo`} style={logoStyle} />
+            <div style={infoStyle}>
+              <h3>{token.name}</h3>
+              <p>{token.address}</p>
+            </div>
           </div>
         ))}
       </div>
