@@ -37,10 +37,10 @@ function Tokens() {
       <div style={rowStyle}>
         {tokenList.map(token => (
           <div key={token.id} style={cardStyle}>
-            <img src={e.img} alt={`${e.name} Logo`} style={logoStyle} />
+            <img src={token.img} alt={`${token.name} Logo`} style={logoStyle} />
             <div style={infoStyle}>
-              <h3 style={{ fontSize: '16px' }}>{e.name}</h3>
-              <p>{e.address}</p>
+              <h3 style={{ fontSize: '16px' }}>{token.name}</h3>
+              <p>{token.address}</p>
             </div>
           </div>
         ))}
@@ -50,9 +50,9 @@ function Tokens() {
           <div className="tokenChoice" key={i}>
             <img src={e.img} alt={e.ticker} className="tokenLogo" />
             <div className="tokenChoiceNames">
-              <div className="tokenName">{e.name} <p>{e.address}</p></div>
+              <div className="tokenName">{e.name} </div>
               <div className="tokenTicker">{e.ticker}</div>
-              
+              <div className="tokenTicker">{e.address}</div>
             </div>
           </div>
         ))}
