@@ -36,8 +36,10 @@ const infoStyle = {
 const rowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  margin: '100px',
-  padding: '50px',
+  marginRight: '100px',
+  marginLeft: '100px',
+  paddingRight: '50px',
+  paddingLeft: '50px',
 };
 
 const searchStyle = {
