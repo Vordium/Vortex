@@ -12,7 +12,7 @@ const containerStyle = {
 const cardStyle = {
   border: '1px',
   borderRadius: '5px',
-  boxShadow: '0px 2px 7px rgba(0, 0, 0, 5)',
+  boxShadow: '0px 2px 15px rgba(0, 0, 0, 5)',
   padding: '10px',
   margin: '10px',
   width: '300px',
