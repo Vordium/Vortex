@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { TrustWalletConnector } from "wagmi/connectors/trustWallet";
-import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+import { InjectedConnector } from "wagmi/connectors/injected";
+
 // Import your components
 import Header from "./components/Header";
 import Swap from "./components/Swap";
@@ -17,8 +17,7 @@ function App() {
   // Create an array of wallet connector options
   const connectorOptions = [
     { label: "MetaMask", connector: new MetaMaskConnector() },
-    { label: "Trust Wallet", connector: new TrustWalletConnector() },
-    { label: "Coinbase Wallet", connector: new CoinbaseWalletConnector() },
+    { label: "injected", connector: new InjectedConnector() },
   ];
 
   // State to store the selected connector
