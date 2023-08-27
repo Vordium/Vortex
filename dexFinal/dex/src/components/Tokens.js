@@ -1,5 +1,5 @@
 import React from 'react';
-import tokenList from '../tokenList.json'; // Make sure to adjust the path based on your project structure
+import tokenList from './tokenList.json'; // Make sure to adjust the path based on your project structure
 
 const cardStyle = {
   border: 'none',
@@ -46,21 +46,15 @@ function Tokens() {
         ))}
       </div>
       <div className="modalContent">
-        {tokenList?.map((e, i) => {
-          return (
-            <div
-              className="tokenChoice"
-              key={i}
-              onClick={() => modifyToken(i)}
-            >
-              <img src={e.img} alt={e.ticker} className="tokenLogo" />
-              <div className="tokenChoiceNames">
-                <div className="tokenName">{e.name}</div>
-                <div className="tokenTicker">{e.ticker}</div>
-              </div>
+        {tokenList?.map((e, i) => (
+          <div className="tokenChoice" key={i}>
+            <img src={e.img} alt={e.ticker} className="tokenLogo" />
+            <div className="tokenChoiceNames">
+              <div className="tokenName">{e.name}</div>
+              <div className="tokenTicker">{e.ticker}</div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
