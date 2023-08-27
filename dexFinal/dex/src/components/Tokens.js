@@ -1,18 +1,18 @@
-import React from 'react';
-import tokenList from '../tokenList.json'; // Make sure to adjust the path based on your project structure
+import React, { useState, useEffect } from 'react';
+import tokenList from '../tokenList.json';
 
 const containerStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  minHeight: '100vh', // Ensure that the container takes up at least the viewport height
+  minHeight: '100vh',
 };
 
 const cardStyle = {
   border: '1px',
   borderRadius: '5px',
-  boxShadow: '0px 2px 15px rgba(0, 0, 0, 5)',
+  boxShadow: '0px 2px 15px rgba(0, 0, 0, 0.5)',
   padding: '10px',
   margin: '10px',
   width: '300px',
@@ -30,7 +30,7 @@ const logoStyle = {
 
 const infoStyle = {
   flex: '1',
-  fontSize: '14px', // Adjust the font size here
+  fontSize: '14px',
 };
 
 const rowStyle = {
@@ -41,11 +41,30 @@ const rowStyle = {
 };
 
 function Tokens() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredTokens, setFilteredTokens] = useState(tokenList);
+
+  useEffect(() => {
+    const filtered = tokenList.filter(
+      (token) =>
+        token.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        token.address.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredTokens(filtered);
+  }, [searchQuery]);
+
   return (
     <div style={containerStyle}>
       <h2>Tokens</h2>
+      <input
+        type="text"
+        placeholder="Search by name or address"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        style={{ marginBottom: '20px' }}
+      />
       <div style={rowStyle}>
-        {tokenList.map(token => (
+        {filteredTokens.map((token) => (
           <div key={token.id} style={cardStyle}>
             <img src={token.img} alt={`${token.name} Logo`} style={logoStyle} />
             <div style={infoStyle}>
