@@ -1,5 +1,5 @@
 import React from 'react';
-import tokenList from './src/tokenList.json'; // Make sure to adjust the path based on your project structure
+import tokenList from './dex/src/tokenList.json'; // Make sure to adjust the path based on your project structure
 
 const cardStyle = {
   border: '1px solid #ccc',
