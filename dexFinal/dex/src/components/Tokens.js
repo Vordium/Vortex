@@ -52,6 +52,10 @@ function Tokens() {
             <div className="tokenChoiceNames">
               <div className="tokenName">{e.name}</div>
               <div className="tokenTicker">{e.ticker}</div>
+              <div style={infoStyle}>
+              <h3 style={{ fontSize: '16px' }}>{token.name}</h3>
+              <p>{token.address}</p>
+            </div>
             </div>
           </div>
         ))}
