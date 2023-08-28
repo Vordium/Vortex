@@ -36,8 +36,8 @@ const infoStyle = {
 const rowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  marginRight: '100px',
-  marginLeft: '100px',
+  marginRight: '20px',
+  marginLeft: '20px',
   paddingRight: '10px',
   paddingLeft: '10px',
 
