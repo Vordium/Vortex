@@ -67,7 +67,6 @@ function Tokens() {
 
   return (
     <div style={containerStyle}>
-      <h2>Tokens</h2>
       <input
         type="text"
         placeholder="Search by name or address"
