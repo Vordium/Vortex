@@ -43,7 +43,7 @@ const rowStyle = {
 };
 
 const searchStyle = {
-  width: '60%',
+  width: '50%',
   padding: '10px',
   border: '1px solid #ccc',
   background: 'transparent',

@@ -4,11 +4,15 @@ import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 
 function Header(props) {
-  const {address, isConnected, connect} = props;
+  const { address, isConnected, connect } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -28,16 +32,16 @@ function Header(props) {
           Ethereum
         </div>
         <div className="connectButton" onClick={connect}>
-          {isConnected ? (address.slice(0,4) +"..." +address.slice(38)) : "Connect"}
+          {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
         </div>
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
-        <div className="menuOverlay" onClick={handleMenuClick}></div>
+        <div className="menuOverlay" onClick={closeMenu}></div>
         <div className="menuContent">
-          <Link to="/" className="mobileMenuItem">
+          <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
             Swap
           </Link>
-          <Link to="/tokens" className="mobileMenuItem">
+          <Link to="/tokens" className="mobileMenuItem" onClick={closeMenu}>
             Tokens
           </Link>
         </div>
@@ -48,10 +52,7 @@ function Header(props) {
         <div className="burgerLine"></div>
       </div>
     </header>
-
   );
 }
 
-
 export default Header;
-
