@@ -42,10 +42,10 @@ const rowStyle = {
   paddingLeft: '10px',
 
   '@media (max-width: 750px)': {
-    marginRight: '20px',  /* Adjust as needed */
-    marginLeft: '20px',   /* Adjust as needed */
-    paddingRight: '10px', /* Adjust as needed */
-    paddingLeft: '10px',  /* Adjust as needed */
+    marginRight: '10px',  /* Adjust as needed */
+    marginLeft: '10px',   /* Adjust as needed */
+    paddingRight: '0px', /* Adjust as needed */
+    paddingLeft: '00px',  /* Adjust as needed */
   }
 };
 
