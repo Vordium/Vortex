@@ -38,8 +38,8 @@ const rowStyle = {
   flexWrap: 'wrap',
   marginRight: '100px',
   marginLeft: '100px',
-  paddingRight: '50px',
-  paddingLeft: '50px',
+  paddingRight: '10px',
+  paddingLeft: '10px',
 
   '@media (max-width: 750px)': {
     marginRight: '20px',  /* Adjust as needed */
