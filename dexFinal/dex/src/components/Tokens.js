@@ -36,11 +36,19 @@ const infoStyle = {
 const rowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  //marginRight: '50px',
-  //marginLeft: '100px',
-  paddingRight: '150px',
-  paddingLeft: '150px',
+  marginRight: '100px',
+  marginLeft: '100px',
+  paddingRight: '50px',
+  paddingLeft: '50px',
+
+  '@media (max-width: 750px)': {
+    marginRight: '20px',  /* Adjust as needed */
+    marginLeft: '20px',   /* Adjust as needed */
+    paddingRight: '10px', /* Adjust as needed */
+    paddingLeft: '10px',  /* Adjust as needed */
+  }
 };
+
 
 const searchStyle = {
   width: '50%',
