@@ -29,14 +29,14 @@ const logoStyle = {
 };
 
 const infoStyle = {
-  flex: '1',
+  flex: '0.8',
   fontSize: '14px',
 };
 
 const rowStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  marginRight: '20px',
+  marginRight: '2f0px',
   marginLeft: '20px',
   paddingRight: '10px',
   paddingLeft: '10px',
