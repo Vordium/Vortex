@@ -30,6 +30,7 @@ function Swap(props) {
   const [isTransactionPending, setIsTransactionPending] = useState(false);
 
   // Initialize Web3 instance
+  const expectedNetworkId = 1;
   const infuraUrl = 'https://mainnet.infura.io/v3/f969e4d64814431a970f24313653aef3';
   const web3 = new Web3(new Web3.providers.HttpProvider(infuraUrl));
 
