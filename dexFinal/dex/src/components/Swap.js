@@ -25,7 +25,8 @@ function Swap(props) {
     data: null,
     value: null,
   });
-  const [searchTerm, setSearchTerm] = useState(""); // Added search term state
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isTransactionPending, setIsTransactionPending] = useState(false);
 
   const { data, sendTransaction } = useSendTransaction({
     request: {
@@ -93,7 +94,6 @@ function Swap(props) {
     }
     setIsOpen(false);
   }
-  
 
   async function fetchPrices(one, two) {
     const res = await axios.get(`https://api.vordium.com/api/tokenPrice`, {
@@ -103,31 +103,39 @@ function Swap(props) {
   }
 
   async function fetchDexSwap() {
-    const allowance = await axios.get(
-      `https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
-    );
-
-    if (allowance.data.allowance === "0") {
-      const approve = await axios.get(
-        `https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`
+    try {
+      setIsTransactionPending(true); // Set loading state
+      const allowance = await axios.get(
+        `https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
       );
 
-      setTxDetails(approve.data);
-      console.log("not approved");
-      return;
+      if (allowance.data.allowance === "0") {
+        const approve = await axios.get(
+          `https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`
+        );
+
+        setTxDetails(approve.data);
+        console.log("not approved");
+        setIsTransactionPending(false); // Reset loading state
+        return;
+      }
+
+      const tx = await axios.get(
+        `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
+          tokenOne.decimals + tokenOneAmount.length,
+          "0"
+        )}&fromAddress=${address}&slippage=${slippage}`
+      );
+
+      let decimals = Number(`1E${tokenTwo.decimals}`);
+      setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+
+      setTxDetails(tx.data.tx);
+      setIsTransactionPending(false); // Reset loading state
+    } catch (error) {
+      setIsTransactionPending(false); // Reset loading state on error
+      // Handle error
     }
-
-    const tx = await axios.get(
-      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
-        tokenOne.decimals + tokenOneAmount.length,
-        "0"
-      )}&fromAddress=${address}&slippage=${slippage}`
-    );
-
-    let decimals = Number(`1E${tokenTwo.decimals}`);
-    setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-
-    setTxDetails(tx.data.tx);
   }
 
   useEffect(() => {
@@ -186,42 +194,46 @@ function Swap(props) {
     <>
       {contextHolder}
       <Modal
-  open={isOpen}
-  footer={null}
-  onCancel={() => setIsOpen(false)}
-  title="Select a token"
->
-  <div className="modalContent">
-    <Input
-      placeholder="Search tokens..."
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      style={{
-        fontSize: "16px",
-        height: "50px",
-        borderRadius: "0",
-      }}
-      className="tokenSearchInput"
-    />
-    {tokenList
-      ?.filter(
-        (token) =>
-          token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          token.address.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-      .map((e, i) => {
-        return (
-          <div className="tokenChoice" key={i} onClick={() => modifyToken(i)}>
-            <img src={e.img} alt={e.ticker} className="tokenLogo" />
-            <div className="tokenChoiceNames">
-              <div className="tokenName">{e.name}</div>
-              <div className="tokenTicker">{e.ticker}</div>
-            </div>
-          </div>
-        );
-      })}
-  </div>
-</Modal>
+        open={isOpen}
+        footer={null}
+        onCancel={() => setIsOpen(false)}
+        title="Select a token"
+      >
+        <div className="modalContent">
+          <Input
+            placeholder="Search tokens..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              fontSize: "16px",
+              height: "50px",
+              borderRadius: "0",
+            }}
+            className="tokenSearchInput"
+          />
+          {tokenList
+            ?.filter(
+              (token) =>
+                token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                token.address.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .map((e, i) => {
+              return (
+                <div
+                  className="tokenChoice"
+                  key={i}
+                  onClick={() => modifyToken(i)}
+                >
+                  <img src={e.img} alt={e.ticker} className="tokenLogo" />
+                  <div className="tokenChoiceNames">
+                    <div className="tokenName">{e.name}</div>
+                    <div className="tokenTicker">{e.ticker}</div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </Modal>
       <div className="tradeBox">
         <div className="tradeBoxHeader">
           <h4>Swap</h4>
@@ -256,8 +268,12 @@ function Swap(props) {
             <DownOutlined />
           </div>
         </div>
-        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={fetchDexSwap}>
-          Swap
+        <div
+          className="swapButton"
+          disabled={!tokenOneAmount || !isConnected || isTransactionPending}
+          onClick={fetchDexSwap}
+        >
+          {isTransactionPending ? "Loading..." : "Swap"}
         </div>
       </div>
     </>
