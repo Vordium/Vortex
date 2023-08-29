@@ -29,7 +29,7 @@ const logoStyle = {
 };
 
 const infoStyle = {
-  flex: '0.8',
+  flex: '1',
   fontSize: '14px',
 };
 
