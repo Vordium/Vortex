@@ -8,7 +8,6 @@ import {
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
-import Web3 from "web3"; // Import Web3 library
 
 function Swap(props) {
   const { address, isConnected } = props;
@@ -28,40 +27,6 @@ function Swap(props) {
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [isTransactionPending, setIsTransactionPending] = useState(false);
-
-  // Initialize Web3 instance
-  const expectedNetworkId = 1;
-  const infuraUrl = 'https://mainnet.infura.io/v3/f969e4d64814431a970f24313653aef3';
-  const web3 = new Web3(new Web3.providers.HttpProvider(infuraUrl));
-
-  async function checkWalletConnection() {
-    if (window.ethereum) {
-      try {
-        // Request access to accounts
-        await window.ethereum.enable();
-        // Accounts now accessible via web3.eth.accounts
-
-        // Check if connected to the correct network
-        const networkId = await web3.eth.net.getId();
-        if (networkId !== expectedNetworkId) {
-          console.error('Connected to the wrong network');
-        }
-
-        // Fetch user account
-        const accounts = await web3.eth.getAccounts();
-        const userAddress = accounts[0];
-        console.log('User Address:', userAddress);
-
-        // Proceed with other interactions
-        // ...
-
-      } catch (error) {
-        console.error('Error connecting to wallet:', error);
-      }
-    } else {
-      console.error('No Ethereum provider detected');
-    }
-  }
 
   const { data, sendTransaction } = useSendTransaction({
     request: {
@@ -119,7 +84,7 @@ function Swap(props) {
     if (!selectedToken) {
       return;
     }
-
+  
     if (changeToken === 1) {
       setTokenOne(selectedToken);
       fetchPrices(selectedToken.address, tokenTwo.address);
@@ -174,7 +139,6 @@ function Swap(props) {
   }
 
   useEffect(() => {
-    checkWalletConnection();
     fetchPrices(tokenList[0].address, tokenList[1].address);
   }, []);
 
