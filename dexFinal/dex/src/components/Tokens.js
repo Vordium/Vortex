@@ -52,7 +52,7 @@ const rowStyle = {
 
 const searchStyle = {
   position: 'fixed',  // Add this line
-  top: '0', 
+  top: '150px', 
   width: '50%',
   padding: '10px',
   border: '1px solid #ccc',
