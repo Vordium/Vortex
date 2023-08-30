@@ -102,31 +102,29 @@ function Swap(props) {
     setPrices(res.data);
   }
 
-  async function fetchDexSwap() {
-    try {
-      setIsTransactionPending(true); // Set loading state
-      const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+  async function fetchDexSwap(){
 
-      if (allowance.data.allowance === "0") {
-        const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
+    const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+  
+    if(allowance.data.allowance === "0"){
 
-        setTxDetails(approve.data);
-        console.log("not approved");
-        setIsTransactionPending(false); // Reset loading state
-        return;
-      }
+      const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
 
-      const tx = await axios.get(`https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`)
+      setTxDetails(approve.data);
+      console.log("not approved")
+      return
 
-      let decimals = Number(`1E${tokenTwo.decimals}`);
-      setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-
-      setTxDetails(tx.data.tx);
-      setIsTransactionPending(false); // Reset loading state
-    } catch (error) {
-      setIsTransactionPending(false); // Reset loading state on error
-      // Handle error
     }
+
+    const tx = await axios.get(
+      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+    )
+
+    let decimals = Number(`1E${tokenTwo.decimals}`)
+    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
+
+    setTxDetails(tx.data.tx);
+  
   }
 
   useEffect(() => {
