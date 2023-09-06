@@ -24,6 +24,12 @@ app.get("/", (req, res) => {
 app.get("/tokenPrice", async (req, res) => {
   // Your code to fetch and send token prices here
   // ...
+
+  // Add the Access-Control-Allow-Origin header to the response
+  res.setHeader("Access-Control-Allow-Origin", "https://swap.vordium.com");
+
+  // Send the response
+  res.status(200).json(/* Your response data */);
 });
 
 app.listen(port, () => {
