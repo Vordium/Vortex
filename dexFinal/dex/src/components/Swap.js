@@ -103,6 +103,11 @@ function Swap(props) {
   }
 
   async function fetchDexSwap(){
+    const apiKey = 'rWtOI0gGIJmXd4P58f2pZg4oXqq3xirw';
+
+  const headers = {
+    'Authorization': `Bearer ${apiKey}`,
+  };
 
     const allowance = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
   
