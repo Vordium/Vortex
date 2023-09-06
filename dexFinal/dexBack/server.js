@@ -6,7 +6,9 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+  origin: "https://swap.vordium.com",
+}));
 app.use(express.json());
 
 Moralis.initialize(process.env.MORALIS_APPLICATION_ID);

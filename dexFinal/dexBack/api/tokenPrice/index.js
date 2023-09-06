@@ -6,10 +6,11 @@ require("dotenv").config();
 const port = 3001;
 
 const corsOptions = {
-  origin: "https://swap.vordium.com", // Allow requests only from this origin
+  origin: "https://swap.vordium.com",
 };
 
 app.use(cors(corsOptions)); // Use the cors middleware with specific origin
+
 app.use(express.json());
 
 app.get("/api/tokenPrice", async (req, res) => {
