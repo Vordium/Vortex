@@ -102,46 +102,31 @@ function Swap(props) {
     setPrices(res.data);
   }
 
-  async function fetchDexSwap() {
-      // Your 1inch API key (replace with your actual API key)
-      const apiKey = 'rWtOI0gGIJmXd4P58f2pZg4oXqq3xirw';
-    
-      const headers = {
-        'Authorization': `Bearer ${apiKey}`,
-      };
-    
-      try {
-        const allowance = await axios.get(
-          `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
-          { headers }
-        );
-    
-        if (allowance.data.allowance === "0") {
-          const approve = await axios.get(
-            `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}`,
-            { headers }
-          );
-    
-          setTxDetails(approve.data);
-          console.log("not approved");
-          return;
-        }
-    
-        const tx = await axios.get(
-          `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`,
-          { headers }
-        );
-    
-        let decimals = Number(`1E${tokenTwo.decimals}`);
-        setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-    
-        setTxDetails(tx.data.tx);
-      } catch (error) {
-        console.error("An error occurred:", error);
-        // Handle the error appropriately, e.g., show an error message to the user.
-      }
+  async function fetchDexSwap(){
+
+    const allowance = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+  
+    if(allowance.data.allowance === "0"){
+
+      const approve = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`)
+
+      setTxDetails(approve.data);
+      console.log("not approved")
+      return
+
+    }
+
+    const tx = await axios.get(
+      `https://api.1inch.io/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+    )
+
+    let decimals = Number(`1E${tokenTwo.decimals}`)
+    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
+
+    setTxDetails(tx.data.tx);
+  
   }
-    
+
   useEffect(() => {
     fetchPrices(tokenList[0].address, tokenList[1].address);
   }, []);
