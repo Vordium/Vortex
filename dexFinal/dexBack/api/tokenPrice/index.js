@@ -7,6 +7,8 @@ const port = 3001;
 
 const corsOptions = {
   origin: "https://swap.vordium.com",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specific HTTP methods
+  credentials: true, // Include credentials like cookies in the request
 };
 
 app.use(cors(corsOptions)); // Use the cors middleware with specific origin
