@@ -147,7 +147,7 @@ function Swap(props) {
         duration: 0,
       });
     }
-  }, [isLoading]);
+  }, [isLoading, messageApi]);
 
   useEffect(() => {
     messageApi.destroy();
@@ -164,7 +164,7 @@ function Swap(props) {
         duration: 1.5,
       });
     }
-  }, [isSuccess]);
+  }, [isSuccess, txDetails.to, messageApi]);
 
   const settings = (
     <>
