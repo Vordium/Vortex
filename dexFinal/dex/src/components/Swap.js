@@ -99,8 +99,8 @@ function Swap(props) {
     });
     setPrices(res.data);
   }
-  
-  async function fetch1inchData() {
+
+  async function fetchDexSwap() {
     const apiKey = process.env.REACT_APP_1INCH_API_KEY;
   
     // Set up Axios instance with headers
@@ -109,8 +109,6 @@ function Swap(props) {
         Authorization: `Bearer ${apiKey}`,
       },
     });
-    
-  async function fetchDexSwap() {
     try {
       const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
   
