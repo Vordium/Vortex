@@ -102,29 +102,29 @@ function Swap(props) {
     setPrices(res.data);
   }
 
-  async function fetchDexSwap(){
-
-    const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+  async function fetchDexSwap() {
+    try {
+      const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
   
-    if(allowance.data.allowance === "0"){
-
-      const approve = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`)
-
-      setTxDetails(approve.data);
-      console.log("not approved")
-      return
-
+      if (allowance.data.allowance === "0") {
+        const approve = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`);
+        setTxDetails(approve.data);
+        console.log("not approved");
+        return;
+      }
+  
+      const tx = await axios.get(
+        `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+      );
+  
+      let decimals = Number(`1E${tokenTwo.decimals}`);
+      setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+  
+      setTxDetails(tx.data.tx);
+    } catch (error) {
+      console.error("Error fetching DexSwap:", error);
+      // You can handle the error here, e.g., show a message to the user.
     }
-
-    const tx = await axios.get(
-      `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
-    )
-
-    let decimals = Number(`1E${tokenTwo.decimals}`)
-    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
-
-    setTxDetails(tx.data.tx);
-  
   }
 
   useEffect(() => {
@@ -135,7 +135,7 @@ function Swap(props) {
     if (txDetails.to && isConnected) {
       sendTransaction();
     }
-  }, [txDetails]);
+  }, [txDetails, isConnected]);
 
   useEffect(() => {
     messageApi.destroy();
