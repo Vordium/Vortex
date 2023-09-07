@@ -26,7 +26,6 @@ function Swap(props) {
     value: null,
   });
   const [searchTerm, setSearchTerm] = useState("");
-  const [isTransactionPending, setIsTransactionPending] = useState(false);
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
@@ -258,10 +257,10 @@ function Swap(props) {
         </div>
         <div
           className="swapButton"
-          disabled={!tokenOneAmount || !isConnected || isTransactionPending}
+          disabled={!tokenOneAmount || !isConnected || isLoading}
           onClick={fetchDexSwap}
         >
-          {isTransactionPending ? "Loading..." : "Swap"}
+          {isLoading ? "Loading..." : "Swap"}
         </div>
       </div>
     </>
