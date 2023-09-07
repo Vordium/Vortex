@@ -26,6 +26,7 @@ function Swap(props) {
     value: null,
   });
   const [searchTerm, setSearchTerm] = useState("");
+  const [isTransactionPending, setIsTransactionPending] = useState(false);
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
