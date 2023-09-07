@@ -26,8 +26,6 @@ function Swap(props) {
     value: null,
   });
   const [searchTerm, setSearchTerm] = useState("");
-  const [isTransactionPending, setIsTransactionPending] = useState(false);
-
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
@@ -139,19 +137,14 @@ function Swap(props) {
 
   useEffect(() => {
     messageApi.destroy();
-
+  
     if (isLoading) {
       messageApi.open({
         type: "loading",
         content: "Transaction is Pending...",
         duration: 0,
       });
-    }
-  }, [isLoading, messageApi]);
-
-  useEffect(() => {
-    messageApi.destroy();
-    if (isSuccess) {
+    } else if (isSuccess) {
       messageApi.open({
         type: "success",
         content: "Transaction Successful",
@@ -164,7 +157,18 @@ function Swap(props) {
         duration: 1.5,
       });
     }
-  }, [isSuccess, txDetails.to, messageApi]);
+  }, [isLoading, isSuccess, txDetails.to, messageApi]);
+  
+  useEffect(() => {
+   
+    if (txDetails.to && isConnected) {
+      sendTransaction();
+    }
+  }, [txDetails.to, isConnected, sendTransaction]);
+  
+
+
+  
 
   const settings = (
     <>
