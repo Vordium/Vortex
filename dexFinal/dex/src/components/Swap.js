@@ -131,35 +131,29 @@ function Swap(props) {
   }, []);
 
   useEffect(() => {
-    if (txDetails.to && isConnected) {
-      sendTransaction();
-    }
-  }, [txDetails, isConnected]);
+  messageApi.destroy();
 
-  useEffect(() => {
-    messageApi.destroy();
-  
-    if (isLoading) {
-      messageApi.open({
-        type: "loading",
-        content: "Transaction is Pending...",
-        duration: 0,
-      });
-    } else if (isSuccess) {
-      messageApi.open({
-        type: "success",
-        content: "Transaction Successful",
-        duration: 1.5,
-      });
-    } else if (txDetails.to) {
-      messageApi.open({
-        type: "error",
-        content: "Transaction Failed",
-        duration: 1.5,
-      });
-    }
-  }, [isLoading, isSuccess, txDetails.to, messageApi]);
-  
+  if (isLoading) { // Use 'isLoading' instead of 'isTransactionPending'
+    messageApi.open({
+      type: "loading",
+      content: "Transaction is Pending...",
+      duration: 0,
+    });
+  } else if (isSuccess) {
+    messageApi.open({
+      type: "success",
+      content: "Transaction Successful",
+      duration: 1.5,
+    });
+  } else if (txDetails.to) {
+    messageApi.open({
+      type: "error",
+      content: "Transaction Failed",
+      duration: 1.5,
+    });
+  }
+}, [isLoading, isSuccess, txDetails.to, messageApi]);
+
   useEffect(() => {
    
     if (txDetails.to && isConnected) {
