@@ -29,7 +29,7 @@ function Swap(props) {
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
-      to: txDetails.to ? String(txDetails.to) : null,
+      to: String(txDetails.to),
       data: String(txDetails.data),
       value: String(txDetails.value),
     },
@@ -99,7 +99,17 @@ function Swap(props) {
     });
     setPrices(res.data);
   }
-
+  
+  async function fetch1inchData() {
+    const apiKey = process.env.REACT_APP_1INCH_API_KEY;
+  
+    // Set up Axios instance with headers
+    const axiosInstance = axios.create({
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+    });
+    
   async function fetchDexSwap() {
     try {
       const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
