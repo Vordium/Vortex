@@ -112,17 +112,17 @@ function Swap(props) {
       },
     });
     try {
-      const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
+      const allowance = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
   
       if (allowance.data.allowance === "0") {
-        const approve = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`);
+        const approve = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`);
         setTxDetails(approve.data);
         console.log("not approved");
         return;
       }
   
       const tx = await axios.get(
-        `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+        `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
       );
   
       let decimals = Number(`1E${tokenTwo.decimals}`);
