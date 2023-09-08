@@ -107,6 +107,12 @@ function Swap(props) {
 
     const apiKey = process.env.REACT_APP_1INCH_API_KEY;
 
+    // Troubleshooting code - Start
+    console.log("Debug: Checking input data before making the 1inch API request...");
+    console.log("Token One Address:", tokenOne.address);
+    console.log("Wallet Address:", address);
+    // Troubleshooting code - End
+
     // Set up Axios instance with headers
     const axiosInstance = axios.create({
       headers: {
