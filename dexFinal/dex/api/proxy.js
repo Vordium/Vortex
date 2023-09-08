@@ -1,14 +1,20 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-module.exports = function (app) {
-  app.use(
-    '/api',  // Specify the path to match for proxying
-    createProxyMiddleware({
-      target: 'https://api.1inch.dev',  // Target URL of the 1inch API
-      changeOrigin: true,  // Enable CORS handling
-      pathRewrite: {
-        '^/api': '',  // Remove the '/api/1inch' path prefix when forwarding the request
-      },
-    })
-  );
+export default (req, res) => {
+  // Configure the proxy middleware
+  const proxy = createProxyMiddleware({
+    target: "https://api.1inch.dev",
+    changeOrigin: true,
+    // Optionally, you can set headers if needed
+    onProxyReq: (proxyReq) => {
+      // Add your API key in the request header if required
+      proxyReq.setHeader(
+        "Authorization",
+        `Bearer ${process.env.REACT_APP_1INCH_KEY}`
+      );
+    },
+  });
+
+  // Use the proxy middleware to handle the request
+  proxy(req, res);
 };
