@@ -26,23 +26,7 @@ function Swap(props) {
     value: null,
   });
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Define the base URL of your Vercel-hosted proxy server
-  const proxyServerUrl = 'https://swap.vordium.com/api/proxy';
-
-  // Define the specific endpoints based on your parameters
-  const endpoint1 = `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`;
-  const endpoint2 = `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`;
-  const endpoint3 = `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
-    tokenOne.decimals + tokenOneAmount.length,
-    "0"
-  )}&fromAddress=${address}&slippage=${slippage}`;
-
-  // Construct the full URLs by combining the proxy server URL and endpoints
-  const fullUrl1 = `${proxyServerUrl}${endpoint1}`;
-  const fullUrl2 = `${proxyServerUrl}${endpoint2}`;
-  const fullUrl3 = `${proxyServerUrl}${endpoint3}`;
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const { data, sendTransaction } = useSendTransaction({
     request: {
@@ -119,13 +103,20 @@ function Swap(props) {
   }
 
   async function fetchDexSwap() {
-    setIsLoading(true);
+    setIsLoading(true); // Set loading state to true when the button is clicked
 
     const apiKey = process.env.REACT_APP_1INCH_API_KEY;
     const headers = {
       Authorization: `Bearer ${apiKey}`,
     };
 
+    // Troubleshooting code - Start
+    console.log("Debug: Checking input data before making the 1inch API request...");
+    console.log("Token One Address:", tokenOne.address);
+    console.log("Wallet Address:", address);
+    // Troubleshooting code - End
+
+    // Set up Axios instance with headers
     const axiosInstance = axios.create({
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -133,22 +124,38 @@ function Swap(props) {
     });
 
     try {
-      const allowance = await axiosInstance.get(fullUrl1); // Use the full URL for allowance
+      const allowance = await axiosInstance.get(
+        `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
+        { headers }
+      );
+
       if (allowance.data.allowance === "0") {
-        const approve = await axiosInstance.get(fullUrl2); // Use the full URL for approval
+        const approve = await axiosInstance.get(
+          `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`,
+          { headers }
+        );
         setTxDetails(approve.data);
         console.log("not approved");
         return;
       }
 
-      const tx = await axiosInstance.get(fullUrl3); // Use the full URL for swap
+      const tx = await axiosInstance.get(
+        `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
+          tokenOne.decimals + tokenOneAmount.length,
+          "0"
+        )}&fromAddress=${address}&slippage=${slippage}`,
+        { headers }
+      );
+
       let decimals = Number(`1E${tokenTwo.decimals}`);
       setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+
       setTxDetails(tx.data.tx);
     } catch (error) {
       console.error("Error fetching DexSwap:", error);
+      // You can handle the error here, e.g., show an error message to the user.
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Reset the loading state
     }
   }
 
