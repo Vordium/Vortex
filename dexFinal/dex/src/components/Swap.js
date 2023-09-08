@@ -29,7 +29,7 @@ function Swap(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   // Define the base URL of your Vercel-hosted proxy server
-  const proxyServerUrl = 'https://swap.vordium.com/api/proxy';
+  const proxyServerUrl = 'https://swap.vordium.com/api/';
 
   // Define the specific endpoints based on your parameters
   const endpoint1 = `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`;
