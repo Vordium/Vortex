@@ -106,7 +106,9 @@ function Swap(props) {
     setIsLoading(true); // Set loading state to true when the button is clicked
 
     const apiKey = process.env.REACT_APP_1INCH_API_KEY;
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const headers = {
+      Authorization: `Bearer ${apiKey}`,
+    };
 
     // Troubleshooting code - Start
     console.log("Debug: Checking input data before making the 1inch API request...");
@@ -122,12 +124,12 @@ function Swap(props) {
     });
 
     try {
-      const allowance = await axios.get(
+      const allowance = await axiosInstance.get(
         `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
       );
 
       if (allowance.data.allowance === "0") {
-        const approve = await axios.get(
+        const approve = await axiosInstance.get(
           `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`
         );
         setTxDetails(approve.data);
@@ -135,7 +137,7 @@ function Swap(props) {
         return;
       }
 
-      const tx = await axios.get(
+      const tx = await axiosInstance.get(
         `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
           tokenOne.decimals + tokenOneAmount.length,
           "0"
@@ -148,7 +150,7 @@ function Swap(props) {
       setTxDetails(tx.data.tx);
     } catch (error) {
       console.error("Error fetching DexSwap:", error);
-      // You can handle the error here, e.g., show a message to the user.
+      // You can handle the error here, e.g., show an error message to the user.
     } finally {
       setIsLoading(false); // Reset the loading state
     }
