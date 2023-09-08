@@ -117,20 +117,20 @@ function Swap(props) {
     // Troubleshooting code - End
 
     // Set up Axios instance with headers
-    const axiosInstance = axios.create({
+    const axios = axios.create({
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
     });
 
     try {
-      const allowance = await axiosInstance.get(
+      const allowance = await axios.get(
         `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
         { headers }
       );
 
       if (allowance.data.allowance === "0") {
-        const approve = await axiosInstance.get(
+        const approve = await axios.get(
           `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`,
           { headers }
         );
@@ -139,7 +139,7 @@ function Swap(props) {
         return;
       }
 
-      const tx = await axiosInstance.get(
+      const tx = await axios.get(
         `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
           tokenOne.decimals + tokenOneAmount.length,
           "0"
