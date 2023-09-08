@@ -106,6 +106,7 @@ function Swap(props) {
     setIsLoading(true); // Set loading state to true when the button is clicked
 
     const apiKey = process.env.REACT_APP_1INCH_API_KEY;
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
     // Troubleshooting code - Start
     console.log("Debug: Checking input data before making the 1inch API request...");
