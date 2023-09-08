@@ -125,13 +125,13 @@ function Swap(props) {
 
     try {
       const allowance = await axiosInstance.get(
-        `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
+        `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
         { headers }
       );
 
       if (allowance.data.allowance === "0") {
         const approve = await axiosInstance.get(
-          `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`,
+          `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`,
           { headers }
         );
         setTxDetails(approve.data);
@@ -140,7 +140,7 @@ function Swap(props) {
       }
 
       const tx = await axiosInstance.get(
-        `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
+        `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
           tokenOne.decimals + tokenOneAmount.length,
           "0"
         )}&fromAddress=${address}&slippage=${slippage}`,
