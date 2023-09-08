@@ -3,7 +3,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 export default (req, res) => {
   // Configure the proxy middleware
   const proxy = createProxyMiddleware({
-    target: "https://api.1inch.dev/swap/v5.2/",
+    target: "https://api.1inch.dev/",
     changeOrigin: true,
     // Optionally, you can set headers if needed
     onProxyReq: (proxyReq) => {
