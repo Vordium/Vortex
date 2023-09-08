@@ -26,6 +26,8 @@ function Swap(props) {
     value: null,
   });
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Loading state
+
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
@@ -35,7 +37,7 @@ function Swap(props) {
     },
   });
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
+  const { isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
 
@@ -82,7 +84,7 @@ function Swap(props) {
     if (!selectedToken) {
       return;
     }
-  
+
     if (changeToken === 1) {
       setTokenOne(selectedToken);
       fetchPrices(selectedToken.address, tokenTwo.address);
@@ -101,35 +103,47 @@ function Swap(props) {
   }
 
   async function fetchDexSwap() {
+    setIsLoading(true); // Set loading state to true when the button is clicked
+
     const apiKey = process.env.REACT_APP_1INCH_API_KEY;
-  
+
     // Set up Axios instance with headers
     const axiosInstance = axios.create({
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
     });
+
     try {
-      const allowance = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
-  
+      const allowance = await axios.get(
+        `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
+      );
+
       if (allowance.data.allowance === "0") {
-        const approve = await axios.get(`https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`);
+        const approve = await axios.get(
+          `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`
+        );
         setTxDetails(approve.data);
         console.log("not approved");
         return;
       }
-  
+
       const tx = await axios.get(
-        `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+        `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
+          tokenOne.decimals + tokenOneAmount.length,
+          "0"
+        )}&fromAddress=${address}&slippage=${slippage}`
       );
-  
+
       let decimals = Number(`1E${tokenTwo.decimals}`);
       setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-  
+
       setTxDetails(tx.data.tx);
     } catch (error) {
       console.error("Error fetching DexSwap:", error);
       // You can handle the error here, e.g., show a message to the user.
+    } finally {
+      setIsLoading(false); // Reset the loading state
     }
   }
 
@@ -138,39 +152,34 @@ function Swap(props) {
   }, []);
 
   useEffect(() => {
-  messageApi.destroy();
+    messageApi.destroy();
 
-  if (isLoading) { // Use 'isLoading' instead of 'isTransactionPending'
-    messageApi.open({
-      type: "loading",
-      content: "Transaction is Pending...",
-      duration: 0,
-    });
-  } else if (isSuccess) {
-    messageApi.open({
-      type: "success",
-      content: "Transaction Successful",
-      duration: 1.5,
-    });
-  } else if (txDetails.to) {
-    messageApi.open({
-      type: "error",
-      content: "Transaction Failed",
-      duration: 1.5,
-    });
-  }
-}, [isLoading, isSuccess, txDetails.to, messageApi]);
+    if (isLoading) {
+      messageApi.open({
+        type: "loading",
+        content: "Transaction is Pending...",
+        duration: 0,
+      });
+    } else if (isSuccess) {
+      messageApi.open({
+        type: "success",
+        content: "Transaction Successful",
+        duration: 1.5,
+      });
+    } else if (txDetails.to) {
+      messageApi.open({
+        type: "error",
+        content: "Transaction Failed",
+        duration: 1.5,
+      });
+    }
+  }, [isLoading, isSuccess, txDetails.to, messageApi]);
 
   useEffect(() => {
-   
     if (txDetails.to && isConnected) {
       sendTransaction();
     }
   }, [txDetails.to, isConnected, sendTransaction]);
-  
-
-
-  
 
   const settings = (
     <>
