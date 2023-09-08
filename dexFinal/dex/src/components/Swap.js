@@ -1,3 +1,5 @@
+Swap.js
+
 import React, { useState, useEffect } from "react";
 import { Input, Popover, Radio, Modal, message } from "antd";
 import {
@@ -8,7 +10,6 @@ import {
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
-
 
 function Swap(props) {
   const { address, isConnected } = props;
@@ -22,23 +23,23 @@ function Swap(props) {
   const [changeToken, setChangeToken] = useState(1);
   const [prices, setPrices] = useState(null);
   const [txDetails, setTxDetails] = useState({
-    to:null,
+    to: null,
     data: null,
     value: null,
-  }); 
-
-  const {data, sendTransaction} = useSendTransaction({
+  });
+  const [searchTerm, setSearchTerm] = useState("");
+  const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
       to: String(txDetails.to),
       data: String(txDetails.data),
       value: String(txDetails.value),
-    }
-  })
+    },
+  });
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
-  })
+  });
 
   function handleSlippageChange(e) {
     setSlippage(e.target.value);
@@ -46,9 +47,9 @@ function Swap(props) {
 
   function changeAmount(e) {
     setTokenOneAmount(e.target.value);
-    if(e.target.value && prices){
-      setTokenTwoAmount((e.target.value * prices.ratio).toFixed(2))
-    }else{
+    if (e.target.value && prices) {
+      setTokenTwoAmount((e.target.value * prices.ratio).toFixed(2));
+    } else {
       setTokenTwoAmount(null);
     }
   }
@@ -69,102 +70,109 @@ function Swap(props) {
     setIsOpen(true);
   }
 
-  function modifyToken(i){
+  function modifyToken(i) {
     setPrices(null);
     setTokenOneAmount(null);
     setTokenTwoAmount(null);
+    const selectedToken = tokenList
+      .filter(
+        (token) =>
+          token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          token.address.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      [i];
+    if (!selectedToken) {
+      return;
+    }
+  
     if (changeToken === 1) {
-      setTokenOne(tokenList[i]);
-      fetchPrices(tokenList[i].address, tokenTwo.address)
+      setTokenOne(selectedToken);
+      fetchPrices(selectedToken.address, tokenTwo.address);
     } else {
-      setTokenTwo(tokenList[i]);
-      fetchPrices(tokenOne.address, tokenList[i].address)
+      setTokenTwo(selectedToken);
+      fetchPrices(tokenOne.address, selectedToken.address);
     }
     setIsOpen(false);
   }
 
-  async function fetchPrices(one, two){
-
-      const res = await axios.get(`https://api.vordium.com/api/tokenPrice`, {
-        params: {addressOne: one, addressTwo: two}
-      })
-
-      
-      setPrices(res.data)
+  async function fetchPrices(one, two) {
+    const res = await axios.get(`https://api.vordium.com/api/tokenPrice`, {
+      params: { addressOne: one, addressTwo: two },
+    });
+    setPrices(res.data);
   }
 
-  async function fetchDexSwap(){
-
-    const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
+  async function fetchDexSwap() {
+    const apiKey = process.env.REACT_APP_1INCH_API_KEY;
   
-    if(allowance.data.allowance === "0"){
-
-      const approve = await axios.get(`/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}`)
-
-      setTxDetails(approve.data);
-      console.log("not approved")
-      return
-
-    }
-
-    const tx = await axios.get(
-      `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
-    )
-
-    let decimals = Number(`1E${tokenTwo.decimals}`)
-    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2));
-
-    setTxDetails(tx.data.tx);
+    // Set up Axios instance with headers
+    const axiosInstance = axios.create({
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+    });
+    try {
+      const allowance = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
   
-  }
-
-
-  useEffect(()=>{
-
-    fetchPrices(tokenList[0].address, tokenList[1].address)
-
-  }, [])
-
-  useEffect(()=>{
-
-      if(txDetails.to && isConnected){
-        sendTransaction();
+      if (allowance.data.allowance === "0") {
+        const approve = await axios.get(`/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`);
+        setTxDetails(approve.data);
+        console.log("not approved");
+        return;
       }
-  }, [txDetails])
-
-  useEffect(()=>{
-
-    messageApi.destroy();
-
-    if(isLoading){
-      messageApi.open({
-        type: 'loading',
-        content: 'Transaction is Pending...',
-        duration: 0,
-      })
-    }    
-
-  },[isLoading])
-
-  useEffect(()=>{
-    messageApi.destroy();
-    if(isSuccess){
-      messageApi.open({
-        type: 'success',
-        content: 'Transaction Successful',
-        duration: 1.5,
-      })
-    }else if(txDetails.to){
-      messageApi.open({
-        type: 'error',
-        content: 'Transaction Failed',
-        duration: 1.50,
-      })
+  
+      const tx = await axios.get(
+        `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
+      );
+  
+      let decimals = Number(`1E${tokenTwo.decimals}`);
+      setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+  
+      setTxDetails(tx.data.tx);
+    } catch (error) {
+      console.error("Error fetching DexSwap:", error);
+      // You can handle the error here, e.g., show a message to the user.
     }
+  }
+
+  useEffect(() => {
+    fetchPrices(tokenList[0].address, tokenList[1].address);
+  }, []);
+
+  useEffect(() => {
+  messageApi.destroy();
+
+  if (isLoading) { // Use 'isLoading' instead of 'isTransactionPending'
+    messageApi.open({
+      type: "loading",
+      content: "Transaction is Pending...",
+      duration: 0,
+    });
+  } else if (isSuccess) {
+    messageApi.open({
+      type: "success",
+      content: "Transaction Successful",
+      duration: 1.5,
+    });
+  } else if (txDetails.to) {
+    messageApi.open({
+      type: "error",
+      content: "Transaction Failed",
+      duration: 1.5,
+    });
+  }
+}, [isLoading, isSuccess, txDetails.to, messageApi]);
+
+  useEffect(() => {
+   
+    if (txDetails.to && isConnected) {
+      sendTransaction();
+    }
+  }, [txDetails.to, isConnected, sendTransaction]);
+  
 
 
-  },[isSuccess])
-
+  
 
   const settings = (
     <>
@@ -189,21 +197,38 @@ function Swap(props) {
         title="Select a token"
       >
         <div className="modalContent">
-          {tokenList?.map((e, i) => {
-            return (
-              <div
-                className="tokenChoice"
-                key={i}
-                onClick={() => modifyToken(i)}
-              >
-                <img src={e.img} alt={e.ticker} className="tokenLogo" />
-                <div className="tokenChoiceNames">
-                  <div className="tokenName">{e.name}</div>
-                  <div className="tokenTicker">{e.ticker}</div>
+          <Input
+            placeholder="Search tokens..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              fontSize: "16px",
+              height: "50px",
+              borderRadius: "0",
+            }}
+            className="tokenSearchInput"
+          />
+          {tokenList
+            ?.filter(
+              (token) =>
+                token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                token.address.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .map((e, i) => {
+              return (
+                <div
+                  className="tokenChoice"
+                  key={i}
+                  onClick={() => modifyToken(i)}
+                >
+                  <img src={e.img} alt={e.ticker} className="tokenLogo" />
+                  <div className="tokenChoiceNames">
+                    <div className="tokenName">{e.name}</div>
+                    <div className="tokenTicker">{e.ticker}</div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </Modal>
       <div className="tradeBox">
@@ -240,7 +265,13 @@ function Swap(props) {
             <DownOutlined />
           </div>
         </div>
-        <div className="swapButton" disabled={!tokenOneAmount || !isConnected} onClick={fetchDexSwap}>Swap</div>
+        <div
+          className="swapButton"
+          disabled={!tokenOneAmount || !isConnected || isLoading}
+          onClick={fetchDexSwap}
+        >
+          {isLoading ? "Loading..." : "Swap"}
+        </div>
       </div>
     </>
   );
