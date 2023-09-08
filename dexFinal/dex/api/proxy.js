@@ -1,9 +1,9 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-module.exports = async (req, res) => {
+export default (req, res) => {
   // Configure the proxy middleware
   const proxy = createProxyMiddleware({
-    target: "https://api.1inch.dev", // Target URL to forward requests to
+    target: "https://api.1inch.dev",
     changeOrigin: true,
     // Optionally, you can set headers if needed
     onProxyReq: (proxyReq) => {
