@@ -6,10 +6,10 @@ function App() {
 
   useEffect(() => {
     const fetchGasPrice = async () => {
-      const response = await axios.get("/api/gas-price");
+      const timestamp = Date.now(); // Generate a unique timestamp
+      const response = await axios.get(`/api/gas-price?cacheBuster=${timestamp}`);
       setGasPrice(response.data);
-    };
-
+    }
     fetchGasPrice();
   }, []);
 
