@@ -40,7 +40,8 @@ function Swap(props) {
   const { isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
-
+  
+  
   function handleSlippageChange(e) {
     setSlippage(e.target.value);
   }
@@ -114,12 +115,12 @@ function Swap(props) {
 
     try {
       const allowance = await axios.get(
-        `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
+        `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
       );
 
       if (allowance.data.allowance === "0") {
         const approve = await axios.get(
-          `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`,
+          `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`
         );
         setTxDetails(approve.data);
         console.log("not approved");
