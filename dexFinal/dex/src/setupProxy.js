@@ -6,7 +6,7 @@ require("dotenv").config();
 
 module.exports = function (app) {
 
-app.use( "/swap",
+app.use( "/api",
 createProxyMiddleware({
   target: "https://api.1inch.dev",
   changeOrigin: true,
