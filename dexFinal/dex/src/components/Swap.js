@@ -115,13 +115,11 @@ function Swap(props) {
     try {
       const allowance = await axios.get(
         `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
-        { headers }
       );
 
       if (allowance.data.allowance === "0") {
         const approve = await axios.get(
           `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}`,
-          { headers }
         );
         setTxDetails(approve.data);
         console.log("not approved");
@@ -133,7 +131,6 @@ function Swap(props) {
           tokenOne.decimals + tokenOneAmount.length,
           "0"
         )}&fromAddress=${address}&slippage=${slippage}`,
-        { headers }
       );
 
       let decimals = Number(`1E${tokenTwo.decimals}`);
