@@ -105,23 +105,12 @@ function Swap(props) {
   async function fetchDexSwap() {
     setIsLoading(true); // Set loading state to true when the button is clicked
 
-    const apiKey = process.env.REACT_APP_1INCH_API_KEY;
-    const headers = {
-      Authorization: `Bearer ${apiKey}`,
-    };
-
     // Troubleshooting code - Start
     console.log("Debug: Checking input data before making the 1inch API request...");
     console.log("Token One Address:", tokenOne.address);
     console.log("Wallet Address:", address);
     // Troubleshooting code - End
 
-    // Set up Axios instance with headers
-    const axios = axios.create({
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
 
     try {
       const allowance = await axios.get(
