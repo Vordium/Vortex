@@ -29,7 +29,7 @@ app.get('/api/1inch', async (req, res) => {
 
     // Make the request to the 1inch API
     const response = await axios.get(
-      'https://api.1inch.dev/',
+      'https://api.1inch.dev',
       axiosConfig
     );
 
