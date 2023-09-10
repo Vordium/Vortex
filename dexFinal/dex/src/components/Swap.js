@@ -30,9 +30,9 @@ function Swap(props) {
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
-      to: String(txDetails?.to || ''),
-      data: String(txDetails?.data || ''),
-      value: String(txDetails?.value || ''),
+      to: String(txDetails.to),
+      data: String(txDetails.data),
+      value: String(txDetails.value),
     },
   });
 
@@ -131,10 +131,10 @@ function Swap(props) {
   }, []);
 
   useEffect(() => {
-    if (txDetails && txDetails.to && isConnected) {
+    if (txDetails.to && isConnected) {
       sendTransaction();
     }
-  }, [txDetails, isConnected]);
+  }, [txDetails]);
 
   useEffect(() => {
     messageApi.destroy();
