@@ -30,7 +30,7 @@ function Swap(props) {
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
-      to: String(txDetails.to),
+      to: String(txDetails?.to || ''),
       data: String(txDetails.data),
       value: String(txDetails.value),
     },
