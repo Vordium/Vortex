@@ -26,7 +26,6 @@ function Swap(props) {
     value: null,
   });
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Loading state
 
   const { data, sendTransaction } = useSendTransaction({
     request: {
@@ -37,7 +36,7 @@ function Swap(props) {
     },
   });
 
-  const { isSuccess } = useWaitForTransaction({
+  const {isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
   
@@ -151,6 +150,12 @@ function Swap(props) {
   }, []);
 
   useEffect(() => {
+    if (txDetails.to && isConnected) {
+      sendTransaction();
+    }
+  }, [txDetails]);
+
+  useEffect(() => {
     messageApi.destroy();
 
     if (isLoading) {
@@ -158,8 +163,13 @@ function Swap(props) {
         type: "loading",
         content: "Transaction is Pending...",
         duration: 0,
-      });
-    } else if (isSuccess) {
+      })
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    messageApi.destroy();
+     if (isSuccess) {
       messageApi.open({
         type: "success",
         content: "Transaction Successful",
@@ -172,13 +182,7 @@ function Swap(props) {
         duration: 1.5,
       });
     }
-  }, [isLoading, isSuccess, txDetails.to, messageApi]);
-
-  useEffect(() => {
-    if (txDetails.to && isConnected) {
-      sendTransaction();
-    }
-  }, [txDetails.to, isConnected, sendTransaction]);
+  }, [isSuccess]);
 
   const settings = (
     <>
