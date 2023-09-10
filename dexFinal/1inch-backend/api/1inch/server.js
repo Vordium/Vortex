@@ -1,17 +1,18 @@
-const express = require('express');
 const axios = require('axios');
-const cors = require('cors'); // If not already configured
-
 const app = express();
+const cors = require("cors"); // Import the cors middleware
+require("dotenv").config();
 const port = process.env.PORT || 3000;
 
 // Configure CORS to allow requests from your frontend origin
 const corsOptions = {
   origin: 'https://swap.vordium.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specific HTTP methods
+  credentials: true, // Include credentials like cookies in the request
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-
+app.use(express.json());
 // Middleware and route configuration goes here
 
 // Define a route that makes a request to the 1inch API with authorization headers
@@ -29,7 +30,7 @@ app.get('/api/1inch', async (req, res) => {
 
     // Make the request to the 1inch API
     const response = await axios.get(
-      'https://api.1inch.dev',
+      'https://api.1inch.dev/swap/v5.2/',
       axiosConfig
     );
 
