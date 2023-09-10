@@ -105,12 +105,12 @@ function Swap(props) {
 
   async function fetchDexSwap() { 
     const allowance = await axios.get(
-      `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
+      `/src/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
     );
 
     if (allowance.data.allowance === "0") {
       const approve = await axios.get(
-        `/api/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
+        `/src/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
       );
       setTxDetails(approve.data);
       console.log("not approved");
@@ -118,7 +118,7 @@ function Swap(props) {
     }
 
     const tx = await axios.get(
-      `/api/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`
+      `/src/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`
     );
 
     let decimals = Number(`1E${tokenTwo.decimals}`);
