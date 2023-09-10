@@ -31,8 +31,8 @@ function Swap(props) {
     request: {
       from: address,
       to: String(txDetails?.to || ''),
-      data: String(txDetails.data),
-      value: String(txDetails.value),
+      data: String(txDetails?.data || ''),
+      value: String(txDetails?.value || ''),
     },
   });
 
