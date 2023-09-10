@@ -102,47 +102,28 @@ function Swap(props) {
     setPrices(res.data);
   }
 
-  async function fetchDexSwap() {
-    setIsLoading(true); // Set loading state to true when the button is clicked
+  async function fetchDexSwap() { 
+    const allowance = await axios.get(
+      `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
+    );
 
-    // Troubleshooting code - Start
-    console.log("Debug: Checking input data before making the 1inch API request...");
-    console.log("Token One Address:", tokenOne.address);
-    console.log("Wallet Address:", address);
-    // Troubleshooting code - End
-
-
-    try {
-      const allowance = await axios.get(
-        `/api/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
+    if (allowance.data.allowance === "0") {
+      const approve = await axios.get(
+        `/api/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
       );
-
-      if (allowance.data.allowance === "0") {
-        const approve = await axios.get(
-          `/api/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
-        );
-        setTxDetails(approve.data);
-        console.log("not approved");
-        return;
-      }
-
-      const tx = await axios.get(
-        `/api/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(
-          tokenOne.decimals + tokenOneAmount.length,
-          "0"
-        )}&fromAddress=${address}&slippage=${slippage}`
-      );
-
-      let decimals = Number(`1E${tokenTwo.decimals}`);
-      setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-
-      setTxDetails(tx.data.tx);
-    } catch (error) {
-      console.error("Error fetching DexSwap:", error);
-      // You can handle the error here, e.g., show an error message to the user.
-    } finally {
-      setIsLoading(false); // Reset the loading state
+      setTxDetails(approve.data);
+      console.log("not approved");
+      return;
     }
+
+    const tx = await axios.get(
+      `/api/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`
+    );
+
+    let decimals = Number(`1E${tokenTwo.decimals}`);
+    setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
+
+    setTxDetails(tx.data.tx);
   }
 
   useEffect(() => {
