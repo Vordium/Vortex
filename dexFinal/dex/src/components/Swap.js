@@ -8,6 +8,7 @@ import {
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
+axios.defaults.baseURL = window.location.origin;
 
 function Swap(props) {
   const { address, isConnected } = props;
