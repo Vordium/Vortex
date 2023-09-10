@@ -8,7 +8,6 @@ import {
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
-axios.defaults.baseURL = window.location.origin;
 
 function Swap(props) {
   const { address, isConnected } = props;
@@ -105,12 +104,12 @@ function Swap(props) {
 
   async function fetchDexSwap() { 
     const allowance = await axios.get(
-      `/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
+      `https://1inch.vordium.com/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
     );
 
     if (allowance.data.allowance === "0") {
       const approve = await axios.get(
-        `/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
+        `https://1inch.vordium.com/api/1inch/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
       );
       setTxDetails(approve.data);
       console.log("not approved");
@@ -118,7 +117,7 @@ function Swap(props) {
     }
 
     const tx = await axios.get(
-      `/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`
+      `https://1inch.vordium.com/api/1inch/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`
     );
 
     let decimals = Number(`1E${tokenTwo.decimals}`);
