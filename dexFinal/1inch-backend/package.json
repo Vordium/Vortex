@@ -1,5 +1,5 @@
 {
-    "name": "1inch-backend",
+    "name": "inch-backend",
     "version": "1.0.0",
     "description": "Your project description",
     "main": "server.js",
@@ -14,4 +14,4 @@
     "keywords": [],
     "author": "vordium",
     "license": "ISC"
-}
+  }
