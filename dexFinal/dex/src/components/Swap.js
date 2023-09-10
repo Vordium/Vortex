@@ -131,10 +131,10 @@ function Swap(props) {
   }, []);
 
   useEffect(() => {
-    if (txDetails.to && isConnected) {
+    if (txDetails && txDetails.to && isConnected) {
       sendTransaction();
     }
-  }, [txDetails]);
+  }, [txDetails, isConnected]);
 
   useEffect(() => {
     messageApi.destroy();
