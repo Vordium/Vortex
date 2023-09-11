@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors'); // Import the CORS middleware
+const cors = require('cors');
 const dotenv = require('dotenv');
 
 // Load environment variables from .env
@@ -9,9 +9,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Enable CORS for your frontend (replace '*' with the actual origin of your frontend)
+// Enable CORS for your frontend (replace 'YOUR_FRONTEND_ORIGIN' with your frontend's origin)
 app.use(cors({
-  origin: 'https://swap.vordium.com', // Change to your frontend's origin
+  origin: 'https://swap.vordium.com',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
@@ -19,29 +19,62 @@ app.use(cors({
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
-// Endpoint to proxy requests to the 1inch API
-app.get('/api/1inch/swap', async (req, res) => {
+// Endpoint to get allowance
+app.get('/api/1inch/swap/allowance', async (req, res) => {
   try {
-    const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
-    const apiKey = process.env['INCH_API_KEY'];
+    // Extract tokenAddress and walletAddress from query parameters
+    const { tokenAddress, walletAddress } = req.query;
 
-    const apiUrl = 'https://api.1inch.dev/swap/v5.2/';
-    const params = {
-      fromTokenAddress,
-      toTokenAddress,
-      amount,
-      fromAddress,
-      slippage,
-      apiKey,
-    };
+    // Construct the URL for the allowance request
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenAddress}&walletAddress=${walletAddress}`;
 
-    // Make a request to the 1inch API with query parameters
-    const response = await axios.get(apiUrl, { params });
+    // Make a request to the 1inch API
+    const response = await axios.get(apiUrl);
 
     // Send the 1inch API response to the frontend
     res.json(response.data);
   } catch (error) {
-    console.error('Error making 1inch API request:', error.message);
+    console.error('Error making allowance request:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Endpoint to get approval transaction
+app.get('/api/1inch/swap/approve-transaction', async (req, res) => {
+  try {
+    // Extract tokenAddress from query parameters
+    const { tokenAddress } = req.query;
+
+    // Construct the URL for the approval transaction request
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenAddress}`;
+
+    // Make a request to the 1inch API
+    const response = await axios.get(apiUrl);
+
+    // Send the 1inch API response to the frontend
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error making approval transaction request:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Endpoint to perform the swap
+app.get('/api/1inch/swap/perform-swap', async (req, res) => {
+  try {
+    // Extract parameters from query parameters
+    const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
+
+    // Construct the URL for the swap request
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount.padEnd(18, '0')}&fromAddress=${fromAddress}&slippage=${slippage}`;
+
+    // Make a request to the 1inch API
+    const response = await axios.get(apiUrl);
+
+    // Send the 1inch API response to the frontend
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error making swap request:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

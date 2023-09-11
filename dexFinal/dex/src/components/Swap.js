@@ -103,28 +103,34 @@ function Swap(props) {
   }
 
   async function fetchDexSwap() { 
-    const allowance = await axios.get(
-      `https://1inch.vordium.com/api/1inch/swap/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
-    );
-
-    if (allowance.data.allowance === "0") {
-      const approve = await axios.get(
-        `https://1inch.vordium.com/api/1inch/swap/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
-      );
-      setTxDetails(approve.data);
-      console.log("not approved");
-      return;
+    try {
+      // Make a request to get allowance from your server
+      const allowanceResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/1/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
+      const allowanceData = allowanceResponse.data;
+  
+      if (allowanceData.allowance === "0") {
+        // Make a request to get approval transaction from your server
+        const approveResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/1/approve-transaction?tokenAddress=${tokenOne.address}`);
+        const approveData = approveResponse.data;
+  
+        setTxDetails(approveData);
+        console.log("not approved");
+        return;
+      }
+  
+      // Make a request to perform the swap from your server
+      const swapResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(18, '0')}&fromAddress=${address}&slippage=${slippage}`);
+      const swapData = swapResponse.data;
+  
+      let decimals = Number(`1E${tokenTwo.decimals}`);
+      setTokenTwoAmount((Number(swapData.toTokenAmount) / decimals).toFixed(2));
+  
+      setTxDetails(swapData.tx);
+    } catch (error) {
+      console.error('Error making swap request:', error.message);
     }
-
-    const tx = await axios.get(
-      `https://1inch.vordium.com/api/1inch/swap/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals + tokenOneAmount.length,"0")}&fromAddress=${address}&slippage=${slippage}`
-    );
-
-    let decimals = Number(`1E${tokenTwo.decimals}`);
-    setTokenTwoAmount((Number(tx.data.toTokenAmount) / decimals).toFixed(2));
-
-    setTxDetails(tx.data.tx);
   }
+  
 
   useEffect(() => {
     fetchPrices(tokenList[0].address, tokenList[1].address);
