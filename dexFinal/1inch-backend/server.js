@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
+const cors = require('cors'); // Import the CORS middleware
 const dotenv = require('dotenv');
 
 // Load environment variables from .env
@@ -9,8 +9,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Enable CORS for your frontend
-app.use(cors());
+// Enable CORS for your frontend (replace '*' with the actual origin of your frontend)
+app.use(cors({
+  origin: 'https://swap.vordium.com', // Change to your frontend's origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
