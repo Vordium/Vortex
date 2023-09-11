@@ -105,12 +105,12 @@ function Swap(props) {
   async function fetchDexSwap() { 
     try {
       // Make a request to get allowance from your server
-      const allowanceResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/1/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`);
+      const allowanceResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/allowance`);
       const allowanceData = allowanceResponse.data;
   
       if (allowanceData.allowance === "0") {
         // Make a request to get approval transaction from your server
-        const approveResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/1/approve-transaction?tokenAddress=${tokenOne.address}`);
+        const approveResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/approve-transaction`);
         const approveData = approveResponse.data;
   
         setTxDetails(approveData);
@@ -119,7 +119,7 @@ function Swap(props) {
       }
   
       // Make a request to perform the swap from your server
-      const swapResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(18, '0')}&fromAddress=${address}&slippage=${slippage}`);
+      const swapResponse = await axios.get(`https://1inch.vordium.com/api/1inch/swap/perform-swap`);
       const swapData = swapResponse.data;
   
       let decimals = Number(`1E${tokenTwo.decimals}`);
