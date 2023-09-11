@@ -32,13 +32,13 @@ const createAxiosInstance = () => {
 };
 
 // Endpoint to get allowance
-app.get('/api/1inch/swap/allowance', async (req, res) => {
+app.get('/api/1inch/swap', async (req, res) => {
   try {
     // Extract tokenAddress and walletAddress from query parameters
     const { tokenAddress, walletAddress } = req.query;
 
     // Construct the URL for the allowance request
-    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`;
+    const apiUrl = `https://api.1inch.dev/swap/v5.2`;
 
     // Create an Axios instance with headers
     const axiosInstance = createAxiosInstance();
@@ -55,13 +55,13 @@ app.get('/api/1inch/swap/allowance', async (req, res) => {
 });
 
 // Endpoint to get approval transaction
-app.get('/api/1inch/swap/approve-transaction', async (req, res) => {
+app.get('/api/1inch/swap', async (req, res) => {
   try {
     // Extract tokenAddress from query parameters
     const { tokenAddress } = req.query;
 
     // Construct the URL for the approval transaction request
-    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}`;
+    const apiUrl = `https://api.1inch.dev/swap/v5.2`;
 
     // Create an Axios instance with headers
     const axiosInstance = createAxiosInstance();
@@ -78,13 +78,13 @@ app.get('/api/1inch/swap/approve-transaction', async (req, res) => {
 });
 
 // Endpoint to perform the swap
-app.get('/api/1inch/swap/perform-swap', async (req, res) => {
+app.get('/api/1inch/swap', async (req, res) => {
   try {
     // Extract parameters from query parameters
     const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
 
     // Construct the URL for the swap request
-    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`;
+    const apiUrl = `https://api.1inch.dev/swap/v5.2`;
 
     // Create an Axios instance with headers
     const axiosInstance = createAxiosInstance();
