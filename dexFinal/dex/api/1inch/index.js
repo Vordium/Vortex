@@ -1,36 +1,85 @@
+const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-module.exports = async (req, res) => {
+// Load environment variables from .env
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Enable CORS for your frontend (replace 'YOUR_FRONTEND_ORIGIN' with your frontend's origin)
+app.use(cors({
+  origin: 'https://swap.vordium.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Endpoint to get allowance
+app.get('/api/1inch/swap/allowance', async (req, res) => {
   try {
-    // Define the 1inch API URL
-    const apiUrl = 'https://api.1inch.dev/swap/v5.2/';
+    // Extract tokenAddress and walletAddress from query parameters
+    const { tokenAddress, walletAddress } = req.query;
 
-    // Retrieve the 1inch API key from the Vercel environment variable
-    const apiKey = process.env['INCH_API_KEY'];
+    // Construct the URL for the allowance request
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenAddress}&walletAddress=${walletAddress}`;
 
-    if (!apiKey) {
-      throw new Error('1INCH_API_KEY environment variable not found.');
-    }
+    // Make a request to the 1inch API
+    const response = await axios.get(apiUrl);
 
-    // Configure headers for the request to the 1inch API
-    const headers = {
-      Accept: 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    };
-
-    // Make a GET request to the 1inch API with the specified headers
-    const response = await axios.get(apiUrl, { headers });
-
-    // Check if the response is "Unauthorized" (status code 401)
-    if (response.status === 401) {
-      res.status(401).json({ success: false, error: 'Unauthorized' });
-    } else {
-      // Forward the response from the 1inch API to the client for other status codes
-      res.status(response.status).json(response.data);
-    }
+    // Send the 1inch API response to the frontend
+    res.json(response.data);
   } catch (error) {
-    // Handle other errors and send an error response to the client
-    console.error('Error:', error);
-    res.status(500).json({ success: false, error: 'Internal server error' });
+    console.error('Error making allowance request:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-};
+});
+
+// Endpoint to get approval transaction
+app.get('/api/1inch/swap/approve-transaction', async (req, res) => {
+  try {
+    // Extract tokenAddress from query parameters
+    const { tokenAddress } = req.query;
+
+    // Construct the URL for the approval transaction request
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenAddress}`;
+
+    // Make a request to the 1inch API
+    const response = await axios.get(apiUrl);
+
+    // Send the 1inch API response to the frontend
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error making approval transaction request:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Endpoint to perform the swap
+app.get('/api/1inch/swap/perform-swap', async (req, res) => {
+  try {
+    // Extract parameters from query parameters
+    const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
+
+    // Construct the URL for the swap request
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount.padEnd(18, '0')}&fromAddress=${fromAddress}&slippage=${slippage}`;
+
+    // Make a request to the 1inch API
+    const response = await axios.get(apiUrl);
+
+    // Send the 1inch API response to the frontend
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error making swap request:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
