@@ -19,6 +19,15 @@ app.use(cors({
 // Middleware to parse JSON request bodies
 app.use(express.json());
 
+// Function to create Axios instance with the 1inch API key in the headers
+const createAxiosInstance = () => {
+  return axios.create({
+    headers: {
+      'Authorization': `Bearer ${process.env.INCH_API_KEY}`, // Retrieve API key from environment variable
+    },
+  });
+};
+
 // Endpoint to get allowance
 app.get('/api/1inch/swap/allowance', async (req, res) => {
   try {
@@ -28,8 +37,11 @@ app.get('/api/1inch/swap/allowance', async (req, res) => {
     // Construct the URL for the allowance request
     const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenAddress}&walletAddress=${walletAddress}`;
 
-    // Make a request to the 1inch API
-    const response = await axios.get(apiUrl);
+    // Create an Axios instance with headers
+    const axiosInstance = createAxiosInstance();
+
+    // Make a request to the 1inch API using the Axios instance
+    const response = await axiosInstance.get(apiUrl);
 
     // Send the 1inch API response to the frontend
     res.json(response.data);
@@ -48,8 +60,11 @@ app.get('/api/1inch/swap/approve-transaction', async (req, res) => {
     // Construct the URL for the approval transaction request
     const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenAddress}`;
 
-    // Make a request to the 1inch API
-    const response = await axios.get(apiUrl);
+    // Create an Axios instance with headers
+    const axiosInstance = createAxiosInstance();
+
+    // Make a request to the 1inch API using the Axios instance
+    const response = await axiosInstance.get(apiUrl);
 
     // Send the 1inch API response to the frontend
     res.json(response.data);
@@ -68,8 +83,11 @@ app.get('/api/1inch/swap/perform-swap', async (req, res) => {
     // Construct the URL for the swap request
     const apiUrl = `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount.padEnd(18, '0')}&fromAddress=${fromAddress}&slippage=${slippage}`;
 
-    // Make a request to the 1inch API
-    const response = await axios.get(apiUrl);
+    // Create an Axios instance with headers
+    const axiosInstance = createAxiosInstance();
+
+    // Make a request to the 1inch API using the Axios instance
+    const response = await axiosInstance.get(apiUrl);
 
     // Send the 1inch API response to the frontend
     res.json(response.data);
