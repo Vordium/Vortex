@@ -35,7 +35,7 @@ app.get('/api/1inch/swap/allowance', async (req, res) => {
     const { tokenAddress, walletAddress } = req.query;
 
     // Construct the URL for the allowance request
-    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenAddress}&walletAddress=${walletAddress}`;
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`;
 
     // Create an Axios instance with headers
     const axiosInstance = createAxiosInstance();
@@ -58,7 +58,7 @@ app.get('/api/1inch/swap/approve-transaction', async (req, res) => {
     const { tokenAddress } = req.query;
 
     // Construct the URL for the approval transaction request
-    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/allowance/transaction?tokenAddress=${tokenAddress}`;
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}`;
 
     // Create an Axios instance with headers
     const axiosInstance = createAxiosInstance();
@@ -81,7 +81,7 @@ app.get('/api/1inch/swap/perform-swap', async (req, res) => {
     const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
 
     // Construct the URL for the swap request
-    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${fromTokenAddress}&toTokenAddress=${toTokenAddress}&amount=${amount.padEnd(18, '0')}&fromAddress=${fromAddress}&slippage=${slippage}`;
+    const apiUrl = `https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`;
 
     // Create an Axios instance with headers
     const axiosInstance = createAxiosInstance();
