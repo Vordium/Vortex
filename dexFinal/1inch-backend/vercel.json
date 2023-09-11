@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "server.js",  // Replace with the correct path to your server file
+        "src": "server.js",  
         "use": "@vercel/node"
       }
     ],
@@ -25,6 +25,6 @@
       }
     ],
     "env": {
-      "INCH_API_KEY": "rWtOI0gGIJmXd4P58f2pZg4oXqq3xirw"  // Replace with your actual 1inch API key
+      "INCH_API_KEY": "rWtOI0gGIJmXd4P58f2pZg4oXqq3xirw" 
     }
 }  
