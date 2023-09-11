@@ -23,7 +23,7 @@ app.use(express.json());
 app.get('/api/1inch/swap', async (req, res) => {
   try {
     const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
-    const apiKey = process.env['1INCH_API_KEY'];
+    const apiKey = process.env['INCH_API_KEY'];
 
     const apiUrl = 'https://api.1inch.dev/swap/v5.2/';
     const params = {
