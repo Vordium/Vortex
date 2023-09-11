@@ -6,8 +6,8 @@
         "use": "@vercel/node"
       }
     ],
-    "rewrites": [
-      { "source": "/", "destination": "/api/1inch/" }
+    "routes": [
+      { "src": "/api/1inch", "dest": "api/1inch/index.js" }
     ]
-}
+  }
   
