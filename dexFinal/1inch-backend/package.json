@@ -2,7 +2,7 @@
     "name": "inch-backend",
     "version": "1.0.0",
     "description": "Your project description",
-    "main": "server.js",
+    "main": "index.js",
     "scripts": {
       "start": "node server.js",
       "build-vercel": "echo hello"
@@ -10,7 +10,8 @@
     "dependencies": {
       "express": "^4.17.1",
       "axios": "^0.24.0",
-      "cors": "^2.8.5"
+      "cors": "^2.8.5",
+      "dotenv": "^16.0.3"
     },
     "keywords": [],
     "author": "vordium",
