@@ -10,14 +10,17 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Enable CORS for your frontend (replace 'YOUR_FRONTEND_ORIGIN' with your frontend's origin)
-app.use(cors({
-  origin: 'https://swap.vordium.com',
+const corsOptions = {
+  origin: 'https://swap.vordium.com', // Replace with your frontend's domain
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions)); // Use CORS middleware
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
+
 
 // Function to create Axios instance with the 1inch API key in the headers
 const createAxiosInstance = () => {
