@@ -109,7 +109,7 @@ function Swap(props) {
 
     if (allowance.data.allowance === "0") {
       const approve = await axios.get(
-        `https://1inch.vordium.com/api/1inch/swap/1inch/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
+        `https://1inch.vordium.com/api/1inch/swap/1/approve/allowance/transaction?tokenAddress=${tokenOne.address}`
       );
       setTxDetails(approve.data);
       console.log("not approved");
