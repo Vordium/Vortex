@@ -1,5 +1,5 @@
 const axios = require('axios');
-
+require("dotenv").config();
 module.exports = async (req, res) => {
   try {
     // Define the 1inch API URL
