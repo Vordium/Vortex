@@ -1,37 +1,48 @@
-const express = require("express");
-const Moralis = require("moralis").default;
-const cors = require("cors");
-require("dotenv").config();
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
+// Load environment variables from .env
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
-// Configure CORS for the /tokenPrice route
-const corsOptions = {
-  origin: "https://swap.vordium.com", // Replace with your specific origin
-};
+// Enable CORS for your frontend
+app.use(cors());
 
+// Middleware to parse JSON request bodies
 app.use(express.json());
-app.use(cors(corsOptions)); // Apply CORS middleware with specific origin
 
-Moralis.initialize(process.env.MORALIS_APPLICATION_ID);
-Moralis.serverURL = process.env.MORALIS_SERVER_URL;
+// Endpoint to proxy requests to the 1inch API
+app.get('/api/1inch/swap', async (req, res) => {
+  try {
+    const { fromTokenAddress, toTokenAddress, amount, fromAddress, slippage } = req.query;
+    const apiKey = process.env['1INCH_API_KEY'];
 
-app.get("/", (req, res) => {
-  res.send("Server is up and running!");
+    const apiUrl = 'https://api.1inch.dev/swap/v5.2/';
+    const params = {
+      fromTokenAddress,
+      toTokenAddress,
+      amount,
+      fromAddress,
+      slippage,
+      apiKey,
+    };
+
+    // Make a request to the 1inch API with query parameters
+    const response = await axios.get(apiUrl, { params });
+
+    // Send the 1inch API response to the frontend
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error making 1inch API request:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
-app.get("/1inch", async (req, res) => {
-  // Your code to fetch and send token prices here
-  // ...
-
-  // Add the Access-Control-Allow-Origin header to the response
-  res.setHeader("Access-Control-Allow-Origin", "https://swap.vordium.com");
-
-  // Send the response
-  res.status(200).json(/* Your response data */);
-});
-
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
