@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     const apiUrl = 'https://api.1inch.dev/swap/v5.2/';
 
     // Retrieve the 1inch API key from the Vercel environment variable
-    const apiKey = process.env['1INCH_API_KEY'];
+    const apiKey = process.env['INCH_API_KEY'];
 
     if (!apiKey) {
       throw new Error('1INCH_API_KEY environment variable not found.');
