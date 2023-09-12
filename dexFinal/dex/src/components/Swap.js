@@ -104,7 +104,7 @@ function Swap(props) {
 
   async function fetchDexSwap() { 
     const allowance = await axios.get(
-      `/api/1inch/swap/1/approve/allowance`
+      `/api/1inch/swap/approve/allowance`
     );
 
     if (allowance.data.allowance === "0") {
