@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",  
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/1inch/swap/allowance",
+        "dest": "/api/1inch/swap/allowance"
+      },
+      {
+        "src": "/api/1inch/swap/approve-transaction",
+        "dest": "/api/1inch/swap/approve-transaction"
+      },
+      {
+        "src": "/api/1inch/swap/perform-swap",
+        "dest": "/api/1inch/swap/perform-swap"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/server.js"
+      }
+    ],
+    "env": {
+      "INCH_API_KEY": "rWtOI0gGIJmXd4P58f2pZg4oXqq3xirw" 
+    }
+}
