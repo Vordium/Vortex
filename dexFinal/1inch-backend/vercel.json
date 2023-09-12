@@ -8,8 +8,8 @@
     ],
     "routes": [
       {
-        "src": "/api/1inch/swap/allowance",
-        "dest": "/api/1inch/swap/allowance"
+        "src": "/api/1inch/swap",
+        "dest": "/server.js"
       },
       {
         "src": "/api/1inch/swap/approve-transaction",
