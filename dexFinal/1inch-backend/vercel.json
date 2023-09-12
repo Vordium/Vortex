@@ -12,14 +12,6 @@
         "dest": "/server.js"
       },
       {
-        "src": "/api/1inch/swap/approve-transaction",
-        "dest": "/api/1inch/swap/approve-transaction"
-      },
-      {
-        "src": "/api/1inch/swap/perform-swap",
-        "dest": "/api/1inch/swap/perform-swap"
-      },
-      {
         "src": "/(.*)",
         "dest": "/server.js"
       }
