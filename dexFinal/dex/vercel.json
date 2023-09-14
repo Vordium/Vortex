@@ -18,10 +18,6 @@
       {
         "src": "/api/1inch/swap/perform-swap",
         "dest": "https://api.1inch.dev/swap/v5.2/1/api/1inch/swap/perform-swap"
-      },
-      {
-        "src": "/src/components",
-        "dest": "/server.js"
       }
     ],
     "env": {
