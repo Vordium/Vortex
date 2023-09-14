@@ -104,12 +104,12 @@ function Swap(props) {
 
   async function fetchDexSwap() { 
     const allowance = await axios.get(
-      `/api/1inch/swap/approve/allowance`
+      `https://api.1inch.dev/swap/v5.2/1/api/1inch/swap/approve/allowance`
     );
 
     if (allowance.data.allowance === "0") {
       const approve = await axios.get(
-        `/api/1inch/swap/approve-transaction`
+        `https://api.1inch.dev/swap/v5.2/1/api/1inch/swap/approve-transaction`
       );
       setTxDetails(approve.data);
       console.log("not approved");
@@ -117,7 +117,7 @@ function Swap(props) {
     }
 
     const tx = await axios.get(
-      `/api/1inch/swap/perform-swap`
+      `https://api.1inch.dev/swap/v5.2/1/api/1inch/swap/perform-swap`
     );
 
     let decimals = Number(`1E${tokenTwo.decimals}`);
