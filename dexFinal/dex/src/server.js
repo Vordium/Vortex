@@ -9,6 +9,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 9001;
 
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  next();
+});
+
 // Enable CORS for your frontend (replace 'YOUR_FRONTEND_ORIGIN' with your frontend's origin)
 app.use(cors({
   origin: 'https://swap.vordium.com',
