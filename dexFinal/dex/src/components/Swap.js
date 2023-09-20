@@ -104,7 +104,7 @@ function Swap(props) {
 
   async function fetchDexSwap() { 
     const allowance = await axios.get(
-      `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
+      `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}&amount=${tokenOneAmount}`
     )
 
     if (allowance.data.allowance === "0") {
