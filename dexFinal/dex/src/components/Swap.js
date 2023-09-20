@@ -186,6 +186,13 @@ function Swap(props) {
     </>
   );
 
+  const [isBoxExpanded, setIsBoxExpanded] = useState(false);
+
+  // Function to toggle the box's expansion
+  const toggleBoxExpansion = () => {
+    setIsBoxExpanded(!isBoxExpanded);
+  };
+
   return (
     <>
       {contextHolder}
