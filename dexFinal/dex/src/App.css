@@ -464,18 +464,51 @@ header {
   }
 }
 
-.expandableBoxHeader {
-  align-items: center;
-  background-color: #243056;
-  border-radius: 12px;
-  color: #5981f3;
-  display: flex;
-  font-size: 20px;
-  font-weight: 700;
-  height: 55px;
-  justify-content: center;
-  margin-bottom: 30px;
-  margin-top: 8px;
-  transition: 0.3s;
-  width: 100%;
+
+.expandableContainer {
+    align-items: center;
+    background-color: #243056;
+    border-radius: 12px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    height: auto;
+    min-height: 55px;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 8px;
+    transition: .3s;
+    width: 100%;
 }
+
+.Gas {
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px;
+}
+
+.GasHeader {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.GasRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.GasLabel {
+  text-align: left;
+  font-weight: 700;
+}
+
+.GasValue {
+  text-align: right;
+  font-weight: 400;
+}
+
+/* Additional styles can be added as needed */
