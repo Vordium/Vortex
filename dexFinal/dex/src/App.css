@@ -483,7 +483,7 @@ header {
 }
 
 .Gas {
-  background-color: #f0f0f0;
+  background-color: #171d33;
   border-radius: 12px;
   padding: 15px;
   margin: 10px;
@@ -497,7 +497,7 @@ header {
 .GasRow {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   margin-bottom: 5px;
 }
 
