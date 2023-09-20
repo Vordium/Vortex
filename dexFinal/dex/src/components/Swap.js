@@ -109,7 +109,7 @@ function Swap(props) {
 
     if (allowance.data.allowance === "0") {
       const approve = await axios.get(
-        `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}`
+        `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}&amount=${tokenOneAmount}`
       )
       setTxDetails(approve.data);
       console.log("not approved")
