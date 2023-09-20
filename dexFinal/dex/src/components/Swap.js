@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input, Popover, Radio, Modal, message } from "antd";
+import Gas from "./Gas";
 import {
   ArrowDownOutlined,
   DownOutlined,
@@ -270,6 +271,9 @@ function Swap(props) {
         >
           {isLoading ? "Loading..." : "Swap"}
         </div>
+        <div>
+      <Gas />
+    </div>
       </div>
     </>
   );
