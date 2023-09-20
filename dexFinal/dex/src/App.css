@@ -463,3 +463,19 @@ header {
     display: none;
   }
 }
+
+.expandableBoxHeader {
+  align-items: center;
+  background-color: #243056;
+  border-radius: 12px;
+  color: #5981f3;
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  height: 55px;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 8px;
+  transition: 0.3s;
+  width: 100%;
+}
