@@ -104,18 +104,25 @@ function Swap(props) {
 
   async function fetchDexSwap() { 
     const allowance = await axios.get(
-      `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}&amount=${tokenOneAmount}`
+      `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`
     )
 
     if (allowance.data.allowance === "0") {
-      const approve = await axios.get(
-        `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}&amount=${tokenOneAmount}`
-      )
-      setTxDetails(approve.data);
-      console.log("not approved")
-      return
+      // Use a confirm dialog to ask the user for approval
+      const userConfirmed = window.confirm("Do you want to approve this transaction?");
+  
+      if (userConfirmed) {
+        const approve = await axios.get(
+          `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenOne.address}`
+        );
+        setTxDetails(approve.data);
+        console.log("Transaction approved");
+      } else {
+        console.log("Transaction not approved");
+      }
+      
+      return;
     }
-
     const tx = await axios.get(
       `/api/1inch?url=https://api.1inch.dev/swap/v5.2/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenOneAmount.padEnd(tokenOne.decimals+tokenOneAmount.length, '0')}&fromAddress=${address}&slippage=${slippage}`
     );
