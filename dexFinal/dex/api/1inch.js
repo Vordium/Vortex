@@ -4,10 +4,18 @@ export default async (req, res) => {
     try {
       const { url } = req.query;
   
-      // Define the headers with your API key
+      // Retrieve the API key from the environment variable
+      const apiKey = process.env.ONEINCH_API_KEY;
+  
+      // Check if the API key is available
+      if (!apiKey) {
+        throw new Error("API key not found in environment variables");
+      }
+  
+      // Define the headers with the API key
       const headers = {
         "Content-Type": "application/json",
-        Authorization: "Bearer REACT_APP_1INCH_KEY",
+        Authorization: `Bearer ${apiKey}`,
       };
   
       // Make the fetch request with the headers
@@ -19,9 +27,11 @@ export default async (req, res) => {
       }
   
       const data = await response.json();
+      console.log("Response data:", data); // Add this line for logging
+  
       res.status(200).json(data);
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error); // Add this line for logging
       res.status(500).json({ error: "Internal Server Error" });
     }
   };
