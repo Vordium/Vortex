@@ -271,9 +271,15 @@ function Swap(props) {
         >
           {isLoading ? "Loading..." : "Swap"}
         </div>
-        <div>
-      <Gas />
-    </div>
+        <div className="expandableBox" onClick={toggleBoxExpansion}>
+          <div className="expandableBoxHeader">Gas Prices</div>
+          {/* Conditionally render the <Gas /> component when the box is expanded */}
+          {isBoxExpanded && (
+            <div>
+              <Gas />
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
