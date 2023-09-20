@@ -5,7 +5,7 @@ export default async (req, res) => {
       const { url } = req.query;
   
       // Retrieve the API key from the environment variable
-      const apiKey = process.env.ONEINCH_API_KEY;
+      const apiKey = process.env.INCH_API_KEY;
   
       // Check if the API key is available
       if (!apiKey) {
