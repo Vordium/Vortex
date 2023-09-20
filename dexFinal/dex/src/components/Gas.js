@@ -15,7 +15,7 @@ function Gas() {
 
   return (
     <div className="Gas">
-      <h1>Ethereum Gas Prices</h1>
+      <h3>Ethereum Gas Prices</h3>
       <div>
         <strong>Base Fee:</strong> {gasPrice.baseFee}
       </div>
