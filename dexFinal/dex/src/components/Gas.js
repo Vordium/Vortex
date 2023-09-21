@@ -69,39 +69,35 @@ function Gas() {
       <div className="GasHeader">
         <span className="GasLabel">Ethereum Gas Prices</span>
       </div>
+      <div className="GasValue">Fee</div>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!loading && !error && (
         <>
-          <div className="GasRow">
-            <div>
-              <strong className="GasLabel">Base Fee (USD):</strong>
-            </div>
-            <div className="GasValue">${calculateGasPriceInUSD(gasPrice.baseFee, exchangeRates.tokenOne)}</div>
-          </div>
+        
           {gasPrice.low && (
             <div className="GasRow">
               <div>
-                <strong className="GasLabel">Low (USD):</strong>
+                <strong className="GasLabel">Low:</strong>
               </div>
               <div className="GasValue">${calculateGasPriceInUSD(gasPrice.low.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
             </div>
           )}
           <div className="GasRow">
             <div>
-              <strong className="GasLabel">Medium (USD):</strong>
+              <strong className="GasLabel">Medium:</strong>
             </div>
             <div className="GasValue">${calculateGasPriceInUSD(gasPrice.medium?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
           </div>
           <div className="GasRow">
             <div>
-              <strong className="GasLabel">High (USD):</strong>
+              <strong className="GasLabel">High:</strong>
             </div>
             <div className="GasValue">${calculateGasPriceInUSD(gasPrice.high?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
           </div>
           <div className="GasRow">
             <div>
-              <strong className="GasLabel">Instant (USD):</strong>
+              <strong className="GasLabel">Instant:</strong>
             </div>
             <div className="GasValue">${calculateGasPriceInUSD(gasPrice.instant?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
           </div>
