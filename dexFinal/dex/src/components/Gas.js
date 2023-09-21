@@ -59,7 +59,7 @@ function Gas() {
   // Function to calculate gas prices in USD
   const calculateGasPriceInUSD = (priceInGwei, exchangeRate) => {
     if (priceInGwei !== null && exchangeRate !== null) {
-      return (priceInGwei / exchangeRate / 1000000000).toFixed(2); // Assuming 2 decimal places
+      return (priceInGwei * exchangeRate / 1000000000).toFixed(2); // Assuming 2 decimal places
     }
     return null;
   };
