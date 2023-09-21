@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import tokenList from "../tokenList.json";
 import axios from "axios";
-import { useSendTransaction, useWaitForTransaction } from "wagmi";
+import { useBalance, useSendTransaction, useWaitForTransaction } from "wagmi";
 
 function Swap(props) {
   const { address, isConnected } = props;
@@ -39,6 +39,10 @@ function Swap(props) {
 
   const {isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+  });
+
+  const balance = useBalance({
+    address: addressOne,
   });
   
   
@@ -95,6 +99,7 @@ function Swap(props) {
     }
     setIsOpen(false);
   }
+
 
   async function fetchPrices(one, two) {
     const res = await axios.get(`https://api.vordium.com/api/tokenPrice`, {
@@ -256,6 +261,9 @@ function Swap(props) {
             onChange={changeAmount}
             disabled={!prices}
           />
+        <div className="balanceDisplay">
+          Balance: {balance}
+        </div>
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
