@@ -14,28 +14,43 @@ function Gas() {
   }, []);
 
   return (
-    <div className="Gas">
-      <h3>Ethereum Gas Prices</h3>
-      <div>
-        <strong>Base Fee:</strong> {gasPrice.baseFee}
-      </div>
-      {gasPrice.low && (
-        <>
-          <div>
-            <strong>Low:</strong> {gasPrice.low.maxPriorityFeePerGas}
-          </div>
-          <div>
-            <strong>Medium:</strong> {gasPrice.medium.maxPriorityFeePerGas}
-          </div>
-          <div>
-            <strong>High:</strong> {gasPrice.high.maxPriorityFeePerGas}
-          </div>
-          <div>
-            <strong>Instant:</strong> {gasPrice.instant.maxPriorityFeePerGas}
-          </div>
-        </>
-      )}
+<div className="Gas">
+  <div className="GasHeader">
+    <span className="GasLabel">Ethereum Gas Prices</span>
+  </div>
+  <div className="GasRow">
+    <div>
+      <strong className="GasLabel">Base Fee:</strong>
     </div>
+    <div className="GasValue">{gasPrice.baseFee}</div>
+  </div>
+  {gasPrice.low && (
+    <div className="GasRow">
+      <div>
+        <strong className="GasLabel">Low:</strong>
+      </div>
+      <div className="GasValue">{gasPrice.low.maxPriorityFeePerGas}</div>
+    </div>
+  )}
+  <div className="GasRow">
+    <div>
+      <strong className="GasLabel">Medium:</strong>
+    </div>
+    <div className="GasValue">{gasPrice.medium.maxPriorityFeePerGas}</div>
+  </div>
+  <div className="GasRow">
+    <div>
+      <strong className="GasLabel">High:</strong>
+    </div>
+    <div className="GasValue">{gasPrice.high.maxPriorityFeePerGas}</div>
+  </div>
+  <div className="GasRow">
+    <div>
+      <strong className="GasLabel">Instant:</strong>
+    </div>
+    <div className="GasValue">{gasPrice.instant.maxPriorityFeePerGas}</div>
+  </div>
+</div>
   );
 }
 
