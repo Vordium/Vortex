@@ -465,23 +465,7 @@ header {
 }
 
 
-.expandableContainer {
-    align-items: center;
-    background-color: #243056;
-    border-radius: 12px;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    font-weight: 700;
-    display: flex;
-    height: auto;
-    min-height: 55px;
-    justify-content: center;
-    margin-bottom: 30px;
-    margin-top: 8px;
-    transition: .3s;
-    width: 100%;
-    flex-direction: column;
-}
+
 
 .Gas {
   background-color: #171d33;
