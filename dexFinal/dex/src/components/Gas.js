@@ -10,6 +10,11 @@ function Gas() {
     instant: null,
   });
 
+  const [exchangeRates, setExchangeRates] = useState({
+    tokenOne: null,
+    tokenTwo: null,
+  });
+
   useEffect(() => {
     const fetchGasPrice = async () => {
       try {
@@ -23,14 +28,35 @@ function Gas() {
           high: gasData.high || null,
           instant: gasData.instant || null,
         });
+
+        // Fetch exchange rates
+        const exchangeRatesResponse = await axios.get('https://api.vordium.com/api/tokenPrice', {
+          params: {
+            addressOne: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
+            addressTwo: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+          },
+        });
+
+        setExchangeRates({
+          tokenOne: exchangeRatesResponse.data.tokenOne,
+          tokenTwo: exchangeRatesResponse.data.tokenTwo,
+        });
       } catch (error) {
-        console.error("Error fetching gas price:", error);
+        console.error("Error fetching data:", error);
         // You can handle the error here, e.g., set an error state.
       }
     };
 
     fetchGasPrice();
   }, []);
+
+  // Function to calculate gas prices in USD
+  const calculateGasPriceInUSD = (priceInGwei, exchangeRate) => {
+    if (priceInGwei !== null && exchangeRate !== null) {
+      return (priceInGwei * exchangeRate).toFixed(2); // Assuming 2 decimal places
+    }
+    return null;
+  };
 
   return (
     <div className="Gas">
@@ -39,35 +65,35 @@ function Gas() {
       </div>
       <div className="GasRow">
         <div>
-          <strong className="GasLabel">Base Fee:</strong>
+          <strong className="GasLabel">Base Fee (USD):</strong>
         </div>
-        <div className="GasValue">{gasPrice.baseFee}</div>
+        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.baseFee, exchangeRates.tokenOne)}</div>
       </div>
       {gasPrice.low && (
         <div className="GasRow">
           <div>
-            <strong className="GasLabel">Low:</strong>
+            <strong className="GasLabel">Low (USD):</strong>
           </div>
-          <div className="GasValue">{gasPrice.low.maxPriorityFeePerGas}</div>
+          <div className="GasValue">${calculateGasPriceInUSD(gasPrice.low.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
         </div>
       )}
       <div className="GasRow">
         <div>
-          <strong className="GasLabel">Medium:</strong>
+          <strong className="GasLabel">Medium (USD):</strong>
         </div>
-        <div className="GasValue">{gasPrice.medium?.maxPriorityFeePerGas}</div>
+        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.medium?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
       </div>
       <div className="GasRow">
         <div>
-          <strong className="GasLabel">High:</strong>
+          <strong className="GasLabel">High (USD):</strong>
         </div>
-        <div className="GasValue">{gasPrice.high?.maxPriorityFeePerGas}</div>
+        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.high?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
       </div>
       <div className="GasRow">
         <div>
-          <strong className="GasLabel">Instant:</strong>
+          <strong className="GasLabel">Instant (USD):</strong>
         </div>
-        <div className="GasValue">{gasPrice.instant?.maxPriorityFeePerGas}</div>
+        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.instant?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
       </div>
     </div>
   );
