@@ -59,7 +59,13 @@ function Gas() {
   // Function to calculate gas prices in USD
   const calculateGasPriceInUSD = (priceInGwei, exchangeRate) => {
     if (priceInGwei !== null && exchangeRate !== null) {
-      return (priceInGwei * exchangeRate / 1000000000).toFixed(2); // Assuming 2 decimal places
+      // Convert Gwei to Wei (1 Ether = 10^9 Wei)
+      const priceInWei = priceInGwei * 1e9;
+      
+      // Calculate the price in USD
+      const priceInUSD = (priceInWei / 1e18) * exchangeRate; // 1 Ether = 10^18 Wei
+      
+      return priceInUSD.toFixed(2); // Assuming 2 decimal places
     }
     return null;
   };
@@ -74,30 +80,29 @@ function Gas() {
       {error && <p>{error}</p>}
       {!loading && !error && (
         <>
-        
           {gasPrice.low && (
             <div className="GasRow">
               <div>
-                <strong className="GasLabel">Low:</strong>
+                <strong className="GasLabel">Low (USD):</strong>
               </div>
               <div className="GasValue">${calculateGasPriceInUSD(gasPrice.low.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
             </div>
           )}
           <div className="GasRow">
             <div>
-              <strong className="GasLabel">Medium:</strong>
+              <strong className="GasLabel">Medium (USD):</strong>
             </div>
             <div className="GasValue">${calculateGasPriceInUSD(gasPrice.medium?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
           </div>
           <div className="GasRow">
             <div>
-              <strong className="GasLabel">High:</strong>
+              <strong className="GasLabel">High (USD):</strong>
             </div>
             <div className="GasValue">${calculateGasPriceInUSD(gasPrice.high?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
           </div>
           <div className="GasRow">
             <div>
-              <strong className="GasLabel">Instant:</strong>
+              <strong className="GasLabel">Instant (USD):</strong>
             </div>
             <div className="GasValue">${calculateGasPriceInUSD(gasPrice.instant?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
           </div>
