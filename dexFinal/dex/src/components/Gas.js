@@ -15,6 +15,9 @@ function Gas() {
     tokenTwo: null,
   });
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchGasPrice = async () => {
       try {
@@ -41,9 +44,12 @@ function Gas() {
           tokenOne: exchangeRatesResponse.data.tokenOne,
           tokenTwo: exchangeRatesResponse.data.tokenTwo,
         });
+
+        setLoading(false); // Set loading to false once data is fetched successfully
       } catch (error) {
         console.error("Error fetching data:", error);
-        // You can handle the error here, e.g., set an error state.
+        setError("Error fetching data. Please try again."); // Set an error message
+        setLoading(false); // Set loading to false in case of an error
       }
     };
 
@@ -63,38 +69,44 @@ function Gas() {
       <div className="GasHeader">
         <span className="GasLabel">Ethereum Gas Prices</span>
       </div>
-      <div className="GasRow">
-        <div>
-          <strong className="GasLabel">Base Fee (USD):</strong>
-        </div>
-        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.baseFee, exchangeRates.tokenOne)}</div>
-      </div>
-      {gasPrice.low && (
-        <div className="GasRow">
-          <div>
-            <strong className="GasLabel">Low (USD):</strong>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {!loading && !error && (
+        <>
+          <div className="GasRow">
+            <div>
+              <strong className="GasLabel">Base Fee (USD):</strong>
+            </div>
+            <div className="GasValue">${calculateGasPriceInUSD(gasPrice.baseFee, exchangeRates.tokenOne)}</div>
           </div>
-          <div className="GasValue">${calculateGasPriceInUSD(gasPrice.low.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
-        </div>
+          {gasPrice.low && (
+            <div className="GasRow">
+              <div>
+                <strong className="GasLabel">Low (USD):</strong>
+              </div>
+              <div className="GasValue">${calculateGasPriceInUSD(gasPrice.low.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
+            </div>
+          )}
+          <div className="GasRow">
+            <div>
+              <strong className="GasLabel">Medium (USD):</strong>
+            </div>
+            <div className="GasValue">${calculateGasPriceInUSD(gasPrice.medium?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
+          </div>
+          <div className="GasRow">
+            <div>
+              <strong className="GasLabel">High (USD):</strong>
+            </div>
+            <div className="GasValue">${calculateGasPriceInUSD(gasPrice.high?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
+          </div>
+          <div className="GasRow">
+            <div>
+              <strong className="GasLabel">Instant (USD):</strong>
+            </div>
+            <div className="GasValue">${calculateGasPriceInUSD(gasPrice.instant?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
+          </div>
+        </>
       )}
-      <div className="GasRow">
-        <div>
-          <strong className="GasLabel">Medium (USD):</strong>
-        </div>
-        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.medium?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
-      </div>
-      <div className="GasRow">
-        <div>
-          <strong className="GasLabel">High (USD):</strong>
-        </div>
-        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.high?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
-      </div>
-      <div className="GasRow">
-        <div>
-          <strong className="GasLabel">Instant (USD):</strong>
-        </div>
-        <div className="GasValue">${calculateGasPriceInUSD(gasPrice.instant?.maxPriorityFeePerGas, exchangeRates.tokenOne)}</div>
-      </div>
     </div>
   );
 }
