@@ -466,11 +466,9 @@ header {
 
 
 .expandableContainer {
-    align-items: center;
     background-color: #243056;
     border-radius: 12px;
     color: rgb(255, 255, 255);
-    font-size: 20px;
     font-weight: 700;
     display: flex;
     height: auto;
@@ -480,6 +478,7 @@ header {
     margin-top: 8px;
     transition: .3s;
     width: 100%;
+    padding: 5px;
     flex-direction: column;
 }
 
