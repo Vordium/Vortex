@@ -261,7 +261,7 @@ function Swap(props) {
         <div className="inputs">
           <Input
             placeholder="0"
-             
+            balance="Balance: 1234.56 ETH" 
             value={tokenOneAmount}
             onChange={changeAmount}       
             disabled={!prices}
@@ -270,9 +270,6 @@ function Swap(props) {
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
           </div>
-          <div>
-      Balance: {data?.formatted} {data?.symbol}
-    </div>
           <div className="assetOne" onClick={() => openModal(1)}>
             <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
             {tokenOne.ticker}
