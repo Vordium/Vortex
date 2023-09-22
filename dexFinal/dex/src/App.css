@@ -512,3 +512,25 @@ header {
 }
 
 /* Additional styles can be added as needed */
+.gas-container {
+  display: flex;
+  align-items: center; /* Vertical alignment in the center */
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  margin-right: 10px; /* Adjust spacing between items as needed */
+}
+
+.token-price {
+  /* Your styling for token price */
+}
+
+.my-gas-icon {
+  /* Your styling for gas icon */
+}
+
+.usd-price {
+  /* Your styling for USD price */
+}

@@ -287,16 +287,29 @@ function Swap(props) {
         >
           {isLoading ? "Loading..." : "Swap"}
         </div>
-        <div className="gas-container">
-      {/* Display the price of tokenOne if it exists in prices */}
+        <>
+    {contextHolder}
+    {/* ... (rest of the code remains the same) */}
+    <div className="gas-container">
+      <div className="price-container">
+        {/* Display the price of tokenOne if it exists in prices */}
+        {prices && prices.tokenOne && (
+          <div className="token-price">
+            {`1 ${tokenOne.ticker} = ${prices.tokenOne} ${tokenTwo.ticker}`}
+          </div>
+        )}
+        {/* Use the Egas component with alignment */}
+        <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
+      </div>
+      {/* Display the USD equivalent */}
       {prices && prices.tokenOne && (
-        <div className="token-price">
-          Price of {tokenOne.ticker}: {prices.tokenOne}
+        <div className="usd-price">
+          {`(~$${(prices.tokenOne * prices.usdPrice).toFixed(1)})`}
         </div>
       )}
-      {/* Use the Egas component with alignment */}
-      <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
     </div>
+    {/* ... (rest of the code remains the same) */}
+  </>
         <div className="expandableContainer">
           <div className="expandableBox" onClick={toggleBoxExpansion}>
             <div className="expandableBoxHeader">
