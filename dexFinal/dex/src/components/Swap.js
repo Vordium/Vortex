@@ -42,7 +42,7 @@ function Swap(props) {
   });
 
   const balance = useBalance({
-    address: addressOne,
+    address: tokenOne,
   });
   
   
