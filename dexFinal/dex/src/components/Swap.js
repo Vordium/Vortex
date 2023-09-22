@@ -261,7 +261,7 @@ function Swap(props) {
             placeholder="0"
             value={tokenOneAmount}
             onChange={changeAmount}       
-            balanceDisplay="Blacnce:" {balance?.value}
+            addonAfter={`Balance: ${balance?.value ?? "Loading..."}`}
             disabled={!prices}
           />
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
