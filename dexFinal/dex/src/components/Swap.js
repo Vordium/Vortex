@@ -9,6 +9,8 @@ import {
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useBalance, useSendTransaction, useWaitForTransaction } from "wagmi";
+import { Egas } from './Egas';
+
 
 function Swap(props) {
   const { address, isConnected } = props;
