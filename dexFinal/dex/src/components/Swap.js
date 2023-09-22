@@ -261,11 +261,12 @@ function Swap(props) {
         <div className="inputs">
           <Input
             placeholder="0"
+             
             value={tokenOneAmount}
             onChange={changeAmount}       
             disabled={!prices}
           />
-          <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
+          <Input placeholder="0" balance="Balance: 1234.56 ETH" value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
           </div>
