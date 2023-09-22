@@ -261,10 +261,14 @@ function Swap(props) {
         <div className="inputs">
           <Input
             placeholder="0"
-            addonAfter={`Balance: ${balance?.value ?? "Loading..."}`}
             value={tokenOneAmount}
             onChange={changeAmount}       
             disabled={!prices}
+            addonAfter={ // Add this addonAfter property
+              <div>
+                Balance: {data?.formatted} {data?.symbol}
+              </div>
+            }
           />
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
@@ -288,7 +292,7 @@ function Swap(props) {
         >
           {isLoading ? "Loading..." : "Swap"}
         </div>
-        <div className="swap-container">
+        <div className="gas-container">
         {/* Use the Egas component with alignment */}
         <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
     </div>
