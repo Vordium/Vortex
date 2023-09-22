@@ -1,6 +1,6 @@
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
-import { formatUnits } from 'ethers';
+import { ethers } from 'ethers';
 
 //type IEgas = {
 //    size?: number;
@@ -8,6 +8,7 @@ import { formatUnits } from 'ethers';
 //    units?: 'gwei';
 //};
 
+const valueInWei = ethers.utils.formatUnits(valueInWei, 9);
 export const Egas = ({ size, className, units }) => {
     const { data, isError, isLoading } = useFeeData();
 
