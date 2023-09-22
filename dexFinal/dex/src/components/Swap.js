@@ -264,7 +264,7 @@ function Swap(props) {
             disabled={!prices}
           />
         <div className="balanceDisplay">
-  Balance: {balance ? balance.balance.toString() : "Loading..."}
+  Balance: {balance ? balance.value.toString() : "Loading..."}
         </div>
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
