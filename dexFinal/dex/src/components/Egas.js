@@ -26,8 +26,8 @@ export const Egas = ({ iconSize, className, units }) => {
                 <span style={{ fontSize: '12px' }}>
                     {Math.round(Number(valueInWei))}
                 </span>
+                {units && <span style={{ fontSize: '12px' }} className="text-[10px] text-neutral-400 leading-3">{units.toUpperCase()}</span>}
             </div>
-            {units && <span style={{ fontSize: '12px' }} className="text-[10px] text-neutral-400 leading-3">{units.toUpperCase()}</span>}
         </div>
     );
 };
