@@ -19,15 +19,16 @@ export const Egas = ({ iconSize, className, units }) => {
     // Capitalize the value by using toUpperCase()
     const valueInWei = ethers.utils.formatUnits(data?.formatted?.gasPrice || '0', 9).toUpperCase();
 
+    // Add "~$" to the right of the value
+    const gasValueWithSymbol = `${Math.round(Number(valueInWei))} ~$`;
+
     return (
-        <div className="flex flex-col mt-1 cursor-default">
-            <div style={rowStyle} className={className || ''}>
-                <MdLocalGasStation size={iconSize || 24} />
-                <span style={{ fontSize: '12px' }}>
-                    {Math.round(Number(valueInWei))}
-                </span>
-                {units && <span style={{ fontSize: '12px' }} className="text-[10px] text-neutral-400 leading-3">{units.toUpperCase()}</span>}
-            </div>
+        <div style={rowStyle} className={className || ''}>
+            <MdLocalGasStation size={iconSize || 24} />
+            <span style={{ fontSize: '12px' }}>
+                {gasValueWithSymbol}
+            </span>
+            {units && <span style={{ fontSize: '12px' }}>{units.toUpperCase()}</span>}
         </div>
     );
 };
