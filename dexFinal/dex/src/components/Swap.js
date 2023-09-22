@@ -286,6 +286,10 @@ function Swap(props) {
         >
           {isLoading ? "Loading..." : "Swap"}
         </div>
+        <div style={{ textAlign: 'right' }}>
+    {/* Use the Egas component */}
+    <Egas size={16} className="my-gas-icon" units="gwei" />
+       </div>
         <div className="expandableContainer">
           <div className="expandableBox" onClick={toggleBoxExpansion}>
             <div className="expandableBoxHeader">
