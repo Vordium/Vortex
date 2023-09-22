@@ -247,47 +247,42 @@ function Swap(props) {
         </div>
       </Modal>
       <div className="tradeBox">
-      <div className="tradeBoxHeader">
-        <h4>Swap</h4>
-        <Popover
-          content={settings}
-          title="Settings"
-          trigger="click"
-          placement="bottomRight"
-        >
-          <SettingOutlined className="cog" />
-        </Popover>
-      </div>
-      <div className="inputs">
-        <Input.Group compact>
-          <InputNumber
-            style={{ width: '70%' }}
+        <div className="tradeBoxHeader">
+          <h4>Swap</h4>
+          <Popover
+            content={settings}
+            title="Settings"
+            trigger="click"
+            placement="bottomRight"
+          >
+            <SettingOutlined className="cog" />
+          </Popover>
+        </div>
+        <div className="inputs">
+          <Input
             placeholder="0"
             value={tokenOneAmount}
-            onChange={changeAmount}
+            onChange={changeAmount}       
             disabled={!prices}
           />
-          <Input
-            style={{ width: '30%', textAlign: 'left' }}
-            placeholder="Balance: 1234.56 ETH"
-            disabled
-          />
-        </Input.Group>
-        <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
-        <div className="switchButton" onClick={switchTokens}>
-          <ArrowDownOutlined className="switchArrow" />
+          <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
+          <div className="switchButton" onClick={switchTokens}>
+            <ArrowDownOutlined className="switchArrow" />
+          </div>
+          <div>
+      Balance: {data?.formatted} {data?.symbol}
+    </div>
+          <div className="assetOne" onClick={() => openModal(1)}>
+            <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
+            {tokenOne.ticker}
+            <DownOutlined />
+          </div>
+          <div className="assetTwo" onClick={() => openModal(2)}>
+            <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
+            {tokenTwo.ticker}
+            <DownOutlined />
+          </div>
         </div>
-        <div className="assetOne" onClick={() => openModal(1)}>
-          <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
-          {tokenOne.ticker}
-          <DownOutlined />
-        </div>
-        <div className="assetTwo" onClick={() => openModal(2)}>
-          <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
-          {tokenTwo.ticker}
-          <DownOutlined />
-        </div>
-      </div>
         <div
           className="swapButton"
           disabled={!tokenOneAmount || !isConnected || isLoading}
