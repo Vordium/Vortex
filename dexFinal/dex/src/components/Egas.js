@@ -1,6 +1,6 @@
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
-import { formatUnits } from 'ethers6';
+import { formatUnits } from 'ethers';
 
 //type IEgas = {
 //    size?: number;
