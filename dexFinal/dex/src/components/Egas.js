@@ -12,8 +12,8 @@ export const Egas = ({ iconSize, className, units }) => { // Renamed size prop t
     const valueInWei = ethers.utils.formatUnits(data?.formatted?.gasPrice || '0', 9).toUpperCase();
 
     return (
-        <div className="flex flex-col mt-1 cursor-default">
-            <div className={`flex items-center gap-0.2 leading-3 ${className || ''}`}>
+        <div className="flex flex-row mt-1 cursor-default">
+            <div className={`flex-row items-center gap-0.2 leading-3 ${className || ''}`}>
                 <MdLocalGasStation size={iconSize || 18} /> {/* Set a default size (e.g., 24) */}
                 <span style={{ fontSize: '12px' }}>
                     {Math.round(Number(valueInWei))}
