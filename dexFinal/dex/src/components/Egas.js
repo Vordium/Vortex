@@ -15,11 +15,11 @@ export const Egas = ({ size, className, units }) => {
         <div className="flex flex-col mt-1 cursor-default">
             <div className={`flex items-center gap-0.5 leading-3 ${className || ''}`}>
                 <MdLocalGasStation size={size || ''} />
-                <span className="">
+                <span style={{ fontSize: '7px' }}>
                     {Math.round(Number(valueInWei))}
                 </span>
             </div>
-            {units && <span className="text-[7px] text-neutral-400 leading-3">{units.toUpperCase()}</span>}
+            {units && <span style={{ fontSize: '7px' }} className="text-[10px] text-neutral-400 leading-3">{units.toUpperCase()}</span>}
         </div>
     );
 };
