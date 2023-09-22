@@ -13,7 +13,7 @@ export const Egas = ({ size, className, units }) => {
 
     return (
         <div className="flex flex-col mt-1 cursor-default">
-            <div className={`flex items-center gap-0.5 leading-3 ${className || ''}`}>
+            <div className={`flex items-center gap-0.2 leading-3 ${className || ''}`}>
                 <MdLocalGasStation size={size || ''} />
                 <span style={{ fontSize: '12px' }}>
                     {Math.round(Number(valueInWei))}
