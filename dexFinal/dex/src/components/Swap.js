@@ -261,7 +261,7 @@ function Swap(props) {
             placeholder="0"
             value={tokenOneAmount}
             onChange={changeAmount}       
-            balanceDisplay={balance?.value}
+            balanceDisplay="Blacnce:" {balance?.value}
             disabled={!prices}
           />
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
