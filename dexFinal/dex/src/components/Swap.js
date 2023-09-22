@@ -260,12 +260,10 @@ function Swap(props) {
           <Input
             placeholder="0"
             value={tokenOneAmount}
-            onChange={changeAmount}
+            onChange={changeAmount}       
+            balanceDisplay={balance?.value}
             disabled={!prices}
           />
-        <div className="balanceDisplay">
-            Balance: {balance?.formatted}
-        </div>
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
