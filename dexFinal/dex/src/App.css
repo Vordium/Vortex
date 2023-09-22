@@ -515,22 +515,19 @@ header {
 .gas-container {
   display: flex;
   align-items: center; /* Vertical alignment in the center */
+  text-align: right;
 }
 
 .price-container {
   display: flex;
-  flex-direction: column; /* Stack items vertically */
+  flex-direction: row; /* Stack items vertically */
   margin-right: 10px; /* Adjust spacing between items as needed */
 }
 
 .token-price {
-  /* Your styling for token price */
+  font-size: 12px;
 }
-
 .my-gas-icon {
   /* Your styling for gas icon */
 }
 
-.usd-price {
-  /* Your styling for USD price */
-}
