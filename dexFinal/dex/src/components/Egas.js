@@ -3,7 +3,15 @@ import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
 import { ethers } from 'ethers';
 
-export const Egas = ({ iconSize, className, units }) => { // Renamed size prop to iconSize
+const rowStyle = {
+    display: 'flex',
+    flexDirection: 'row', // Set the flex direction to "row"
+    alignItems: 'center',
+    gap: '0.2rem',
+    lineHeight: '1.5',
+};
+
+export const Egas = ({ iconSize, className, units }) => {
     const { data, isError, isLoading } = useFeeData();
 
     if (isError || isLoading) return <></>;
@@ -12,9 +20,9 @@ export const Egas = ({ iconSize, className, units }) => { // Renamed size prop t
     const valueInWei = ethers.utils.formatUnits(data?.formatted?.gasPrice || '0', 9).toUpperCase();
 
     return (
-        <div className="flex flex-row mt-1 cursor-default">
-            <div className={`flex-row items-center gap-0.2 leading-3 ${className || ''}`}>
-                <MdLocalGasStation size={iconSize || 18} /> {/* Set a default size (e.g., 24) */}
+        <div className="flex flex-col mt-1 cursor-default">
+            <div style={rowStyle} className={className || ''}>
+                <MdLocalGasStation size={iconSize || 24} />
                 <span style={{ fontSize: '12px' }}>
                     {Math.round(Number(valueInWei))}
                 </span>
