@@ -295,18 +295,12 @@ function Swap(props) {
         {/* Display the price of tokenOne if it exists in prices */}
         {prices && prices.tokenOne && (
           <div className="token-price">
-            {`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} ${tokenTwo.ticker}`}
+            {`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}
           </div>
         )}
         {/* Use the Egas component with alignment */}
         <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
       </div>
-      {/* Display the USD equivalent */}
-      {prices && prices.tokenOne && (
-        <div className="usd-price">
-          {`(~$${(prices.tokenOne * prices.usdPrice).toFixed(2)})`}
-        </div>
-      )}
     </div>
     {/* ... (rest of the code remains the same) */}
   </>
