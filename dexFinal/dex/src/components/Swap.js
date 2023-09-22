@@ -42,8 +42,9 @@ function Swap(props) {
   });
 
   const balance = useBalance({
-    address: tokenOne,
+  address: tokenOne.address,
   });
+
   
   
   function handleSlippageChange(e) {
@@ -262,8 +263,9 @@ function Swap(props) {
             disabled={!prices}
           />
         <div className="balanceDisplay">
-          Balance: {balance}
-        </div>
+  Balance: {balance ? balance.toString() : "Loading..."}
+          </div>
+
           <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
