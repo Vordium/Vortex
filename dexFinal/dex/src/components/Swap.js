@@ -260,13 +260,12 @@ function Swap(props) {
         </div>
         <div className="inputs">
           <Input
-            placeholder="0"
-            balance="Balance: 1234.56 ETH" 
+            placeholder="0" 
             value={tokenOneAmount}
             onChange={changeAmount}       
             disabled={!prices}
           />
-          <Input placeholder="0" balance="Balance: 1234.56 ETH" value={tokenTwoAmount} disabled={true} />
+          <Input placeholder="0"  value={tokenTwoAmount} disabled={true} />
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
           </div>
@@ -289,9 +288,15 @@ function Swap(props) {
           {isLoading ? "Loading..." : "Swap"}
         </div>
         <div className="gas-container">
-        {/* Use the Egas component with alignment */}
-        <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
-         </div>
+      {/* Display the price of tokenOne if it exists in prices */}
+      {prices && prices.tokenOne && (
+        <div className="token-price">
+          Price of {tokenOne.ticker}: {prices.tokenOne}
+        </div>
+      )}
+      {/* Use the Egas component with alignment */}
+      <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
+    </div>
         <div className="expandableContainer">
           <div className="expandableBox" onClick={toggleBoxExpansion}>
             <div className="expandableBoxHeader">
