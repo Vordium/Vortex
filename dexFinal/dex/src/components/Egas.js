@@ -16,15 +16,15 @@ export const Egas = ({ iconSize, className, units }) => {
 
     if (isError || isLoading) return <></>;
 
-    // Capitalize the value by using toUpperCase()
-    const valueInWei = ethers.utils.formatUnits(data?.formatted?.gasPrice || '0', 9).toUpperCase();
+    // Convert the gas price to a float with 2 decimal places
+    const gasPriceInWei = parseFloat(ethers.utils.formatUnits(data?.formatted?.gasPrice || '0', 9)).toFixed(2);
 
-    // Add "~$" to the right of the value
-    const gasValueWithSymbol = `${Math.round(Number(valueInWei))} ~$`;
+    // Add "~$" to the left of the value
+    const gasValueWithSymbol = `~$${gasPriceInWei}`;
 
     return (
         <div style={rowStyle} className={className || ''}>
-            <MdLocalGasStation size={iconSize || 24} />
+            <MdLocalGasStation size={16} /> {/* Change the icon size to 16px */}
             <span style={{ fontSize: '12px' }}>
                 {gasValueWithSymbol}
             </span>
