@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
+import { Egas } from './Egas';
 
 function Header(props) {
   const { address, isConnected, connect } = props;
@@ -27,6 +28,10 @@ function Header(props) {
         </Link>
       </div>
       <div className="rightH">
+      <div>
+            {/* Use the Egas component */}
+            <Egas size={24} className="my-gas-icon" units="gwei" />
+        </div>
         <div className="headerItem">
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
