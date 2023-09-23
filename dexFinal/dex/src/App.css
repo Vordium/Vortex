@@ -539,3 +539,14 @@ header {
 .gas-icon-container {
   margin-left: auto;
 }
+
+.info {
+  color: #51586f;
+  transition: 0.3s;
+}
+
+.info:hover {
+  color: white;
+  rotate: 90deg;
+  cursor: pointer;
+}
