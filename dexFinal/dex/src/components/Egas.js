@@ -9,6 +9,7 @@ const rowStyle = {
     alignItems: 'center',
     gap: '0.2rem',
     lineHeight: '1.5',
+    justifyContent: 'flex-end',
 };
 
 export const Egas = ({ iconSize, className, units }) => {
