@@ -5,11 +5,13 @@ import {
   ArrowDownOutlined,
   DownOutlined,
   SettingOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useBalance, useSendTransaction, useWaitForTransaction } from "wagmi";
 import { Egas } from './Egas';
+import Pop from './Pop';
 
 
 function Swap(props) {
@@ -289,7 +291,15 @@ function Swap(props) {
         </div>
         <>
     {contextHolder}
-    {/* ... (rest of the code remains the same) */}
+<div>
+      <Pop
+        content={`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}
+        title="Token Prices"
+        fontSize="16px"
+        triggerIcon={<InfoCircleOutlined />} // You can replace this with your own icon
+      />
+      {/* Add more instances of Pop with different content, titles, and icons as needed */}
+    </div>
     <div className="gas-container">
       <div className="price-container">
         {/* Display the price of tokenOne if it exists in prices */}
