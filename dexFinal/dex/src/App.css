@@ -528,6 +528,7 @@ header {
 .price-container {
   display: flex;
   justify-content: space-between;
+  font-size: 16px;
 }
 
 .price-content {
@@ -535,5 +536,5 @@ header {
 }
 
 .gas-icon-container {
-  /* You can add any styling for the gas icon container here, e.g., aligning it to the right */
+  margin-left: auto;
 }
