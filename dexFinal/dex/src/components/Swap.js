@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input, Popover, Radio, Modal, message } from "antd";
+import { Button, Input, Popover, Radio, Modal, message } from "antd";
 import Gas from "./Gas";
 import {
   ArrowDownOutlined,
@@ -15,7 +15,7 @@ import Pop from './Pop';
 
 
 function Swap(props) {
-  const { address, isConnected } = props;
+  const { address, isConnected,customIcon } = props;
   const [messageApi, contextHolder] = message.useMessage();
   const [slippage, setSlippage] = useState(2.5);
   const [tokenOneAmount, setTokenOneAmount] = useState(null);
