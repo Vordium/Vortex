@@ -289,38 +289,40 @@ function Swap(props) {
           {isLoading ? "Loading..." : "Swap"}
         </div>
         <>
-    {contextHolder}
-    <div className="gas-container">
-    <Popover
-  content={
-    <div className="popover-content">
-      {prices && prices.tokenOne && prices.tokenTwo && (
-        <div>
-          <p>{`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}</p>
-          <p>{`1 ${tokenTwo.ticker} = ${prices.tokenTwo.toFixed(2)} USDT (~$${prices.tokenTwo.toFixed(2)})`}</p>
+        {contextHolder}
+<div className="gas-container">
+  <Popover
+    content={
+      <div className="popover-content">
+        {prices && prices.tokenOne && prices.tokenTwo && (
+          <div>
+            <p>{`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}</p>
+            <p>{`1 ${tokenTwo.ticker} = ${prices.tokenTwo.toFixed(2)} USDT (~$${prices.tokenTwo.toFixed(2)})`}</p>
+          </div>
+        )}
+      </div>
+    }
+    title={null}
+    trigger="click"
+    placement="bottomLeft"
+  >
+    <InfoCircleOutlined className="info" />
+  </Popover>
+  <div className="gas-info">
+    <div className="price-container">
+      {/* Display the price of tokenOne if it exists in prices */}
+      {prices && prices.tokenOne && (
+        <div className="token-price">
+          {`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}
         </div>
       )}
     </div>
-  }
-  title="Prices"
-  trigger="click"
-  placement="bottomRight"
->
-  <InfoCircleOutlined className="info" />
-</Popover>
-      <div className="price-container">
-        {/* Display the price of tokenOne if it exists in prices */}
-        {prices && prices.tokenOne && (
-          <div className="token-price">
-            {`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}
-          </div>
-        )}
-        {/* Use the Egas component with alignment */}
-        <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
-      </div>
-    </div>
-    {/* ... (rest of the code remains the same) */}
-  </>
+    {/* Use the Egas component with alignment */}
+    <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
+  </div>
+</div>
+{/* ... (rest of the code remains the same) */}
+</>
         <div className="expandableContainer">
           <div className="expandableBox" onClick={toggleBoxExpansion}>
             <div className="expandableBoxHeader">
