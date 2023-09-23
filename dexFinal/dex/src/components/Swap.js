@@ -31,14 +31,6 @@ function Swap(props) {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-
-  // JSX structure for the Popover content
-  const popoverContent = (
-    <div className="popover-content">
-      <p>{`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}</p>
-      <p>{`1 ${tokenTwo.ticker} = ${prices.tokenTwo.toFixed(2)} USDT (~$${prices.tokenTwo.toFixed(2)})`}</p>
-    </div>
-  );
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
@@ -300,13 +292,18 @@ function Swap(props) {
     {contextHolder}
     <div className="gas-container">
     <Popover
-            content={popoverContent}
-            title="Prices"
-            trigger="click"
-            placement="bottomRight"
-          >
-            <InfoCircleOutlined className="info" />
-          </Popover>
+    content={
+      <div className="popover-content">
+        <p>{`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}</p>
+        <p>{`1 ${tokenTwo.ticker} = ${prices.tokenTwo.toFixed(2)} USDT (~$${prices.tokenTwo.toFixed(2)})`}</p>
+      </div>
+    }
+    title="Prices"
+    trigger="click"
+    placement="bottomRight"
+  >
+    <InfoCircleOutlined className="info" />
+  </Popover>
       <div className="price-container">
         {/* Display the price of tokenOne if it exists in prices */}
         {prices && prices.tokenOne && (
