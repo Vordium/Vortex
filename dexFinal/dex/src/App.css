@@ -511,27 +511,24 @@ header {
   font-weight: 400;
 }
 
-/* Additional styles can be added as needed */
-.gas-container {
-  display: flex;
-  justify-content: space-between; /* This will push the elements to the left and right */
-  align-items: center;
-}
 
-.popover-content {
-  /* Styles for the left content */
-}
 
-.price-container {
-  /* Styles for the left content */
-}
 
 .my-gas-icon {
   margin-left: auto; /* This will push it to the right */
   /* Additional styles for the right content if needed */
 }
 
-.token-price {
-  font-size: 12px;
+
+.price-container {
+  display: flex;
+  justify-content: space-between;
 }
 
+.price-content {
+  flex: 1; /* This will make it take up the available space on the left */
+}
+
+.gas-icon-container {
+  /* You can add any styling for the gas icon container here, e.g., aligning it to the right */
+}

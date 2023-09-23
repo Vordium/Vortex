@@ -308,8 +308,8 @@ function Swap(props) {
   >
     <InfoCircleOutlined className="info" />
   </Popover>
-  <div className="gas-info">
-    <div className="price-container">
+  <div className="price-container">
+    <div className="price-content">
       {/* Display the price of tokenOne if it exists in prices */}
       {prices && prices.tokenOne && (
         <div className="token-price">
@@ -317,11 +317,14 @@ function Swap(props) {
         </div>
       )}
     </div>
-    {/* Use the Egas component with alignment */}
-    <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
+    <div className="gas-icon-container">
+      {/* Use the Egas component with alignment */}
+      <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
+    </div>
   </div>
 </div>
 {/* ... (rest of the code remains the same) */}
+
 </>
         <div className="expandableContainer">
           <div className="expandableBox" onClick={toggleBoxExpansion}>
