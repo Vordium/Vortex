@@ -32,12 +32,20 @@ function Swap(props) {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   // Function to toggle the visibility of the Popover
   const togglePopover = () => {
-    setIsPopoverVisible(!isPopoverVisible);
+    setIsPopoverOpen(!isPopoverOpen);
   };
+
+  // JSX structure for the Popover content
+  const popoverContent = (
+    <div className="popover-content">
+      <p>{`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}</p>
+      <p>{`1 ${tokenTwo.ticker} = ${prices.tokenTwo.toFixed(2)} USDT (~$${prices.tokenTwo.toFixed(2)})`}</p>
+    </div>
+  );
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
@@ -308,17 +316,16 @@ function Swap(props) {
 
       {/* Popover */}
       <Popover
-        content={<Pop prices={prices} tokenOne={tokenOne} tokenTwo={tokenTwo} />}
+        content={popoverContent}
         title={null} // Set title to null to remove the title
         trigger="click"
         placement="bottomRight"
-        open={isPopoverVisible} // Set the visibility based on state
-        onOpenChange={setIsPopoverVisible} // Toggle visibility when the Popover is shown/hidden
+        open={isPopoverOpen} // Use "open" instead of "visible"
+        onOpenChange={setIsPopoverOpen} // Use "onOpenChange" instead of "onVisibleChange"
       >
-        <div>Hover over the icon</div>
+        {/* The icon/button that triggers the Popover */}
+        <img src={customIcon} alt="Custom Icon" />
       </Popover>
-
-      {/* Rest of the component code... */}
     </div>
       <div className="price-container">
         {/* Display the price of tokenOne if it exists in prices */}
