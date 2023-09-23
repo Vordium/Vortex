@@ -32,6 +32,12 @@ function Swap(props) {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+
+  // Function to toggle the visibility of the Popover
+  const togglePopover = () => {
+    setIsPopoverVisible(!isPopoverVisible);
+  };
   const { data, sendTransaction } = useSendTransaction({
     request: {
       from: address,
@@ -291,16 +297,29 @@ function Swap(props) {
         </div>
         <>
     {contextHolder}
-<div>
-      <Pop
-        content={`1 ${tokenOne.ticker} = ${prices.tokenOne.toFixed(2)} USDT (~$${prices.tokenOne.toFixed(2)})`}
-        title="Token Prices"
-        fontSize="16px"
-        triggerIcon={<InfoCircleOutlined />} // You can replace this with your own icon
-      />
-      {/* Add more instances of Pop with different content, titles, and icons as needed */}
-    </div>
     <div className="gas-container">
+    <div>
+      {/* Info icon/button */}
+      <Button
+        type="text"
+        icon={<InfoCircleOutlined />}
+        onClick={togglePopover}
+      />
+
+      {/* Popover */}
+      <Popover
+        content={<Pop prices={prices} tokenOne={tokenOne} tokenTwo={tokenTwo} />}
+        title={null} // Set title to null to remove the title
+        trigger="click"
+        placement="bottomRight"
+        open={isPopoverVisible} // Set the visibility based on state
+        onOpenChange={setIsPopoverVisible} // Toggle visibility when the Popover is shown/hidden
+      >
+        <div>Hover over the icon</div>
+      </Popover>
+
+      {/* Rest of the component code... */}
+    </div>
       <div className="price-container">
         {/* Display the price of tokenOne if it exists in prices */}
         {prices && prices.tokenOne && (
