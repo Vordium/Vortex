@@ -526,8 +526,14 @@ header {
 
 .token-price {
   font-size: 12px;
+  margin-right: 9rem;
 }
 .my-gas-icon {
   text-align: right;
 }
-
+@media (max-width: 767px) {
+.token-price {
+  font-size: 12px;
+  margin-right: 5rem;
+}
+}
