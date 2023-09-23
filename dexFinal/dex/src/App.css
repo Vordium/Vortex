@@ -516,6 +516,7 @@ header {
   display: flex;
   justify-content: space-between; /* This will push the elements to the left and right */
   align-items: center;
+  gap: 5px;
 }
 
 
@@ -528,7 +529,7 @@ header {
 .price-container {
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .price-content {
