@@ -514,26 +514,25 @@ header {
 /* Additional styles can be added as needed */
 .gas-container {
   display: flex;
-  align-items: center; /* Vertical alignment in the center */
-  text-align: right;
+  justify-content: space-between; /* This will push the elements to the left and right */
+  align-items: center;
+}
+
+.popover-content {
+  /* Styles for the left content */
 }
 
 .price-container {
-  display: flex;
-  flex-direction: row; /* Stack items vertically */
-  margin-right: 10px; /* Adjust spacing between items as needed */
+  /* Styles for the left content */
+}
+
+.my-gas-icon {
+  margin-left: auto; /* This will push it to the right */
+  /* Additional styles for the right content if needed */
 }
 
 .token-price {
   font-size: 12px;
-  margin-right: 9rem;
+  margin-right: 7rem;
 }
-.my-gas-icon {
-  text-align: right;
-}
-@media (max-width: 767px) {
-.token-price {
-  font-size: 12px;
-  margin-right: 5rem;
-}
-}
+
