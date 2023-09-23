@@ -142,6 +142,7 @@ header {
 .switchButton:hover {
   color: white;
   cursor: pointer;
+  rotate: 180deg;
 }
 
 .inputs {
