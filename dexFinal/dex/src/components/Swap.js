@@ -11,11 +11,10 @@ import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useBalance, useSendTransaction, useWaitForTransaction } from "wagmi";
 import { Egas } from './Egas';
-import Pop from './Pop';
 
 
 function Swap(props) {
-  const { address, isConnected,customIcon } = props;
+  const { address, isConnected } = props;
   const [messageApi, contextHolder] = message.useMessage();
   const [slippage, setSlippage] = useState(2.5);
   const [tokenOneAmount, setTokenOneAmount] = useState(null);
@@ -32,12 +31,6 @@ function Swap(props) {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  // Function to toggle the visibility of the Popover
-  const togglePopover = () => {
-    setIsPopoverOpen(!isPopoverOpen);
-  };
 
   // JSX structure for the Popover content
   const popoverContent = (
@@ -306,27 +299,14 @@ function Swap(props) {
         <>
     {contextHolder}
     <div className="gas-container">
-    <div>
-      {/* Info icon/button */}
-      <Button
-        type="text"
-        icon={<InfoCircleOutlined />}
-        onClick={togglePopover}
-      />
-
-      {/* Popover */}
-      <Popover
-        content={popoverContent}
-        title={null} // Set title to null to remove the title
-        trigger="click"
-        placement="bottomRight"
-        open={isPopoverOpen} // Use "open" instead of "visible"
-        onOpenChange={setIsPopoverOpen} // Use "onOpenChange" instead of "onVisibleChange"
-      >
-        {/* The icon/button that triggers the Popover */}
-        <img src={customIcon} alt="Custom Icon" />
-      </Popover>
-    </div>
+    <Popover
+            content={popoverContent}
+            title="Prices"
+            trigger="click"
+            placement="bottomRight"
+          >
+            <InfoCircleOutlined className="info" />
+          </Popover>
       <div className="price-container">
         {/* Display the price of tokenOne if it exists in prices */}
         {prices && prices.tokenOne && (
