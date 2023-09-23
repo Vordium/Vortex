@@ -533,7 +533,8 @@ header {
 }
 
 .price-content {
-  flex: 1; /* This will make it take up the available space on the left */
+  flex: 1;
+  margin-right: 5px;/* This will make it take up the available space on the left */
 }
 
 .gas-icon-container {
