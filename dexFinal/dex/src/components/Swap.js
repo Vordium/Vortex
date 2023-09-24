@@ -275,12 +275,12 @@ function Swap(props) {
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
           </div>
-          <div className="assetOne" balance={balance1} onClick={() => openModal(1)}>
+          <div className="assetOne" balance={balance1.data?.formatted} onClick={() => openModal(1)}>
             <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
             {tokenOne.ticker}
             <DownOutlined />
           </div>
-          <div className="assetTwo" balance={balance2} onClick={() => openModal(2)}>
+          <div className="assetTwo" balance={balance2.data?.formatted} onClick={() => openModal(2)}>
             <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
             {tokenTwo.ticker}
             <DownOutlined />
