@@ -286,7 +286,10 @@ function Swap(props) {
             {tokenTwo.ticker}
             <DownOutlined />
           </div>
+          <div className="balance2" />
           {balance2.data?.formatted} {balance2.data?.symbol}
+          <DownOutlined />
+          </div>
         </div>
         <div
           className="swapButton"
