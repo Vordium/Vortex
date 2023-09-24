@@ -279,16 +279,13 @@ function Swap(props) {
             <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
             {tokenOne.ticker}
             <DownOutlined />
+            {balance1.data?.formatted} {balance1.data?.symbol}
           </div>
-          {balance1.data?.formatted} {balance1.data?.symbol}
           <div className="assetTwo"  onClick={() => openModal(2)}>
             <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
             {tokenTwo.ticker}
             <DownOutlined />
-          </div>
-          <div className="balance2" />
-          {balance2.data?.formatted} {balance2.data?.symbol}
-          <DownOutlined />
+            {balance2.data?.formatted} {balance2.data?.symbol}
           </div>
         </div>
         <div
