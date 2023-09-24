@@ -5,13 +5,15 @@ import Tokens from "./components/Tokens";
 import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { InjectedConnector } from 'wagmi/connectors/injected';
 
 function App() {
   const { address, isConnected } = useAccount();
   const { connect } = useConnect({
     connector: new MetaMaskConnector(),
-  });
 
+  });
+  
   return (
 
     <div className="App">
