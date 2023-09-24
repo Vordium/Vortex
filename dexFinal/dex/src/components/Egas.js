@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
-import { ethers } from 'ethers';
+import { ethers, BigNumber } from 'ethers'; // Import BigNumber from ethers
 
 const rowStyle = {
   display: 'flex',
@@ -18,9 +18,14 @@ export const Egas = ({ iconSize, className, units }) => {
 
   useEffect(() => {
     if (!isError && !isLoading && data && data.formatted && data.formatted.gasPrice) {
-      const gasPriceWei = ethers.BigNumber.from(data.formatted.gasPrice);
-      const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
-      setGasPrice(parseFloat(gasPriceEth).toFixed(2));
+      try {
+        const gasPriceWei = BigNumber.from(data.formatted.gasPrice);
+        const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
+        setGasPrice(parseFloat(gasPriceEth).toFixed(2));
+      } catch (error) {
+        console.error('Error converting gasPrice:', error);
+        setGasPrice(null);
+      }
     }
   }, [data, isError, isLoading]);
 
