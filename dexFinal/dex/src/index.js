@@ -4,18 +4,18 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { configureChains, mainnet, WagmiConfig, createConfig } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import { publicProvider } from 'wagmi/providers/public';
 
-const { provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet],
   [publicProvider()]
 );
 
 const config = createConfig({
   autoConnect: true,
-  provider,
-  webSocketProvider,
-});
+  publicClient,
+  webSocketPublicClient,
+})
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
