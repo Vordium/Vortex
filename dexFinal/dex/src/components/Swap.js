@@ -44,9 +44,14 @@ function Swap(props) {
     hash: data?.hash,
   });
 
-  const balance = useBalance({
+  const balance1 = useBalance({
   address: address,
   token: tokenOne.address,
+  });
+
+  const balance2 = useBalance({
+    address: address,
+    token: tokenTwo.address,
   });
 
   
@@ -249,7 +254,7 @@ function Swap(props) {
       </Modal>
       <div className="tradeBox">
         <div className="tradeBoxHeader">
-          <h4>Swap</h4>
+          <h4>SWAP</h4>
           <Popover
             content={settings}
             title="Settings"
@@ -270,12 +275,12 @@ function Swap(props) {
           <div className="switchButton" onClick={switchTokens}>
             <ArrowDownOutlined className="switchArrow" />
           </div>
-          <div className="assetOne" onClick={() => openModal(1)}>
+          <div className="assetOne" balance={balance1} onClick={() => openModal(1)}>
             <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
             {tokenOne.ticker}
             <DownOutlined />
           </div>
-          <div className="assetTwo" onClick={() => openModal(2)}>
+          <div className="assetTwo" balance={balance2} onClick={() => openModal(2)}>
             <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
             {tokenTwo.ticker}
             <DownOutlined />
