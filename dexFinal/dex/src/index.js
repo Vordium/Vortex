@@ -33,7 +33,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'RainbowKit demo',
+  appName: 'Vordium',
   projectId: '06d9a2bc15df6af2c75cb75e600bd131',
   chains,
 });
