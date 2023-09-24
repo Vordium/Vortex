@@ -1,57 +1,61 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import './polyfills';
 import "./index.css";
+import reportWebVitals from './reportWebVitals';
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { configureChains, mainnet, WagmiConfig, createConfig } from "wagmi";
+import '@rainbow-me/rainbowkit/styles.css';
+import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import {
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  base,
+  zora,
+  goerli,
+} from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
-import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
+  [
+    mainnet,
+    polygon,
+    optimism,
+    arbitrum,
+    base,
+    zora,
+    ...(process.env.REACT_APP_ENABLE_TESTNETS === 'true' ? [goerli] : []),
+  ],
   [publicProvider()]
 );
 
-const config = createConfig({
+const { connectors } = getDefaultWallets({
+  appName: 'RainbowKit demo',
+  projectId: '06d9a2bc15df6af2c75cb75e600bd131',
+  chains,
+});
+
+const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: [
-    new MetaMaskConnector({ chains }),
-    new CoinbaseWalletConnector({
-      chains,
-      options: {
-        appName: 'wagmi',
-      },
-    }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        projectId: '...',
-      },
-    }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: 'Injected',
-        shimDisconnect: true,
-      },
-    }),
-  ],
+  connectors,
   publicClient,
   webSocketPublicClient,
-})
+});
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <WagmiConfig config={config}>
+    <WagmiConfig config={wagmiConfig}>
+    <RainbowKitProvider chains={chains}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
+      </RainbowKitProvider>
     </WagmiConfig>
   </React.StrictMode>
 );
+reportWebVitals();

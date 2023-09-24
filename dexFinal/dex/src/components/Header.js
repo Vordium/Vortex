@@ -3,6 +3,7 @@ import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 import { Egas } from './Egas';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 function Header(props) {
   const { address, isConnected, connect } = props;
@@ -36,6 +37,15 @@ function Header(props) {
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
+        <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        padding: 12,
+      }}
+    >
+      <ConnectButton />
+    </div>
         <div className="connectButton" onClick={connect}>
           {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
         </div>

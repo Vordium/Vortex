@@ -5,6 +5,7 @@ import Tokens from "./components/Tokens";
 import { Routes, Route } from "react-router-dom";
 import { useAccount, useConnect, useEnsName } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 function App() {
   const { address, isConnected } = useAccount()
@@ -16,7 +17,7 @@ function App() {
   return (
 
     <div className="App">
-      <Header connect={connect} isConnected={isConnected} address={address} />
+      <Header connect={ConnectButton} isConnected={isConnected} address={address} />
       <div className="mainWindow">
         <Routes>
           <Route path="/" element={<Swap isConnected={isConnected} address={address} />} />
