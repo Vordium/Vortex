@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
-import { ethers, BigNumber } from 'ethers';
+import { ethers } from 'ethers';
 
 const rowStyle = {
   display: 'flex',
@@ -15,36 +15,16 @@ const rowStyle = {
 export const Egas = ({ iconSize, className, units }) => {
   const { data, isError, isLoading } = useFeeData();
   const [gasPrice, setGasPrice] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!isError && !isLoading && data && data.formatted && data.formatted.gasPrice) {
-      try {
-        const gasPriceWei = BigNumber.from(data.formatted.gasPrice);
-        console.log('Gas Price (Wei):', gasPriceWei.toString());
-
-        if (gasPriceWei.lt(0)) {
-          setError('Gas price is negative.');
-          setGasPrice(null);
-        } else {
-          const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
-          console.log('Gas Price (Ether):', gasPriceEth);
-          const formattedGasPrice = parseFloat(gasPriceEth).toFixed(2);
-          console.log('Formatted Gas Price:', formattedGasPrice);
-          setGasPrice(formattedGasPrice);
-        }
-      } catch (error) {
-        console.error('Error converting gasPrice:', error);
-        setError('Error converting gas price.');
-        setGasPrice(null);
-      }
+      const gasPriceWei = ethers.BigNumber.from(data.formatted.gasPrice);
+      const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
+      setGasPrice(parseFloat(gasPriceEth).toFixed(2));
     }
   }, [data, isError, isLoading]);
 
-  if (isError || isLoading || gasPrice === null || error) {
-    // Display an error message if there's an issue
-    return <div>Error: {error || 'Gas price data is missing or invalid.'}</div>;
-  }
+  if (isError || isLoading || gasPrice === null) return null;
 
   const gasValueWithSymbol = `~$${gasPrice}`;
 
