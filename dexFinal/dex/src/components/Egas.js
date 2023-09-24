@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
-import { ethers, BigNumber } from 'ethers'; // Import BigNumber from ethers
+import { ethers, BigNumber } from 'ethers';
 
 const rowStyle = {
   display: 'flex',
@@ -20,8 +20,14 @@ export const Egas = ({ iconSize, className, units }) => {
     if (!isError && !isLoading && data && data.formatted && data.formatted.gasPrice) {
       try {
         const gasPriceWei = BigNumber.from(data.formatted.gasPrice);
-        const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
-        setGasPrice(parseFloat(gasPriceEth).toFixed(2));
+        if (gasPriceWei.lt(0)) {
+          // Handle negative values gracefully
+          console.error('Gas price is negative:', gasPriceWei.toString());
+          setGasPrice(null);
+        } else {
+          const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
+          setGasPrice(parseFloat(gasPriceEth).toFixed(2));
+        }
       } catch (error) {
         console.error('Error converting gasPrice:', error);
         setGasPrice(null);
