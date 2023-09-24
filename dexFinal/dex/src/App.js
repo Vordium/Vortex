@@ -3,16 +3,15 @@ import Header from "./components/Header";
 import Swap from "./components/Swap";
 import Tokens from "./components/Tokens";
 import { Routes, Route } from "react-router-dom";
-import { useConnect, useAccount } from "wagmi";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-import { InjectedConnector } from 'wagmi/connectors/injected';
+import { useAccount, useConnect, useEnsName } from 'wagmi'
+import { InjectedConnector } from 'wagmi/connectors/injected'
 
 function App() {
-  const { address, isConnected } = useAccount();
+  const { address, isConnected } = useAccount()
+  const { data: ensName } = useEnsName({ address })
   const { connect } = useConnect({
-    connector: new MetaMaskConnector(),
-
-  });
+    connector: new InjectedConnector(),
+  })
   
   return (
 
