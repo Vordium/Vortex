@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
-import { ethers, BigNumber } from 'ethers'; // Import BigNumber from ethers
+import { ethers } from 'ethers';
 
 const rowStyle = {
   display: 'flex',
@@ -12,32 +12,27 @@ const rowStyle = {
   justifyContent: 'flex-end',
 };
 
-const Egas = ({ iconSize = 16, className = '', units = '' }) => {
+export const Egas = ({ iconSize, className, units }) => {
   const { data, isError, isLoading } = useFeeData();
+  const [gasPrice, setGasPrice] = useState(null);
 
-  if (isError || isLoading || !data || !data.formatted || !data.formatted.gasPrice) {
-    return null; // Handle missing or invalid data
-  }
+  useEffect(() => {
+    if (!isError && !isLoading && data && data.formatted && data.formatted.gasPrice) {
+      const gasPriceWei = ethers.BigNumber.from(data.formatted.gasPrice);
+      const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
+      setGasPrice(parseFloat(gasPriceEth).toFixed(2));
+    }
+  }, [data, isError, isLoading]);
 
-  // Attempt to convert gasPrice to a BigNumber
-  let gasPriceInWei;
-  try {
-    gasPriceInWei = BigNumber.from(data.formatted.gasPrice); // Use BigNumber.from to convert
-  } catch (error) {
-    console.error('Error converting gasPrice to BigNumber:', error);
-    return null; // Handle the conversion error gracefully
-  }
+  if (isError || isLoading || gasPrice === null) return null;
 
-  // Add "~$" to the left of the value
-  const gasValueWithSymbol = `~$${gasPriceInWei.toNumber().toFixed(2)}`;
+  const gasValueWithSymbol = `~$${gasPrice}`;
 
   return (
-    <div style={rowStyle} className={className}>
-      <MdLocalGasStation size={iconSize} />
+    <div style={rowStyle} className={className || ''}>
+      <MdLocalGasStation size={iconSize || 16} />
       <span style={{ fontSize: '12px' }}>{gasValueWithSymbol}</span>
       {units && <span style={{ fontSize: '12px' }}>{units.toUpperCase()}</span>}
     </div>
   );
 };
-
-export default Egas;
