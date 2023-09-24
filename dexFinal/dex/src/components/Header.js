@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
-//import { Egas } from './Egas';
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Egas } from './Egas';
 
 function Header(props) {
   const { address, isConnected, connect } = props;
@@ -29,23 +28,10 @@ function Header(props) {
         </Link>
       </div>
       <div className="rightH">
-      {/*<div>
-            {/* Use the Egas component */}
-            {/*<Egas size={24} className="my-gas-icon" units="gwei" />
-        </div>*/}
         <div className="headerItem">
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
-        <div
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        padding: 12,
-      }}
-    >
-      <ConnectButton />
-    </div>
         <div className="connectButton" onClick={connect}>
           {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
         </div>

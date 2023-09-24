@@ -3,21 +3,22 @@ import Header from "./components/Header";
 import Swap from "./components/Swap";
 import Tokens from "./components/Tokens";
 import { Routes, Route } from "react-router-dom";
-import { useAccount, useConnect, useEnsName } from 'wagmi'
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useConnect, useAccount } from "wagmi";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { InjectedConnector } from 'wagmi/connectors/injected';
 
 function App() {
-  const { address, isConnected } = useAccount()
-  const { data: ensName } = useEnsName({ address })
+  const { address, isConnected } = useAccount();
   const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  })
+    connector: new MetaMaskConnector(),
+
+  });
   
+
   return (
 
     <div className="App">
-      <Header connect={ConnectButton} isConnected={isConnected} address={address} />
+      <Header connect={connect} isConnected={isConnected} address={address} />
       <div className="mainWindow">
         <Routes>
           <Route path="/" element={<Swap isConnected={isConnected} address={address} />} />
