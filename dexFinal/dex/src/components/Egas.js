@@ -15,29 +15,34 @@ const rowStyle = {
 export const Egas = ({ iconSize, className, units }) => {
   const { data, isError, isLoading } = useFeeData();
   const [gasPrice, setGasPrice] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!isError && !isLoading && data && data.formatted && data.formatted.gasPrice) {
       try {
         const gasPriceWei = BigNumber.from(data.formatted.gasPrice);
         if (gasPriceWei.lt(0)) {
-          // Handle negative values gracefully
-          console.error('Gas price is negative:', gasPriceWei.toString());
+          setError('Gas price is negative.');
           setGasPrice(null);
         } else {
-          const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
-          setGasPrice(parseFloat(gasPriceEth).toFixed(2));
+          setGasPrice(gasPriceWei); // Store gas price as a BigNumber
         }
       } catch (error) {
-        console.error('Error converting gasPrice:', error);
+        setError('Error converting gas price.');
         setGasPrice(null);
       }
     }
   }, [data, isError, isLoading]);
 
-  if (isError || isLoading || gasPrice === null) return null;
+  if (isLoading) {
+    return <div>Loading gas price...</div>;
+  }
 
-  const gasValueWithSymbol = `~$${gasPrice}`;
+  if (isError || gasPrice === null) {
+    return <div>Error: {error}</div>;
+  }
+
+  const gasValueWithSymbol = `~$${ethers.utils.formatEther(gasPrice).toString()}`;
 
   return (
     <div style={rowStyle} className={className || ''}>
