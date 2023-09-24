@@ -21,28 +21,32 @@ export const Egas = ({ iconSize, className, units }) => {
     if (!isError && !isLoading && data && data.formatted && data.formatted.gasPrice) {
       try {
         const gasPriceWei = BigNumber.from(data.formatted.gasPrice);
+        console.log('Gas Price (Wei):', gasPriceWei.toString());
+
         if (gasPriceWei.lt(0)) {
           setError('Gas price is negative.');
           setGasPrice(null);
         } else {
-          setGasPrice(gasPriceWei); // Store gas price as a BigNumber
+          const gasPriceEth = ethers.utils.formatEther(gasPriceWei);
+          console.log('Gas Price (Ether):', gasPriceEth);
+          const formattedGasPrice = parseFloat(gasPriceEth).toFixed(2);
+          console.log('Formatted Gas Price:', formattedGasPrice);
+          setGasPrice(formattedGasPrice);
         }
       } catch (error) {
+        console.error('Error converting gasPrice:', error);
         setError('Error converting gas price.');
         setGasPrice(null);
       }
     }
   }, [data, isError, isLoading]);
 
-  if (isLoading) {
-    return <div>Loading gas price...</div>;
+  if (isError || isLoading || gasPrice === null || error) {
+    // Display an error message if there's an issue
+    return <div>Error: {error || 'Gas price data is missing or invalid.'}</div>;
   }
 
-  if (isError || gasPrice === null) {
-    return <div>Error: {error}</div>;
-  }
-
-  const gasValueWithSymbol = `~$${ethers.utils.formatEther(gasPrice).toString()}`;
+  const gasValueWithSymbol = `~$${gasPrice}`;
 
   return (
     <div style={rowStyle} className={className || ''}>
