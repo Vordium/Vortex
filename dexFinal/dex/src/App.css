@@ -557,13 +557,14 @@ header {
   position: absolute;
   min-width: 50px;
   height: 30px;
-  top: 65px;
+  top: 3px;
   right: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 5px;
-  font-weight: bold;
+  color: #51586f;
+  font-weight: 500;
   font-size: 12px;
   padding-right: 8px;
 }
@@ -572,13 +573,14 @@ header {
   position: absolute;
   min-width: 50px;
   height: 30px;
-  top: 165px;
+  top: 103px;
   right: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 5px;
-  font-weight: bold;
+  color: #51586f;
+  font-weight: 500;
   font-size: 12px;
   padding-right: 8px;
 }
