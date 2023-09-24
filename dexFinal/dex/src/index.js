@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { configureChains, mainnet, WagmiConfig, createClient } from "wagmi";
+import { configureChains, mainnet, WagmiConfig, createConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 
 const { provider, webSocketProvider } = configureChains(
@@ -11,7 +11,7 @@ const { provider, webSocketProvider } = configureChains(
   [publicProvider()]
 );
 
-const client = createClient({
+const config = createConfig({
   autoConnect: true,
   provider,
   webSocketProvider,
@@ -21,7 +21,7 @@ const client = createClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <WagmiConfig client={client}>
+    <WagmiConfig client={config}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
