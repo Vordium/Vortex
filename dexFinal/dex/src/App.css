@@ -552,3 +552,37 @@ header {
   rotate: 90deg;
   cursor: pointer;
 }
+
+.balance1 {
+  position: absolute;
+  min-width: 50px;
+  height: 30px;
+  background-color: #3a4157;
+  top: 60px;
+  right: 20px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 17px;
+  padding-right: 8px;
+}
+
+.balance2 {
+  position: absolute;
+  min-width: 50px;
+  height: 30px;
+  background-color: #3a4157;
+  top: 160px;
+  right: 20px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 17px;
+  padding-right: 8px;
+}

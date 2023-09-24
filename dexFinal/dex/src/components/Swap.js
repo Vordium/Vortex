@@ -265,29 +265,34 @@ function Swap(props) {
           </Popover>
         </div>
         <div className="inputs">
-          <Input
-            placeholder="0" 
-            value={tokenOneAmount}
-            onChange={changeAmount}       
-            disabled={!prices}
-          />
-          <Input placeholder="0"  value={tokenTwoAmount} disabled={true} />
-          <div className="switchButton" onClick={switchTokens}>
-            <ArrowDownOutlined className="switchArrow" />
-          </div>
-          <div className="assetOne" onClick={() => openModal(1)}>
-            <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
-            {tokenOne.ticker}
-            <DownOutlined />
-            {balance1.data?.formatted} {balance1.data?.symbol}
-          </div>
-          <div className="assetTwo"  onClick={() => openModal(2)}>
-            <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
-            {tokenTwo.ticker}
-            <DownOutlined />
-            {balance2.data?.formatted} {balance2.data?.symbol}
-          </div>
-        </div>
+  <Input
+    placeholder="0" 
+    value={tokenOneAmount}
+    onChange={changeAmount}       
+    disabled={!prices}
+  />
+  <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
+  <div className="switchButton" onClick={switchTokens}>
+    <ArrowDownOutlined className="switchArrow" />
+  </div>
+  <div className="assetOne" onClick={() => openModal(1)}>
+    <img src={tokenOne.img} alt="assetOneLogo" className="assetLogo" />
+    {tokenOne.ticker}
+    <DownOutlined />
+  </div>
+  <div className="balance1">
+    {balance1.data?.formatted} {balance1.data?.symbol}
+  </div>
+  <div className="assetTwo" onClick={() => openModal(2)}>
+    <img src={tokenTwo.img} alt="assetOneLogo" className="assetLogo" />
+    {tokenTwo.ticker}
+    <DownOutlined />
+  </div>
+  <div className="balance2">
+    {balance2.data?.formatted} {balance2.data?.symbol}
+  </div>
+</div>
+
         <div
           className="swapButton"
           disabled={!tokenOneAmount || !isConnected || isLoading}
@@ -330,9 +335,7 @@ function Swap(props) {
     </div>
   </div>
 </div>
-{/* ... (rest of the code remains the same) */}
-
-</>
+    </>
         <div className="expandableContainer">
           <div className="expandableBox" onClick={toggleBoxExpansion}>
             <div className="expandableBoxHeader">
