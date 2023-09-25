@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 
 const rowStyle = {
     display: 'flex',
-    flexDirection: 'row', // Set the flex direction to "row"
+    flexDirection: 'row',
     alignItems: 'center',
     gap: '0.2rem',
     lineHeight: '1.5',
@@ -14,18 +14,23 @@ const rowStyle = {
 
 export const Egas = ({ iconSize, className, units }) => {
     const { data, isError, isLoading } = useFeeData();
+    const gasPriceString = data?.formatted?.gasPrice || '0';
+
+    // Check if gasPriceString is a valid BigNumber string
+    const isGasPriceValid = ethers.utils.isBigNumber(gasPriceString);
+
+    // Provide a default value (0) if gasPriceString is not valid
+    const gasPriceInWei = isGasPriceValid
+        ? parseFloat(ethers.utils.formatUnits(gasPriceString, 9)).toFixed(2)
+        : 0;
+
+    const gasValueWithSymbol = `~$${gasPriceInWei}`;
 
     if (isError || isLoading) return <></>;
 
-    // Convert the gas price to a float with 2 decimal places
-    const gasPriceInWei = parseFloat(ethers.utils.formatUnits(data?.formatted?.gasPrice || '0', 9)).toFixed(2);
-
-    // Add "~$" to the left of the value
-    const gasValueWithSymbol = `~$${gasPriceInWei}`;
-
     return (
         <div style={rowStyle} className={className || ''}>
-            <MdLocalGasStation size={16} /> {/* Change the icon size to 16px */}
+            <MdLocalGasStation size={16} />
             <span style={{ fontSize: '12px' }}>
                 {gasValueWithSymbol}
             </span>
