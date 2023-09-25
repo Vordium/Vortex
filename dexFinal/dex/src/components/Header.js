@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
-import { Egas } from './Egas';
 
 function Header(props) {
-  const { address, isConnected, connect } = props;
+  const { connect, connectors, error, isLoading, pendingConnector } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -32,6 +31,25 @@ function Header(props) {
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
+
+        <div>
+      {connectors.map((connector) => (
+        <button
+          disabled={!connector.ready}
+          key={connector.id}
+          onClick={() => connect({ connector })}
+        >
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isLoading &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </button>
+      ))}
+ 
+      {error && <div>{error.message}</div>}
+    </div>
+
         <div className="connectButton" onClick={connect}>
           {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
         </div>
