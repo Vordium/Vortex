@@ -17,7 +17,7 @@ export const Egas = ({ iconSize, className, units }) => {
     const gasPriceString = data?.formatted?.gasPrice || '0';
 
     // Check if gasPriceString is a valid BigNumber string
-    const isGasPriceValid = ethers.utils.isBigNumber(gasPriceString);
+    const isGasPriceValid = ethers.BigNumber.isBigNumber(gasPriceString);
 
     // Provide a default value (0) if gasPriceString is not valid
     const gasPriceInWei = isGasPriceValid
