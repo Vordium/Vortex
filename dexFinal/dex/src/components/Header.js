@@ -2,12 +2,22 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
-import { useConnect } from 'wagmi'
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from 'wagmi'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { address, connector, isConnected } = useAccount()
+  const { data: ensAvatar } = useEnsAvatar({ address })
+  const { data: ensName } = useEnsName({ address })
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect()
+  const { disconnect } = useDisconnect()
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -16,6 +26,16 @@ function Header() {
     setIsMenuOpen(false);
   };
 
+if (isConnected) {
+    return (
+      <div>
+        <img src={ensAvatar} alt="ENS Avatar" />
+        <div>{ensName ? `${ensName} (${address})` : address}</div>
+        <div>Connected to {connector.name}</div>
+        <button onClick={disconnect}>Disconnect</button>
+      </div>
+    )
+  }
   return (
     <header>
       <div className="leftH">
