@@ -1,6 +1,5 @@
 import App from "./App";
 import { Buffer } from 'buffer';
-window.Buffer = Buffer;
 
 //import './polyfills';
 import React from 'react';
@@ -21,7 +20,7 @@ import {
   goerli,
 } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
-
+window.Buffer = Buffer;
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     mainnet,
