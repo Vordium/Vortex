@@ -31,7 +31,9 @@ if (isConnected) {
       <div>
         <img src={ensAvatar} alt="ENS Avatar" />
         <div>{ensName ? `${ensName} (${address})` : address}</div>
-        <div>Connected to {connector.name}</div>
+        <div>
+  Connected to {connector ? connector.name : "undefined"}
+</div>
         <button onClick={disconnect}>Disconnect</button>
       </div>
     )
