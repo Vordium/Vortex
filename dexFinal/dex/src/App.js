@@ -6,11 +6,14 @@ import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { InjectedConnector } from 'wagmi/connectors/injected';
-
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 function App() {
-  const { connect, connectors, error, isLoading, pendingConnector } =
-    useConnect()
-  const { address, isConnected } = props;
+  const { address, isConnected } = useAccount();
+  const { connect } = useConnect({
+    connector: new MetaMaskConnector(),
+    connector: new InjectedConnector(),
+  });
+  
 
   return (
 
