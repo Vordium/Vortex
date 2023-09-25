@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
+import { useConnect } from 'wagmi'
 
-
-function Header(props) {
-  const { address, isConnected, connect } = props;
+function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect()
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -32,9 +32,23 @@ function Header(props) {
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
-        <div className="connectButton" onClick={connect}>
-          {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
-        </div>
+        <div>
+      {connectors.map((connector) => (
+        <button
+          disabled={!connector.ready}
+          key={connector.id}
+          onClick={() => connect({ connector })}
+        >
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isLoading &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </button>
+      ))}
+ 
+      {error && <div>{error.message}</div>}
+    </div>
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
         <div className="menuOverlay" onClick={closeMenu}></div>
