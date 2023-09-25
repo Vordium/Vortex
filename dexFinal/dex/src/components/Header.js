@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function Header(props) {
   const { connect, connectors, error, isLoading, pendingConnector } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { address, isConnected } = props;
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);

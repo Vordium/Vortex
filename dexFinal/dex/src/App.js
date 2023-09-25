@@ -8,12 +8,9 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { InjectedConnector } from 'wagmi/connectors/injected';
 
 function App() {
-  const { address, isConnected } = useAccount();
-  const { connect } = useConnect({
-    connector: new MetaMaskConnector(),
-
-  });
-  
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect()
+  const { address, isConnected } = props;
 
   return (
 
