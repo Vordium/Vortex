@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { formatUnits } from "viem"; // Import viem's formatUnits function
 
 function Gas() {
   const [gasPrice, setGasPrice] = useState({
@@ -60,7 +59,8 @@ function Gas() {
   // Function to calculate gas prices in USD
   const calculateGasPriceInUSD = (priceInGwei, exchangeRate) => {
     if (priceInGwei !== null && exchangeRate !== null) {
-      const priceInWei = parseFloat(formatUnits(priceInGwei.toString(), 9)); // Use viem's formatUnits function
+      // Convert Gwei to Wei (1 Ether = 10^9 Wei)
+      const priceInWei = priceInGwei * 1e9;
       
       // Calculate the price in USD
       const priceInUSD = (priceInWei / 1e18) * exchangeRate; // 1 Ether = 10^18 Wei
