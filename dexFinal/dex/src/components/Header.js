@@ -2,17 +2,10 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
-import { Profile } from './profile';
-import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-} from 'wagmi'
+
 
 function Header(props) {
-  const { connect, connectors, error, isLoading, pendingConnector } = props;
+  const { address, isConnected, connect } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -39,13 +32,6 @@ function Header(props) {
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
-
-        <div>
-      <h1>My App</h1>
-      {/* Render the Profile component */}
-      <Profile />
-    </div>
-
         <div className="connectButton" onClick={connect}>
           {isConnected ? address.slice(0, 4) + "..." + address.slice(38) : "Connect"}
         </div>
