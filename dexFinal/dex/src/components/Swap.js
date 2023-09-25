@@ -10,7 +10,7 @@ import {
 import tokenList from "../tokenList.json";
 import axios from "axios";
 import { useBalance, useSendTransaction, useWaitForTransaction } from "wagmi";
-import { Egas } from './Egas';
+//import { Egas } from './Egas';
 
 
 function Swap(props) {
@@ -329,10 +329,10 @@ function Swap(props) {
         </div>
       )}
     </div>
-    <div className="gas-icon-container">
+    {/*<div className="gas-icon-container">
       {/* Use the Egas component with alignment */}
-      <Egas size={16} className="my-gas-icon" units="gwei" alignRight />
-    </div>
+      {/*<Egas size={16} className="my-gas-icon" units="gwei" alignRight />
+    </div>*/}
   </div>
 </div>
     </>
