@@ -1,0 +1,16 @@
+/* Apply styles to buttons */
+.connect-button {
+    background-color: #0e111b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background-color 0.3s;
+  }
+  
+  /* Apply hover effect */
+  .connect-button:hover {
+    background-color: #1f2639;
+  }

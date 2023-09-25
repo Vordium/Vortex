@@ -1,3 +1,4 @@
+import './styles.css';
 import {
     useAccount,
     useConnect,
@@ -15,22 +16,52 @@ import {
     const { disconnect } = useDisconnect()
   
     if (isConnected) {
-      return (
-        <div>
-          <img src={ensAvatar} alt="ENS Avatar" />
-          <div>{ensName ? `${ensName} (${address})` : address}</div>
-          <div>
-  Connected to {connector ? connector.name : "undefined"}
-</div>
-          <button onClick={disconnect}>Disconnect</button>
-        </div>
-      )
-    }
+        const addressToShow = `${address.substring(0, 5)}....${address.substring(address.length - 5)}`;
+      
+        return (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: '#0e111b',
+            padding: '10px',
+            borderRadius: '10px',
+          }}>
+            <div style={{ marginRight: '10px' }}>
+              <div style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#0e111b',
+              }}>
+                <img src={ensAvatar} alt="ENS Avatar" style={{
+                  maxWidth: '100%',
+                  maxHeight: '100%',
+                  borderRadius: '50%',
+                }} />
+              </div>
+            </div>
+            <div style={{ textTransform: 'capitalize', flex: '1', color: 'white' }}>
+              {ensName ? `${ensName} (${addressToShow})` : addressToShow}
+              <div style={{ color: '#1f2639' }}>
+                Connected to {connector ? connector.name : "undefined"}
+              </div>
+              <button onClick={disconnect} style={{ marginTop: '10px', cursor: 'pointer', padding: '5px 10px', backgroundColor: '#1f2639', color: 'white', border: 'none', borderRadius: '5px' }}>
+                Disconnect
+              </button>
+            </div>
+          </div>
+        )
+      }
   
     return (
-      <div>
+        <div>
         {connectors.map((connector) => (
           <button
+            className="connect-button" // Apply the connect-button class
             disabled={!connector.ready}
             key={connector.id}
             onClick={() => connect({ connector })}
@@ -42,8 +73,8 @@ import {
               ' (connecting)'}
           </button>
         ))}
-  
-        {error && <div>{error.message}</div>}
+    
+        {error && <div className="error">{error.message}</div>}
       </div>
     )
   }
