@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */ // This line tells ESLint to ignore 'BigInt' as an undefined variable
+
 import React from 'react';
 import { MdLocalGasStation } from 'react-icons/md';
 import { useFeeData } from 'wagmi';
