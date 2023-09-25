@@ -2,11 +2,18 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
+import { Profile } from './profile';
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from 'wagmi'
 
 function Header(props) {
   const { connect, connectors, error, isLoading, pendingConnector } = props;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { address, isConnected } = props;
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,21 +41,9 @@ function Header(props) {
         </div>
 
         <div>
-      {connectors.map((connector) => (
-        <button
-          disabled={!connector.ready}
-          key={connector.id}
-          onClick={() => connect({ connector })}
-        >
-          {connector.name}
-          {!connector.ready && ' (unsupported)'}
-          {isLoading &&
-            connector.id === pendingConnector?.id &&
-            ' (connecting)'}
-        </button>
-      ))}
- 
-      {error && <div>{error.message}</div>}
+      <h1>My App</h1>
+      {/* Render the Profile component */}
+      <Profile />
     </div>
 
         <div className="connectButton" onClick={connect}>
