@@ -2,10 +2,22 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from 'wagmi'
+
 function Header() {
-  
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { address, connector, isConnected } = useAccount()
+  const { data: ensAvatar } = useEnsAvatar({ address })
+  const { data: ensName } = useEnsName({ address })
+  const { connect, connectors, error, isLoading, pendingConnector } =
+    useConnect()
+  const { disconnect } = useDisconnect()
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -14,6 +26,16 @@ function Header() {
     setIsMenuOpen(false);
   };
 
+if (isConnected) {
+    return (
+      <div>
+        <img src={ensAvatar} alt="ENS Avatar" />
+        <div>{ensName ? `${ensName} (${address})` : address}</div>
+        <div>Connected to {connector.name}</div>
+        <button onClick={disconnect}>Disconnect</button>
+      </div>
+    )
+  }
   return (
     <header>
       <div className="leftH">
@@ -30,16 +52,23 @@ function Header() {
           <img src={Eth} alt="eth" className="eth" />
           Ethereum
         </div>
-        <div
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        padding: 12,
-      }}
-    >
-      <ConnectButton />
+        <div>
+      {connectors.map((connector) => (
+        <button
+          disabled={!connector.ready}
+          key={connector.id}
+          onClick={() => connect({ connector })}
+        >
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isLoading &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </button>
+      ))}
+ 
+      {error && <div>{error.message}</div>}
     </div>
-
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
         <div className="menuOverlay" onClick={closeMenu}></div>
