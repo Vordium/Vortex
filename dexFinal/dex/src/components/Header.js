@@ -7,16 +7,16 @@ import { Profile } from "./profile";
 import {
   useAccount,
   useDisconnect,
-} from 'wagmi';
+} from 'wagmi'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
-
-  // wagmi
-  const { isConnected } = useAccount();
-  const disconnectWallet = useDisconnect();
+  const [isConnectedButton, setIsConnectedButton] = useState(false);
+  //wagmi
+  const { isConnected } = useAccount()
+  const { disconnect } = useDisconnect()
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -38,12 +38,8 @@ function Header() {
 
   const connectWallet = () => {
     // Simulate connecting to the wallet
+    setIsConnectedButton(true);
     openModal(); // Open the modal after connecting
-  };
-
-  const handleDisconnect = () => {
-    // Simulate disconnecting from the wallet
-    disconnectWallet();
   };
 
   return (
@@ -63,7 +59,7 @@ function Header() {
           Ethereum
         </div>
         <div>
-          {!isConnected && !isModalOpen && ( // Show the "Connect Wallet" button if not connected and modal is closed
+          {!isConnectedButton && ( // Show the "Connect Wallet" button if not connected
             <button className="connectButton" onClick={connectWallet}>
               Connect Wallet
             </button>
@@ -74,7 +70,6 @@ function Header() {
                 <div>
                   <Profile />
                   {/* Additional components or logic */}
-                  <button onClick={handleDisconnect}>Disconnect</button>
                 </div>
               )}
             </div>
