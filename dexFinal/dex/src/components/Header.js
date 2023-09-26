@@ -4,12 +4,19 @@ import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 import Modal from './Model';
 import { Profile } from "./profile";
+import {
+  useAccount,
+  useDisconnect,
+} from 'wagmi';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
-  const [isConnectedButton, setIsConnectedButton] = useState(false);
+
+  // wagmi
+  const { isConnected } = useAccount();
+  const disconnectWallet = useDisconnect();
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -31,8 +38,12 @@ function Header() {
 
   const connectWallet = () => {
     // Simulate connecting to the wallet
-    setIsConnectedButton(true);
     openModal(); // Open the modal after connecting
+  };
+
+  const handleDisconnect = () => {
+    // Simulate disconnecting from the wallet
+    disconnectWallet();
   };
 
   return (
@@ -52,17 +63,18 @@ function Header() {
           Ethereum
         </div>
         <div>
-          {!isConnectedButton && ( // Show the "Connect Wallet" button if not connected
+          {!isConnected && !isModalOpen && ( // Show the "Connect Wallet" button if not connected and modal is closed
             <button className="connectButton" onClick={connectWallet}>
               Connect Wallet
             </button>
           )}
-          {isConnectedButton ? (
+          {isConnected ? (
             <div>
               {isContentVisible && (
                 <div>
                   <Profile />
                   {/* Additional components or logic */}
+                  <button onClick={handleDisconnect}>Disconnect</button>
                 </div>
               )}
             </div>
