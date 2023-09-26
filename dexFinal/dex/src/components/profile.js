@@ -1,5 +1,5 @@
 import './styles.css';
-import fallbackAvatar from '../assets/Pastel200.png';
+import fallbackAvatar from '../assets/pastel.png';
 import {
     useAccount,
     useConnect,
