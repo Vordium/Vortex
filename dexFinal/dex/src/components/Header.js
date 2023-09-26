@@ -3,6 +3,7 @@ import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 import  {Profile} from "./profile";
+import Modal from './Modal';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,23 @@ function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConnected, setIsConnected] = useState(false); 
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const connectWallet = () => {
+    // Simulate connecting to the wallet
+    setIsConnected(true);
+    openModal(); // Open the modal after connecting
   };
 
   return (
@@ -32,8 +50,32 @@ function Header() {
           Ethereum
         </div>
         <div>
-      <Profile />
-      {/* Additional components or logic */}
+      {!isConnected && ( // Show the "Connect Wallet" button if not connected
+        <button className="connectButton" onClick={connectWallet}>
+          Connect Wallet
+        </button>
+      )}
+      {isConnected ? ( // If connected, show the code instead of the button
+        <div className="container">
+          <div className="avatar">
+            <img src={ensAvatar || fallbackAvatar} alt="ENS Avatar" className="avatar-img" />
+          </div>
+          <div className="address">
+            <div className="name">
+              {ensName ? `${ensName}` : 'Unknown'}
+            </div>
+            <div className="address-text">
+              {addressToShow}
+            </div>
+          </div>
+          <div className="disconnect">
+            <button onClick={disconnectWallet} className="disconnect-button">
+              Disconnect
+            </button>
+          </div>
+        </div>
+      ) : null}
+      {isModalOpen && <Modal onClose={closeModal} />}
     </div>
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
