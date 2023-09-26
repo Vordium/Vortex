@@ -28,7 +28,7 @@
   
   .avatar {
     margin-right: 10px;
-    max-width: 15px; /* Set the maximum width for the avatar */
+    max-width: 35px; /* Set the maximum width for the avatar */
   }
   
   .avatar-img {
@@ -49,11 +49,11 @@
   }
   
   .address-text {
-    color: #1f2639;
+    color: #ffffff;
   }
   
   .disconnect {
-    margin-top: 10px;
+    margin-top: 15px;
   }
   
   .disconnect-button {
