@@ -1,4 +1,5 @@
 import './styles.css';
+import fallbackAvatar from '../../public/Pastel200.png';
 import {
     useAccount,
     useConnect,
@@ -17,7 +18,7 @@ import {
   
     if (isConnected) {
         const addressToShow = `${address.substring(0, 5)}....${address.substring(address.length - 5)}`;
-      
+    
         return (
           <div style={{
             display: 'flex',
@@ -37,7 +38,7 @@ import {
                 justifyContent: 'center',
                 backgroundColor: '#0e111b',
               }}>
-                <img src={ensAvatar} alt="ENS Avatar" style={{
+                <img src={ensAvatar || fallbackAvatar} alt="ENS Avatar" style={{
                   maxWidth: '100%',
                   maxHeight: '100%',
                   borderRadius: '50%',

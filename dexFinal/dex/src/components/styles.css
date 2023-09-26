@@ -8,6 +8,7 @@
     cursor: pointer;
     text-transform: capitalize;
     transition: background-color 0.3s;
+    border-radius: 5px;
   }
   
   /* Apply hover effect */

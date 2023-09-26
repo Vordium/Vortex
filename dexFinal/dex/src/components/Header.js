@@ -32,7 +32,6 @@ function Header() {
           Ethereum
         </div>
         <div>
-      <h1>User Profile</h1>
       <Profile />
       {/* Additional components or logic */}
     </div>
