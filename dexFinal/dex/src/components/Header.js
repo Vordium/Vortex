@@ -8,7 +8,8 @@ import { Profile } from "./profile";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
+  const [isConnectedButton, setIsConnectedButton] = useState(false);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,22 +21,18 @@ function Header() {
 
   const openModal = () => {
     setIsModalOpen(true);
+    setIsContentVisible(false); // Hide content when the modal is opened
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsContentVisible(true); // Show content when the modal is closed
   };
 
   const connectWallet = () => {
     // Simulate connecting to the wallet
-    setIsConnected(true);
+    setIsConnectedButton(true);
     openModal(); // Open the modal after connecting
-  };
-
-  const disconnectWallet = () => {
-    // Simulate disconnecting from the wallet
-    setIsConnected(false); // Reset isConnected to false
-    closeModal(); // Close the modal when disconnecting
   };
 
   return (
@@ -55,16 +52,19 @@ function Header() {
           Ethereum
         </div>
         <div>
-          {!isConnected && ( // Show the "Connect Wallet" button if not connected
+          {!isConnectedButton && ( // Show the "Connect Wallet" button if not connected
             <button className="connectButton" onClick={connectWallet}>
               Connect Wallet
             </button>
           )}
-          {isConnected ? (
+          {isConnectedButton ? (
             <div>
-              <Profile />
-              {/* Additional components or logic */}
-              <button onClick={disconnectWallet}>Disconnect</button>
+              {isContentVisible && (
+                <div>
+                  <Profile />
+                  {/* Additional components or logic */}
+                </div>
+              )}
             </div>
           ) : null}
           {isModalOpen && <Modal onClose={closeModal} />}
