@@ -59,7 +59,7 @@ function Header() {
           Ethereum
         </div>
         <div>
-          {!isConnectedButton && ( // Show the "Connect Wallet" button if not connected
+          {!isConnected && ( // Show the "Connect Wallet" button if not connected
             <button className="connectButton" onClick={connectWallet}>
               Connect Wallet
             </button>
