@@ -7,6 +7,7 @@ import { Profile } from "./profile";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,9 +16,6 @@ function Header() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -28,9 +26,7 @@ function Header() {
   };
 
   const connectWallet = () => {
-    // Simulate connecting to the wallet
-    setIsConnected(true);
-    closeModal(); // Close the modal after connecting
+    openModal(); // Open the modal for wallet connection
   };
 
   return (
@@ -50,17 +46,11 @@ function Header() {
           Ethereum
         </div>
         <div>
-          {!isConnected && ( // Show the "Connect Wallet" button if not connected
+          {!isModalOpen && ( // Show the "Connect Wallet" button if the modal is not open
             <button className="connectButton" onClick={connectWallet}>
               Connect Wallet
             </button>
           )}
-          {isConnected ? ( // If connected, show the code instead of the button
-            <div>
-              <Profile />
-              {/* Additional components or logic */}
-            </div>
-          ) : null}
           {isModalOpen && <Modal onClose={closeModal} />}
         </div>
       </div>
