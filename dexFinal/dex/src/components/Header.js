@@ -5,9 +5,24 @@ import { Link } from "react-router-dom";
 import Modal from './Model';
 import { Profile } from "./profile";
 
+// Create a separate component for the content that should be hidden/show when the modal is open
+function ConditionalContent({ isConnected }) {
+  return (
+    <div>
+      {isConnected ? (
+        <div>
+          <Profile />
+          {/* Additional components or logic */}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConnected, setIsConnected] = useState(false);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -26,7 +41,9 @@ function Header() {
   };
 
   const connectWallet = () => {
-    openModal(); // Open the modal for wallet connection
+    // Simulate connecting to the wallet
+    setIsConnected(true);
+    openModal(); // Open the modal after connecting
   };
 
   return (
@@ -46,11 +63,14 @@ function Header() {
           Ethereum
         </div>
         <div>
-          {!isModalOpen && ( // Show the "Connect Wallet" button if the modal is not open
+          {!isConnected && ( // Show the "Connect Wallet" button if not connected
             <button className="connectButton" onClick={connectWallet}>
               Connect Wallet
             </button>
           )}
+          {isModalOpen ? (
+            <ConditionalContent isConnected={isConnected} />
+          ) : null}
           {isModalOpen && <Modal onClose={closeModal} />}
         </div>
       </div>
