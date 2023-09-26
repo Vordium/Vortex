@@ -8,7 +8,6 @@ import { Profile } from "./profile";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
   const [isConnected, setIsConnected] = useState(false);
 
   const handleMenuClick = () => {
@@ -21,18 +20,22 @@ function Header() {
 
   const openModal = () => {
     setIsModalOpen(true);
-    setIsContentVisible(false); // Hide content when the modal is opened
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setIsContentVisible(true); // Show content when the modal is closed
   };
 
   const connectWallet = () => {
     // Simulate connecting to the wallet
     setIsConnected(true);
     openModal(); // Open the modal after connecting
+  };
+
+  const disconnectWallet = () => {
+    // Simulate disconnecting from the wallet
+    setIsConnected(false); // Reset isConnected to false
+    closeModal(); // Close the modal when disconnecting
   };
 
   return (
@@ -59,12 +62,9 @@ function Header() {
           )}
           {isConnected ? (
             <div>
-              {isContentVisible && (
-                <div>
-                  <Profile />
-                  {/* Additional components or logic */}
-                </div>
-              )}
+              <Profile />
+              {/* Additional components or logic */}
+              <button onClick={disconnectWallet}>Disconnect</button>
             </div>
           ) : null}
           {isModalOpen && <Modal onClose={closeModal} />}
