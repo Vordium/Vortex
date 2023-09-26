@@ -15,3 +15,53 @@
   .connect-button:hover {
     background-color: #1f2639;
   }
+
+  /* YourComponent.css */
+
+.container {
+    display: flex;
+    align-items: center;
+    background-color: #0e111b;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .avatar {
+    margin-right: 10px;
+    max-width: 15px; /* Set the maximum width for the avatar */
+  }
+  
+  .avatar-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .address {
+    text-transform: capitalize;
+    flex: 1;
+    color: white;
+  }
+  
+  .name {
+    color: white;
+  }
+  
+  .address-text {
+    color: #1f2639;
+  }
+  
+  .disconnect {
+    margin-top: 10px;
+  }
+  
+  .disconnect-button {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #1f2639;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
