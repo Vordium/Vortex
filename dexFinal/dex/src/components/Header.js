@@ -5,23 +5,10 @@ import { Link } from "react-router-dom";
 import Modal from './Model';
 import { Profile } from "./profile";
 
-// Create a separate component for the content that should be hidden/show when the modal is open
-function ConditionalContent({ isConnected }) {
-  return (
-    <div>
-      {isConnected ? (
-        <div>
-          <Profile />
-          {/* Additional components or logic */}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
   const [isConnected, setIsConnected] = useState(false);
 
   const handleMenuClick = () => {
@@ -34,10 +21,12 @@ function Header() {
 
   const openModal = () => {
     setIsModalOpen(true);
+    setIsContentVisible(false); // Hide content when the modal is opened
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsContentVisible(true); // Show content when the modal is closed
   };
 
   const connectWallet = () => {
@@ -68,8 +57,15 @@ function Header() {
               Connect Wallet
             </button>
           )}
-          {isModalOpen ? (
-            <ConditionalContent isConnected={isConnected} />
+          {isConnected ? (
+            <div>
+              {isContentVisible && (
+                <div>
+                  <Profile />
+                  {/* Additional components or logic */}
+                </div>
+              )}
+            </div>
           ) : null}
           {isModalOpen && <Modal onClose={closeModal} />}
         </div>
