@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
@@ -13,17 +13,10 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
-
+  const [isConnectedButton, setIsConnectedButton] = useState(false);
   //wagmi
   const { isConnected } = useAccount()
   const { disconnect } = useDisconnect()
-
-  // useEffect to listen for changes in isConnected and close the modal if connected
-  useEffect(() => {
-    if (isConnected) {
-      closeModal();
-    }
-  }, [isConnected]);
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,10 +39,14 @@ function Header() {
   const connectWallet = () => {
     // Simulate connecting to the wallet
     setIsConnectedButton(true);
-    if (!isConnected) {
-      openModal(); // Open the modal after connecting if not connected
-    }
+    openModal(); // Open the modal after connecting
   };
+
+  useEffect(() => {
+    if (isConnected) {
+      closeModal();
+    }
+  }, [isConnected]);
 
   return (
     <header>
