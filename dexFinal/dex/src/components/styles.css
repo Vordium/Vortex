@@ -42,14 +42,17 @@
     text-transform: capitalize;
     flex: 1;
     color: white;
+    margin-right: 5px;
   }
   
   .name {
     color: white;
+    margin-right: 5px;
   }
   
   .address-text {
     color: #ffffff;
+    margin-right: 5px;
   }
   
   .disconnect {
