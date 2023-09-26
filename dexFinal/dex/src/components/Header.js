@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
-import  {Profile} from "./profile";
-import Modal from './Modal';
+import Modal from './Model';
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
