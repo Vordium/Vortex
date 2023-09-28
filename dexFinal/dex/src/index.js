@@ -9,6 +9,7 @@ import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
+import { LedgerConnector } from 'wagmi/connectors/ledger';
 import { Buffer } from 'buffer';
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet],
@@ -38,6 +39,12 @@ const config = createConfig({
         shimDisconnect: true,
       },
     }),
+    new LedgerConnector({
+      chains,
+      options: {
+        projectId: '06d9a2bc15df6af2c75cb75e600bd131',
+      },
+    })
   ],
   publicClient,
   webSocketPublicClient,
