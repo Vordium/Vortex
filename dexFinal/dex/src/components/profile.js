@@ -18,7 +18,7 @@ import {
     const { disconnect } = useDisconnect()
   
     if (isConnected) {
-        const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 3)}`;
+        const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 5)}`;
     
         return (
           <div className="container">
