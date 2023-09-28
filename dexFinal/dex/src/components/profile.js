@@ -1,78 +1,68 @@
 import './styles.css';
 import fallbackAvatar from '../assets/pastel.png';
 import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-} from 'wagmi';
-import metamaskLogo from '../assets/metamask-logo.svg'; // Replace with the actual image path
-import coinbaseWalletLogo from '../assets/coinbase-wallet-logo.png'; // Replace with the actual image path
-import walletConnectLogo from '../assets/wallet-connect-logo.png'; // Replace with the actual image path
-import injectedConnectorLogo from '../assets/injected-connector-logo.png';
-
-export function Profile() {
-  const { address, connector, isConnected } = useAccount();
-  const { data: ensAvatar } = useEnsAvatar({ address });
-  const { data: ensName } = useEnsName({ address });
-  const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
-  const { disconnect } = useDisconnect();
-
-  const connectorImages = {
-    MetaMask: metamaskLogo,
-    CoinbaseWallet: coinbaseWalletLogo,
-    WalletConnect: walletConnectLogo,
-    Injected: injectedConnectorLogo,
-  };
-
-  if (isConnected) {
-    const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 3)}`;
-
+    useAccount,
+    useConnect,
+    useDisconnect,
+    useEnsAvatar,
+    useEnsName,
+  } from 'wagmi';
+  
+  
+  export function Profile() {
+    const { address, connector, isConnected } = useAccount()
+    const { data: ensAvatar } = useEnsAvatar({ address })
+    const { data: ensName } = useEnsName({ address })
+    const { connect, connectors, error, isLoading, pendingConnector } =
+      useConnect()
+    const { disconnect } = useDisconnect()
+    
+  
+    if (isConnected) {
+        const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 3)}`;
+    
+        return (
+          <div className="container">
+            <div className="avatar">
+              <img src={ensAvatar || fallbackAvatar} alt="ENS Avatar" className="avatar-img" />
+            </div>
+            <div className="address">
+              <div className="name">
+                {ensName ? `${ensName}` : 'Unknown'}
+              </div>
+              <div className="address-text">
+                {addressToShow}
+              </div>
+            </div>
+            <div className="disconnect">
+              <button onClick={disconnect} className="disconnect-button">
+                Disconnect
+              </button>
+            </div>
+          </div>
+        )
+      }
+  
     return (
-      <div className="container">
-        <div className="avatar">
-          <img src={ensAvatar || fallbackAvatar} alt="ENS Avatar" className="avatar-img" />
-        </div>
-        <div className="address">
-          <div className="name">
-            {ensName ? `${ensName}` : 'Unknown'}
-          </div>
-          <div className="address-text">
-            {addressToShow}
-          </div>
-        </div>
-        <div className="disconnect">
-          <button onClick={disconnect} className="disconnect-button">
-            Disconnect
-          </button>
-        </div>
-      </div>
-    );
-  }
+        <div>
+    {connectors.map((connector) => (
+      <button
+        className="connect-button" // Apply the connect-button class
+        disabled={!connector.ready}
+        key={connector.id}
+        onClick={() => connect({ connector })}
+      >
+        <img src={connectorImages[connector.name]} alt={connector.name} className="connector-img" />
+        {connector.name}
+        {!connector.ready && ' (unsupported)'}
+        {isLoading &&
+          connector.id === pendingConnector?.id &&
+          ' (connecting)'}
+      </button>
+    ))}
 
-  return (
-    <div>
-      {connectors.map((connector) => (
-        <button
-          className="connect-button"
-          disabled={!connector.ready}
-          key={connector.id}
-          onClick={() => connect({ connector })}
-        >
-          {connector.name && (
-            <>
-              <img src={connectorImages[connector.name]} alt={connector.name} className="connector-img" />
-              {connector.name}
-              {!connector.ready && ' (unsupported)'}
-              {isLoading &&
-                connector.id === pendingConnector?.id &&
-                ' (connecting)'}
-            </>
-          )}
-        </button>
-      ))}
-      {error && <div className="error">{error.message}</div>}
-    </div>
-  );
-}
+    {error && <div className="error">{error.message}</div>}
+  </div>
+    )
+  }
+  
