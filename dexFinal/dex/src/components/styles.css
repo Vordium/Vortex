@@ -25,7 +25,21 @@
   .connect-button:hover {
     background-color: #1f2639;
   }
-
+  
+  .connector-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .connector-img {
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+    margin-right: 8px; /* Adjust the margin as needed */
+  }
+  
+  .connector-name {
+    /* Additional styles for the connector name */
+  }
   /* YourComponent.css */
 
 .container {
