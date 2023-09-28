@@ -55,24 +55,27 @@ import injectedConnectorLogo from '../assets/injected-connector-logo.png';
   
     return (
         <div>
-    {connectors.map((connector) => (
-      <button
-        className="connect-button" // Apply the connect-button class
-        disabled={!connector.ready}
-        key={connector.id}
-        onClick={() => connect({ connector })}
-      >
-        <img src={connectorImages[connector.name]} alt={connector.name} className="connector-img" />
-        {connector.name}
-        {!connector.ready && ' (unsupported)'}
-        {isLoading &&
-          connector.id === pendingConnector?.id &&
-          ' (connecting)'}
-      </button>
-    ))}
-
-    {error && <div className="error">{error.message}</div>}
-  </div>
+  {connectors.map((connector) => (
+    <button
+      className="connect-button"
+      disabled={!connector.ready}
+      key={connector.id}
+      onClick={() => connect({ connector })}
+    >
+      {connector.name && (
+        <>
+          <img src={connectorImages[connector.name]} alt={connector.name} className="connector-img" />
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isLoading &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </>
+      )}
+    </button>
+  ))}
+  {error && <div className="error">{error.message}</div>}
+</div>
     )
   }
   
