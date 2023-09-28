@@ -7,6 +7,10 @@ import {
     useEnsAvatar,
     useEnsName,
   } from 'wagmi';
+import metamaskLogo from '../assets/metamask-logo.svg'; // Replace with the actual image path
+import coinbaseWalletLogo from '../assets/coinbase-wallet-logo.png'; // Replace with the actual image path
+import walletConnectLogo from '../assets/wallet-connect-logo.png'; // Replace with the actual image path
+import injectedConnectorLogo from '../assets/injected-connector-logo.png';
   
   
   export function Profile() {
@@ -16,9 +20,16 @@ import {
     const { connect, connectors, error, isLoading, pendingConnector } =
       useConnect()
     const { disconnect } = useDisconnect()
+
+    const connectorImages = {  //images
+        MetaMask: metamaskLogo,
+        CoinbaseWallet: coinbaseWalletLogo,
+        WalletConnect: walletConnectLogo,
+        Injected: injectedConnectorLogo,
+      };
   
     if (isConnected) {
-        const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 5)}`;
+        const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 3)}`;
     
         return (
           <div className="container">
@@ -44,23 +55,24 @@ import {
   
     return (
         <div>
-        {connectors.map((connector) => (
-          <button
-            className="connect-button" // Apply the connect-button class
-            disabled={!connector.ready}
-            key={connector.id}
-            onClick={() => connect({ connector })}
-          >
-            {connector.name}
-            {!connector.ready && ' (unsupported)'}
-            {isLoading &&
-              connector.id === pendingConnector?.id &&
-              ' (connecting)'}
-          </button>
-        ))}
-    
-        {error && <div className="error">{error.message}</div>}
-      </div>
+    {connectors.map((connector) => (
+      <button
+        className="connect-button" // Apply the connect-button class
+        disabled={!connector.ready}
+        key={connector.id}
+        onClick={() => connect({ connector })}
+      >
+        <img src={connectorImages[connector.name]} alt={connector.name} className="connector-img" />
+        {connector.name}
+        {!connector.ready && ' (unsupported)'}
+        {isLoading &&
+          connector.id === pendingConnector?.id &&
+          ' (connecting)'}
+      </button>
+    ))}
+
+    {error && <div className="error">{error.message}</div>}
+  </div>
     )
   }
   
