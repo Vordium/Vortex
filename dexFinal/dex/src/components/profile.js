@@ -24,9 +24,9 @@ export function Profile() {
     CoinbaseWallet: coinbaseWalletLogo,
     WalletConnect: walletConnectLogo,
     Injected: injectedConnectorLogo,
-    defaultConnectorImage: coinbaseWalletLogo,
   };
-
+  
+  const defaultConnectorImage = '../assets/coinbase-wallet-logo.png';
   if (isConnected) {
     const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 3)}`;
 
