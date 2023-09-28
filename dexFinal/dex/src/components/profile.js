@@ -31,23 +31,23 @@ import injectedConnectorLogo from '../assets/injected-connector-logo.png'; // Re
         const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 5)}`;
     
         return (
-          <div className="container">
-            <div className="avatar">
-              <img src={ensAvatar || fallbackAvatar} alt="ENS Avatar" className="avatar-img" />
-            </div>
-            <div className="address">
-              <div className="name">
-                {ensName ? `${ensName}` : 'Unknown'}
+            <div className="container">
+              <div className="avatar">
+                <img
+                  src={ensAvatar || fallbackAvatar}
+                  alt="ENS Avatar"
+                  className="avatar-img"
+                />
               </div>
-              <div className="address-text">
-                {addressToShow}
+              <div className="address">
+                <div className="name">{ensName ? `${ensName}` : 'Unknown'}</div>
+                <div className="address-text">{addressToShow}</div>
               </div>
-            </div>
-            <div className="disconnect">
-              <button onClick={disconnect} className="disconnect-button">
-                Disconnect
-              </button>
-            </div>
+              <div className="disconnect">
+                <button onClick={disconnect} className="disconnect-button">
+                  Disconnect
+                </button>
+              </div>
           </div>
         )
       }
