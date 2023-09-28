@@ -61,7 +61,10 @@ export function Profile() {
         className="connect-button" // Apply the connect-button class
         disabled={!connector.ready}
         key={connector.id}
-        onClick={() => connect({ connector })}
+        onClick={() => {
+          connect({ connector });
+          console.log(connector.name); // Log the connector name to the console
+        }}
       >
         <img src={connectorImages[connector.name]} alt={connector.name} className="connector-img" />
         {connector.name}
@@ -71,8 +74,9 @@ export function Profile() {
           ' (connecting)'}
       </button>
     ))}
-
+  
     {error && <div className="error">{error.message}</div>}
   </div>
-  );
+  
+  )
 }
