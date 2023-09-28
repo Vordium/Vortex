@@ -8,9 +8,10 @@ import {
   useEnsName,
 } from 'wagmi';
 import metamaskLogo from '../assets/metamask-logo.png'; // Replace with the actual image path
-import coinbaseWalletLogo from '../assets/wallet-connect-logo.png'; // Replace with the actual image path
+import coinBaseWalletLogo from '../assets/coinbase-wallet-logo.png'; // Replace with the actual image path
 import walletConnectLogo from '../assets/wallet-connect-logo.png'; // Replace with the actual image path
-import injectedConnectorLogo from '../assets/injected-connector-logo.png'; // Replace with the actual image path
+import injectedConnectorLogo from '../assets/injected-connector-logo.png';
+import ledgerConnectorLogo from '../assets/Ledger.png'; // Replace with the actual image path
 
 export function Profile() {
   const { address, connector, isConnected } = useAccount();
@@ -21,9 +22,10 @@ export function Profile() {
 
   const connectorImages = {
     MetaMask: metamaskLogo,
-    CoinbaseWallet: coinbaseWalletLogo,
+    CoinBaseWallet: coinbaseWalletLogo,
     WalletConnect: walletConnectLogo,
     Injected: injectedConnectorLogo,
+    Ledger: ledgerConnectorLogo,
   };
   
   const defaultConnectorImage = '../assets/coinbase-wallet-logo.png';
