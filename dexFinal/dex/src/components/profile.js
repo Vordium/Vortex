@@ -57,6 +57,7 @@ export function Profile() {
   return (
     <div>
       {connectors.map((connector) => (
+        console.log(connector.name);
         <button
           className="connect-button" // Apply the connect-button class
           disabled={!connector.ready}
