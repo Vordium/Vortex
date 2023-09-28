@@ -56,33 +56,37 @@ export function Profile() {
 
   return (
     <div>
-      {connectors.map((connector) => (
+      {connectors.map((connector) => {
+        // Log the connector name to the console
         console.log(connector.name);
-        <button
-          className="connect-button" // Apply the connect-button class
-          disabled={!connector.ready}
-          key={connector.id}
-          onClick={() => connect({ connector })}
-        >
-          <div className="connector-content">
-            <img
-              src={connectorImages[connector.name] || defaultConnectorImage}
-              alt={connector.name}
-              className="connector-img"
-              onError={(e) => {
-                e.target.src = defaultConnectorImage; // Replace with the path to your fallback image
-                e.target.alt = 'Fallback Connector Image'; // Replace with appropriate alt text
-              }}
-            />
-            <span className="connector-name">{connector.name || 'Unknown Connector'}</span>
-          </div>
-          {!connector.ready && ' (unsupported)'}
-          {isLoading &&
-            connector.id === pendingConnector?.id &&
-            ' (connecting)'}
-        </button>
-      ))}
+
+        return (
+          <button
+            className="connect-button" // Apply the connect-button class
+            disabled={!connector.ready}
+            key={connector.id}
+            onClick={() => connect({ connector })}
+          >
+            <div className="connector-content">
+              <img
+                src={connectorImages[connector.name] || defaultConnectorImage}
+                alt={connector.name}
+                className="connector-img"
+                onError={(e) => {
+                  e.target.src = defaultConnectorImage; // Replace with the path to your fallback image
+                  e.target.alt = 'Fallback Connector Image'; // Replace with appropriate alt text
+                }}
+              />
+              <span className="connector-name">{connector.name || 'Unknown Connector'}</span>
+            </div>
+            {!connector.ready && ' (unsupported)'}
+            {isLoading &&
+              connector.id === pendingConnector?.id &&
+              ' (connecting)'}
+          </button>
+        );
+      })}
       {error && <div className="error">{error.message}</div>}
     </div>
-  )
+  );
 }
