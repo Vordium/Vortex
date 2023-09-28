@@ -22,7 +22,7 @@ export function Profile() {
 
   const connectorImages = {
     MetaMask: metamaskLogo,
-    coinbaseWallet: coinBaseWalletLogo,
+    CoinbaseWalletConnector: coinBaseWalletLogo,
     WalletConnect: walletConnectLogo,
     Injected: injectedConnectorLogo,
     Ledger: ledgerConnectorLogo,
