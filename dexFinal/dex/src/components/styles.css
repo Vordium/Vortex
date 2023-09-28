@@ -11,7 +11,7 @@
     padding: 20px 20px;
     text-transform: capitalize;
     transition: background-color .3s;
-    flex-direction: column;
+    flex-direction: row;
     align-content: space-around;
     justify-content: center;
     align-items: center;
@@ -32,8 +32,8 @@
   }
   
   .connector-img {
-    width: 24px; /* Adjust the width as needed */
-    height: 24px; /* Adjust the height as needed */
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
     margin-right: 8px; /* Adjust the margin as needed */
   }
   
