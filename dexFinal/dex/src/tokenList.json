@@ -1,5 +1,12 @@
 [
     {
+        "ticker": "VORD",
+        "img": "https://swap.vordium.com/static/media/moralis-logo.43eeb6f80bf7d98e9a765e364368979a.svg",
+        "name": "VORDIUM",
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "decimals": 6
+    },
+    {
         "ticker": "USDC",
         "img": "https://cdn.moralis.io/eth/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.png",
         "name": "USD Coin",
