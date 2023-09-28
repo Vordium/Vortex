@@ -22,7 +22,7 @@ import {
 
     const connectorImages = {
         MetaMask: metamaskLogo,
-        CoinbaseWallet: coinbaseWalletLogo,
+        Coinbase_Wallet: coinbaseWalletLogo,
         WalletConnect: walletConnectLogo,
         Injected: injectedConnectorLogo,
       };
