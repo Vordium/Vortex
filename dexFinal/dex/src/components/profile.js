@@ -7,7 +7,10 @@ import {
     useEnsAvatar,
     useEnsName,
   } from 'wagmi';
-  
+  import metamaskLogo from '../assets/metamask-logo.svg'; // Replace with the actual image path
+  import coinbaseWalletLogo from '../assets/coinbase-wallet-logo.png'; // Replace with the actual image path
+  import walletConnectLogo from '../assets/wallet-connect-logo.png'; // Replace with the actual image path
+  import injectedConnectorLogo from '../assets/injected-connector-logo.png'; // Replace with the actual image path
   
   export function Profile() {
     const { address, connector, isConnected } = useAccount()
