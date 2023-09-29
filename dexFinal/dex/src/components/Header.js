@@ -44,6 +44,7 @@ function Header() {
 
   const connectWallet = () => {
     // Simulate connecting to the wallet
+    closeMenu();
     setIsConnectedButton(true);
     openModal(); // Open the modal after connecting
   };
