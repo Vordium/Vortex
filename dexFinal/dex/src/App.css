@@ -413,7 +413,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   transform: translateX(100%); /* Initial position outside viewport */
   transition: transform 0.3s ease-in-out; /* Add transition for smooth sliding effect */
   z-index: 9;
