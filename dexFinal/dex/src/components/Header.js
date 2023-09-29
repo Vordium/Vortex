@@ -8,6 +8,7 @@ import {
   useAccount,
   useDisconnect,
   useBalance,
+  address,
 } from 'wagmi';
 
 
@@ -20,6 +21,7 @@ function Header() {
   //wagmi
   const { isConnected } = useAccount()
   const { disconnect } = useDisconnect()
+  
   
 
   const handleMenuClick = () => {
