@@ -321,7 +321,7 @@ header {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-top: 50px;
+  padding-top: 0px;
   padding-right: 50rem;
   
 }
@@ -331,7 +331,7 @@ header {
   color: #fff;
   text-decoration: none;
   opacity: 0.8;
-  text-align: right; /* Align menu items to the right */
+  text-align: left; /* Align menu items to the right */
   width: 80%; /* Adjust the width of menu items */
 }
 
@@ -587,4 +587,15 @@ header {
   font-weight: 500;
   font-size: 12px;
   padding-right: 8px;
+}
+
+.walletbalance{
+  color: #fff;
+    margin-bottom: 1.5rem;
+    opacity: .8;
+    text-align: left;
+    background: #192134;
+    padding: 6px 20px;
+    width: 100%;
+    border-radius: 7px;
 }
