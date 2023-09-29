@@ -316,7 +316,7 @@ header {
 }
 
 .menuContent {
-  align-items: flex-end;
+  align-items: flex-start;
   background-color: #0c101a;
   display: flex;
   flex-direction: column;

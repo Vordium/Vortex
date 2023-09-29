@@ -101,7 +101,7 @@ function Header() {
         <div className="menuContent">
         
       <div className="walletbalance">
-         Balance: {walletBalance.data?.formatted}
+         BALANCE: {walletBalance.data?.formatted} ETH
       </div>
 
           <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
