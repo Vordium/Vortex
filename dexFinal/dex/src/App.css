@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
 }
@@ -11,16 +12,17 @@ header {
   padding-right: 50px;
 }
 
-.logo {
+.logo{
   width: 40px;
   height: 40px;
   padding-right: 20px;
 }
 
-.eth {
+.eth{
   width: 20px;
   height: 20px;
   padding-right: 10px;
+
 }
 
 .leftH {
@@ -53,7 +55,7 @@ header {
 }
 
 .connectButton {
-  background-color: #243056;
+  background-color: #243056; 
   padding: 10px;
   padding-right: 20px;
   padding-left: 20px;
@@ -66,7 +68,7 @@ header {
 
 .connectButton:hover {
   cursor: pointer;
-  color: #3b4874;
+  color: #3b4874
 }
 
 .mainWindow {
@@ -93,6 +95,7 @@ header {
   padding-left: 30px;
   padding-right: 30px;
 }
+
 
 .tradeBoxHeader {
   display: flex;
@@ -126,7 +129,7 @@ header {
   color: #5F6783;
   border: 3px solid #0E111B;
   font-size: 12px;
-  transition: 0.3s;
+  transition: 0.3s
 }
 
 .dollarAmount {
@@ -181,11 +184,11 @@ header {
   padding-right: 8px;
 }
 
-.assetOne:hover {
+.assetOne:hover{
   cursor: pointer;
 }
 
-.assetTwo:hover {
+.assetTwo:hover{
   cursor: pointer;
 }
 
@@ -198,7 +201,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #243056;
+  background-color: #243056; 
   width: calc(100%);
   height: 55px;
   font-size: 20px;
@@ -223,7 +226,7 @@ header {
 
 .swapButton:hover {
   cursor: pointer;
-  background-color: #3b4874;
+  background-color: #3b4874
 }
 
 .tokenLogo {
@@ -237,7 +240,7 @@ header {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 10px
 }
 
 .tokenChoice {
@@ -267,8 +270,27 @@ header {
   color: #51596f;
 }
 
-/* Your existing styles (excluding mobile menu styles) */
-/* ... (your existing styles) ... */
+
+/* Media Query for Small Devices */
+@media (max-width: 767px) {
+  .mainWindow {
+      margin: 20px;
+  }
+}
+
+/* Media Query for Medium Devices */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mainWindow {
+      margin: 15px;
+  }
+}
+
+/* Media Query for Large Devices */
+@media (min-width: 1024px) {
+  .mainWindow {
+      margin: 20px;
+  }
+}
 
 /* Mobile menu styles */
 
@@ -294,12 +316,14 @@ header {
 }
 
 .menuContent {
-  width: 100%;
-  padding-top: 50px;
-  padding-right: 20px;
+  align-items: flex-end;
+  background-color: #0c101a;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  height: 100%;
+  padding-top: 50px;
+  padding-right: 50rem;
+  
 }
 
 .mobileMenuItem {
@@ -307,9 +331,11 @@ header {
   color: #fff;
   text-decoration: none;
   opacity: 0.8;
-  width: 100%;
-  text-align: right;
+  text-align: right; /* Align menu items to the right */
+  width: 80%; /* Adjust the width of menu items */
 }
+
+/* Burger menu styles */
 
 .burgerMenu {
   display: flex;
@@ -338,6 +364,7 @@ header {
   transform: translateY(8px) translateX(-5px) rotate(0deg);
 }
 
+/* Add the "open" class to the burger menu when the menu is open */
 .burgerMenu.open .burgerLine:first-child {
   transform: translateY(0) rotate(180deg);
 }
@@ -346,36 +373,62 @@ header {
   transform: translateY(0) rotate(-180deg);
 }
 
-/* Media Query for Large Devices */
-@media (min-width: 1024px) {
-  .mobileMenu {
-    width: 20%;
-  }
+.burgerMenu.open .menuContent {
+  transform: translateX(50) rotate(0deg);
 }
 
-@media (max-width: 767px) {
-  .mobileMenu {
-    width: 70%;
-  }
+.burgerMenu.open .mobileMenu {
+  transform: translateX(50) rotate(0deg);
+}
 
-  .menuContent {
-    padding-right: 2rem; /* Adjust the right padding as needed */
-  }
+/* CSS for the menu */
+.header {
+  /* ... existing styles ... */
+  position: relative; /* Added position property */
+}
+
+.burgerMenu {
+  /* ... existing styles ... */
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 35px;
+    z-index: 10;
+}
+
+.burgerMenu.open {
+  /* Styles for open menu */
+  transform: translateX(0%); /* Slide menu in from right */
+}
+
+.mobileMenu {
+  /* ... existing styles ... */
+  position: fixed; /* Added position property */
+  top: 0; /* Position at top of viewport */
+  right: 0; /* Position at right of viewport */
+  height: 100%; /* Set height to 100% to cover entire viewport */
+  width: 100%; /* Set width to 70% for the sliding effect */
+  background-color: #192134; /* Add background color to the menu */
+  padding: 2rem; /* Add padding for menu items */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%); /* Initial position outside viewport */
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth sliding effect */
+  z-index: 9;
 }
 
 .mobileMenu.open {
-  transform: translateX(70%);
+  /* Styles for open menu */
+  transform: translateX(70%); /* Slide menu in from right */
 }
-
 @media (max-width: 767px) {
   .mobileMenu.open {
-    transform: translateX(20%);
+    /* Styles for open menu */
+    transform: translateX(20%); /* Slide menu in from right */
   }
 }
-
-/* ... (your existing styles) ... */
-
-
 
 .rightH {
   justify-content: flex-end;
