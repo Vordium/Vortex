@@ -43,18 +43,18 @@
   /* YourComponent.css */
 
 .container {
-    display: flex;
     align-items: center;
     background-color: #0e111b;
-    padding: 10px;
-    height: 32px;
     border-radius: 25px 10px 10px 25px;
+    display: flex;
+    height: 30px;
+    padding: 6px;
   }
   
   .avatar {
     margin-right: 10px;
     margin-top: 3px;
-    max-width: 35px; /* Set the maximum width for the avatar */
+    max-width: 28px; /* Set the maximum width for the avatar */
   }
   
   .avatar-img {
@@ -90,11 +90,12 @@
   }
   
   .disconnect-button {
-    cursor: pointer;
-    padding: 7px 10px;
     background-color: #1f2639;
-    color: white;
     border: none;
     border-radius: 5px;
+    color: #fff;
+    margin-bottom: 0.2px;
+    cursor: pointer;
+    padding: 7px 10px;
   }
   
