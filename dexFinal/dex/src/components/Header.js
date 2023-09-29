@@ -112,14 +112,6 @@ function Header() {
               Gas Prices <DownOutlined />
             </div>
           </div>
-
-          {/* Conditionally render the <Gas /> component when the box is expanded */}
-          {isBoxExpanded && (
-            <div className="expandedContent">
-              <Gas />
-              {/* Add other elements inside the expanded container */}
-            </div>
-          )}
         </div>
       
         </div>
