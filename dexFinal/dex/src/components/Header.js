@@ -7,7 +7,8 @@ import { Profile } from "./profile";
 import {
   useAccount,
   useDisconnect,
-} from 'wagmi'
+} from 'wagmi';
+import Gas from "./Gas";
 
 
 function Header() {
@@ -49,6 +50,13 @@ function Header() {
       closeModal();
     }
   }, [isConnected]);
+
+  const [isBoxExpanded, setIsBoxExpanded] = useState(false);
+
+  // Function to toggle the box's expansion
+  const toggleBoxExpansion = () => {
+    setIsBoxExpanded(!isBoxExpanded);
+  };
 
   return (
     <header>
