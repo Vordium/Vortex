@@ -105,15 +105,6 @@ function Header() {
           <Link to="/tokens" className="mobileMenuItem" onClick={closeMenu}>
             Tokens
           </Link>
-      
-        <div className="expandableContainer">
-          <div className="expandableBox" onClick={toggleBoxExpansion}>
-            <div className="expandableBoxHeader">
-              Gas Prices <DownOutlined />
-            </div>
-          </div>
-        </div>
-      
         </div>
       </div>
       <div className={`burgerMenu ${isMenuOpen ? "open" : ""}`} onClick={handleMenuClick}>
