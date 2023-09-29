@@ -7,11 +7,9 @@ import { Profile } from "./profile";
 import {
   useAccount,
   useDisconnect,
+  useBalance,
 } from 'wagmi';
-import Gas from "./Gas";
-import {
-  DownOutlined,
-} from "@ant-design/icons";
+
 
 
 function Header() {
@@ -56,10 +54,10 @@ function Header() {
 
   const [isBoxExpanded, setIsBoxExpanded] = useState(false);
 
-  // Function to toggle the box's expansion
-  const toggleBoxExpansion = () => {
-    setIsBoxExpanded(!isBoxExpanded);
-  };
+  const walletBalance = useBalance({
+    address: address,
+    
+  });
 
   return (
     <header>
@@ -99,6 +97,11 @@ function Header() {
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
         <div className="menuOverlay" onClick={closeMenu}></div>
         <div className="menuContent">
+        
+      <div className="walletbalance">
+         Balance: {walletBalance.data?.formatted}
+      </div>
+
           <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
             Swap
           </Link>
