@@ -599,3 +599,12 @@ header {
     width: 100%;
     border-radius: 7px;
 }
+.connectButtonmenu{
+background-color: #243056;
+border-radius: 7px;
+color: #ffffff;
+font-weight: 700;
+margin: 0px 0px 1.5rem 0px;
+padding: 10px 20px;
+transition: .3s;
+}

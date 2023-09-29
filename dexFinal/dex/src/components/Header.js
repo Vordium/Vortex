@@ -101,7 +101,7 @@ function Header() {
         <div className="menuContent">
         <div>
           {!isConnected && ( // Show the "Connect Wallet" button if not connected
-            <button className="connectButton" onClick={connectWallet}>
+            <button className="connectButtonmenu" onClick={connectWallet}>
               Connect Wallet
             </button>
           )}
