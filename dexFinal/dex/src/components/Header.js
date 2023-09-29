@@ -8,8 +8,8 @@ import {
   useAccount,
   useDisconnect,
   useBalance,
-  address,
 } from 'wagmi';
+
 
 
 
@@ -19,7 +19,7 @@ function Header() {
   const [isContentVisible, setIsContentVisible] = useState(false); // State to control content visibility
   const [isConnectedButton, setIsConnectedButton] = useState(false);
   //wagmi
-  const { isConnected } = useAccount()
+  const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
   
   
