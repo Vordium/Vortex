@@ -94,6 +94,23 @@ function Header() {
           <Link to="/tokens" className="mobileMenuItem" onClick={closeMenu}>
             Tokens
           </Link>
+      
+        <div className="expandableContainer">
+          <div className="expandableBox" onClick={toggleBoxExpansion}>
+            <div className="expandableBoxHeader">
+              Gas Prices <DownOutlined />
+            </div>
+          </div>
+
+          {/* Conditionally render the <Gas /> component when the box is expanded */}
+          {isBoxExpanded && (
+            <div className="expandedContent">
+              <Gas />
+              {/* Add other elements inside the expanded container */}
+            </div>
+          )}
+        </div>
+      
         </div>
       </div>
       <div className={`burgerMenu ${isMenuOpen ? "open" : ""}`} onClick={handleMenuClick}>
