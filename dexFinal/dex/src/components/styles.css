@@ -67,19 +67,19 @@
   .address {
     text-transform: capitalize;
     flex: 1;
-    color: white;
+    color: #5f6783;
     margin-right: 5px;
     font-size: 13px;
   }
   
   .name {
-    color: white;
+    color: #5f6783;
     margin-right: 5px;
     font-size: 13px;
   }
   
   .address-text {
-    color: #ffffff;
+    color: #5f6783;
     margin-right: 5px;
     font-size: 12px;
   }
