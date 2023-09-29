@@ -99,10 +99,24 @@ function Header() {
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
         <div className="menuOverlay" onClick={closeMenu}></div>
         <div className="menuContent">
-        
-      <div className="walletbalance">
-         BALANCE: {walletBalance.data?.formatted} ETH
-      </div>
+        <div>
+          {!isConnected && ( // Show the "Connect Wallet" button if not connected
+            <button className="connectButton" onClick={connectWallet}>
+              Connect Wallet
+            </button>
+          )}
+          {isConnected ? (
+            <div>
+              {isContentVisible && (
+                <div className="walletbalance">
+                BALANCE : {walletBalance.data?.formatted} ETH
+             </div>
+              )}
+            </div>
+          ) : null}
+          {isModalOpen && <Modal onClose={closeModal} />}
+        </div>  
+      
 
           <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
             Swap
