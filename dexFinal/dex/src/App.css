@@ -315,14 +315,8 @@ header {
 }
 
 .menuContent {
-  align-items: flex-end;
-  background-color: #0c101a;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  width: 100%;
   padding-top: 50px;
-  padding-right: 50rem;
-  
 }
 
 .mobileMenuItem {
@@ -330,6 +324,8 @@ header {
   color: #fff;
   text-decoration: none;
   opacity: 0.8;
+  text-align: right; /* Align menu items to the right */
+  width: 80%; /* Adjust the width of menu items */
 }
 
 /* Burger menu styles */
@@ -399,21 +395,33 @@ header {
 }
 
 .mobileMenu {
-  /* ... existing styles ... */
-  position: fixed; /* Added position property */
-  top: 0; /* Position at top of viewport */
-  right: 0; /* Position at right of viewport */
-  height: 100%; /* Set height to 100% to cover entire viewport */
-  width: 100%; /* Set width to 70% for the sliding effect */
-  background-color: #192134; /* Add background color to the menu */
-  padding: 2rem; /* Add padding for menu items */
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #192134;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(100%); /* Initial position outside viewport */
-  transition: transform 0.3s ease-in-out; /* Add transition for smooth sliding effect */
-  z-index: 9;
+  justify-content: flex-start;
+  align-items: flex-end;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+@media (min-width: 1024px) {
+  .mobileMenu {
+    width: 20%;
+  }
+}
+
+@media (max-width: 767px) {
+  .mobileMenu {
+    width: 70%;
+  }
+
+  .menuContent {
+    padding-right: 2rem; /* Adjust the right padding as needed */
+  }
 }
 
 .mobileMenu.open {
@@ -426,6 +434,7 @@ header {
     transform: translateX(20%); /* Slide menu in from right */
   }
 }
+
 
 .rightH {
   justify-content: flex-end;
