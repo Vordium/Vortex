@@ -16,25 +16,26 @@ function Tokens() {
   }, [searchQuery]);
 
   return (
-    <div className="tokenshow" style={containerStyle}>
-  {/* Search input field */}
-  <input
+  <div className="tokenshow" >
+     <div className="searchInputtoken" >
+    {/* Search input field */}
+     <input
     type="text"
     placeholder="Search by name or address"
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
-    style={searchStyle}
-  />
+    
+     />
   
   {/* List of filtered tokens/cards */}
-  <div style={rowStyle}>
+  <div class="rowtoken" >
     {filteredTokens.map((token) => (
-      <div key={token.id} className="cardtoken" style={cardStyle}>
+      <div key={token.id} className="cardtoken" >
         {/* Token logo */}
-        <img src={token.img} alt={`${token.name} Logo`} className="logotoken" style={logoStyle} />
+        <img src={token.img} alt={`${token.name} Logo`} className="logotoken" />
         
         {/* Token information */}
-        <div className="infotoken" style={infoStyle}>
+        <div className="infotoken" >
           {/* Token name */}
           <h3 style={{ fontSize: '16px' }}>{token.name}</h3>
           
@@ -42,8 +43,9 @@ function Tokens() {
           <p>{token.ticker}</p>
         </div>
       </div>
-    ))}
-  </div>
+      ))}
+    </div>
+   </div>
 </div>
 
   );
