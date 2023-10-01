@@ -101,41 +101,35 @@ function Header() {
         </div>
       </div>
       <div className={`mobileMenu ${isMenuOpen ? "open" : ""}`}>
-        <div className="menuOverlay" onClick={closeMenu}></div>
-        <div className="menuContent">
-        <div>
-          {!isConnected && ( // Show the "Connect Wallet" button if not connected
-            <button className="connectButtonmenu" onClick={connectWallet}>
-              Connect Wallet
-            </button>
-          )}
-         
-      {isConnected ? (
-        <div>
-          <div className="combined-class">
-            Approve
-            <div className="walletbalance">
-              BALANCE: {walletBalance.data?.formatted} ETH 
-            </div>
-          </div>
-          {isContentVisible && (
-            <div className="walletbalance">
-              BALANCE: {walletBalance.data?.formatted} ETH 
-            </div>
-          )}
-        </div>
-      ) : null}
-      {isModalOpen && <Modal onClose={closeModal} />}
+  <div className="menuOverlay" onClick={closeMenu}></div>
+  <div className="menuContent">
+    {!isConnected && ( 
+      // Show the "Connect Wallet" button if not connected
+      <button className="connectButtonmenu" onClick={connectWallet}>
+        Connect Wallet
+      </button>
+    )}
 
-      {/* Add the Exit button with combined class */}
-      {isConnected && (
-        <div className="combined-class">
-          <button onClick={disconnect}>
-            <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
-          </button>
+    {isConnected && (
+      <div className="combined-class">
+        <div className="walletbalance">
+          BALANCE: {walletBalance?.data?.formatted} ETH 
         </div>
-      )}
-    </div>
+
+        {isContentVisible && (
+          <div className="walletbalance">
+            BALANCE: {walletBalance?.data?.formatted} ETH 
+          </div>
+        )}
+
+        {isModalOpen && <Modal onClose={closeModal} />}
+
+        <button onClick={disconnect}>
+          <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
+        </button>
+      </div>
+    )}
+  
           <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
             Swap
           </Link>
