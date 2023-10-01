@@ -121,7 +121,7 @@ function Header() {
 
         {isModalOpen && <Modal onClose={closeModal} />}
 
-        <button onClick={disconnect}>
+        <button onClick={disconnect} className="disconnect-button" >
           <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
         </button>
       </div>
