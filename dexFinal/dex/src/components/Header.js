@@ -112,9 +112,6 @@ function Header() {
 
     {isConnected && (
       <div className="combined-class">
-        <div className="walletbalance">
-          BALANCE: {walletBalance?.data?.formatted} ETH 
-        </div>
 
         {isContentVisible && (
           <div className="walletbalance">
