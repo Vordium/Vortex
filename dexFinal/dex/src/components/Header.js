@@ -9,6 +9,9 @@ import {
   useDisconnect,
   useBalance,
 } from 'wagmi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -110,7 +113,12 @@ function Header() {
             <div>
               {isContentVisible && (
                 <div className="walletbalance">
-                BALANCE : {walletBalance.data?.formatted} ETH
+                BALANCE : {walletBalance.data?.formatted} ETH 
+                <div className="disconnect">
+      <button onClick={disconnect} className="disconnect-button">
+        <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
+      </button>
+        </div>
              </div>
               )}
             </div>
