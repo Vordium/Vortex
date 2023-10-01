@@ -1,5 +1,9 @@
+import React from 'react';
 import './styles.css';
 import fallbackAvatar from '../assets/pastel.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; // Import the Exit icon from FontAwesome
+
 import {
   useAccount,
   useConnect,
@@ -46,9 +50,9 @@ export function Profile() {
           </div>
         </div>
         <div className="disconnect">
-          <button onClick={disconnect} className="disconnect-button">
-            Disconnect
-          </button>
+      <button onClick={disconnect} className="disconnect-button">
+        <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
+      </button>
         </div>
       </div>
     )
