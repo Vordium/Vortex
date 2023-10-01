@@ -48,11 +48,11 @@ export function Profile() {
           <div className="address-text">
             {addressToShow}
           </div>
-        </div>
-        <div className="disconnect">
-      <button onClick={disconnect} className="disconnect-button">
+          <div className="disconnect">
+         <button onClick={disconnect} className="disconnect-button">
         <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
       </button>
+        </div>
         </div>
       </div>
     )

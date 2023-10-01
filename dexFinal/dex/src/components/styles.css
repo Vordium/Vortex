@@ -80,9 +80,12 @@
   }
   
   .address-text {
-    color: #ffffff;
+    color: #fff;
     font-size: 15px;
-    margin-right: 5px;
+    /* margin-right: 5px; */
+    padding: 7px;
+    background: #1f2639;
+    border-radius: 5px;
   }
   
   .disconnect {
