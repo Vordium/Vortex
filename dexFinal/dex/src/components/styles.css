@@ -70,9 +70,10 @@
     color: #5f6783;
     font-size: 16px;
     background: #1f2639;
-    margin-right: 5px;
+    /*margin-right: 5px;*/
     border-radius: 7px;
     padding:4px;
+    margin-top: -0.3px;
   }
   
   .name {
@@ -89,10 +90,11 @@
     /*padding: 7px;*/
     background: #1f2639;
     border-radius: 5px;
+    padding-left: 5px;
   }
   
   .disconnect {
-    margin-top: 0px;
+    margin-top: -1.5px;
 
   }
   
