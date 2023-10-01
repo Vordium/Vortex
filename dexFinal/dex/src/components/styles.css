@@ -72,19 +72,21 @@
     background: #1f2639;
     margin-right: 5px;
     border-radius: 7px;
+    padding:4px;
   }
   
   .name {
     color: #5f6783;
     margin-right: 5px;
     font-size: 16px;
+    display: none;
   }
   
   .address-text {
     color: #fff;
     font-size: 15px;
     /* margin-right: 5px; */
-    padding: 7px;
+    /*padding: 7px;*/
     background: #1f2639;
     border-radius: 5px;
   }
@@ -101,7 +103,7 @@
     color: #fff;
     /*margin-bottom: 1.2px;*/
     cursor: pointer;
-    padding: 7px 10px;
+    /*padding: 7px 10px;*/
   }
 
    .combined-class {
