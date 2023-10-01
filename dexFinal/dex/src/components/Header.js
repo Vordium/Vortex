@@ -110,23 +110,25 @@ function Header() {
             </button>
           )}
           {isConnected ? (
-            <div>
-              {isContentVisible && (
-                <div className="walletbalance">
-                BALANCE : {walletBalance.data?.formatted} ETH 
-                <div className="disconnect">
-      <button onClick={disconnect} className="disconnect-button">
-        <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
-      </button>
-        </div>
-             </div>
-              )}
+        <div>
+          {isContentVisible && (
+            <div className="walletbalance">
+              BALANCE : {walletBalance.data?.formatted} ETH 
             </div>
-          ) : null}
-          {isModalOpen && <Modal onClose={closeModal} />}
-        </div>  
-      
+          )}
+        </div>
+      ) : null}
+      {isModalOpen && <Modal onClose={closeModal} />}
 
+      {/* Add the Exit button with combined class */}
+      {isConnected && (
+        <div className="combined-class">
+          <button onClick={disconnect} className="disconnect-button">
+            <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
+          </button>
+        </div>
+      )}
+      </div>
           <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
             Swap
           </Link>
