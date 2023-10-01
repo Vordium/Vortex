@@ -590,15 +590,13 @@ header {
 }
 
 .walletbalance{
-  color: #fff;
   background: #192134;
-  border-radius: 7px;
-  color: #fff;
-  /*margin-bottom: 1.5rem;*/
-  opacity: .8;
-  padding: 5px 5px 6px 5px;
-  /* text-align: left; */
-  width: 100%;
+    border-radius: 7px;
+    color: #fff;
+    /* margin-bottom: 1.5rem; */
+    opacity: .8;
+    padding: 5px 8px;
+    width: 100%;
 }
 .connectButtonmenu{
 background-color: #243056;
