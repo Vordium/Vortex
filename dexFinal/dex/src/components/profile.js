@@ -46,7 +46,7 @@ export function Profile() {
             {ensName ? `${ensName}` : 'NoEns'}
           </div>
           <div className="address-text">
-            {addressToShow}
+          <button onClick={addressToShow} className="walletcard"></button>
           </div>
           <div className="disconnect">
          <button onClick={disconnect} className="disconnect-button">
