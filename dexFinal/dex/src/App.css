@@ -71,11 +71,11 @@ header {
   color: #3b4874
 }
 
-.mainWindow {
+/*.mainWindow {
   margin-top: 40px;
   display: flex;
   justify-content: center;
-}
+}*/
 
 .link {
   text-decoration: none;
@@ -271,26 +271,26 @@ header {
 }
 
 
-/* Media Query for Small Devices */
+/* Media Query for Small Devices 
 @media (max-width: 767px) {
   .mainWindow {
       margin: 20px;
   }
-}
+}*/
 
-/* Media Query for Medium Devices */
+/* Media Query for Medium Devices 
 @media (min-width: 768px) and (max-width: 1023px) {
   .mainWindow {
       margin: 15px;
   }
-}
+}*/
 
-/* Media Query for Large Devices */
+/* Media Query for Large Devices 
 @media (min-width: 1024px) {
   .mainWindow {
       margin: 20px;
   }
-}
+}*/
 
 /* Mobile menu styles */
 
