@@ -109,11 +109,18 @@ function Header() {
               Connect Wallet
             </button>
           )}
-          {isConnected ? (
+         
+      {isConnected ? (
         <div>
+          <div className="combined-class">
+            Approve
+            <div className="walletbalance">
+              BALANCE: {walletBalance.data?.formatted} ETH 
+            </div>
+          </div>
           {isContentVisible && (
             <div className="walletbalance">
-              BALANCE : {walletBalance.data?.formatted} ETH 
+              BALANCE: {walletBalance.data?.formatted} ETH 
             </div>
           )}
         </div>
@@ -123,12 +130,12 @@ function Header() {
       {/* Add the Exit button with combined class */}
       {isConnected && (
         <div className="combined-class">
-          <button onClick={disconnect} className="disconnect-button">
+          <button onClick={disconnect}>
             <FontAwesomeIcon icon={faSignOutAlt} /> {/* Display the Exit icon */}
           </button>
         </div>
       )}
-      </div>
+    </div>
           <Link to="/" className="mobileMenuItem" onClick={closeMenu}>
             Swap
           </Link>
