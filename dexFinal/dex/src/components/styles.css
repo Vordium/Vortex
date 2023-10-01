@@ -45,7 +45,7 @@
 .container {
     align-items: center;
     background-color: #0e111b;
-    border-radius: 25px 10px 10px 25px;
+    border-radius: 25px 25px 25px 25px;
     display: flex;
     height: 30px;
     padding: 6px;
@@ -71,7 +71,7 @@
     font-size: 16px;
     background: #1f2639;
     /*margin-right: 5px;*/
-    border-radius: 7px;
+    border-radius: 7px 25px 25px 7px;
     padding:4px;
     margin-top: -0.3px;
   }
