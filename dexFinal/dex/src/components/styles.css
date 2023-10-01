@@ -50,9 +50,13 @@
     height: 30px;
     padding: 6px;
   }
+  .container:hover{
+  border:1px;
+  border-color: #5f6783;
+  }
   
   .avatar {
-    margin-right: 10px;
+    margin-right: 7px;
     margin-top: 3px;
     max-width: 28px; /* Set the maximum width for the avatar */
   }
