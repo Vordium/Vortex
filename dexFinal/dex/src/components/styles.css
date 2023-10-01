@@ -66,17 +66,17 @@
   
   .address {
     text-transform: capitalize;
-    flex: 1;
+    display: flex;
     margin-top: -1px;
     color: #5f6783;
     margin-right: 5px;
-    font-size: 13px;
+    font-size: 16px;
   }
   
   .name {
     color: #5f6783;
     margin-right: 5px;
-    font-size: 13px;
+    font-size: 16px;
   }
   
   .address-text {
