@@ -327,12 +327,14 @@ header {
 }
 
 .mobileMenuItem {
-  margin-bottom: 1rem;
   color: #fff;
-  text-decoration: none;
-  opacity: 0.8;
-  text-align: left; /* Align menu items to the right */
-  width: 80%; /* Adjust the width of menu items */
+    /* margin-bottom: 1rem; */
+    opacity: .8;
+    text-align: left;
+    text-decoration: none;
+    width: 190%;
+    border-bottom: 1px solid;
+    padding: 15px 0;
 }
 
 /* Burger menu styles */
