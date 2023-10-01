@@ -95,28 +95,26 @@
     border: none;
     border-radius: 5px;
     color: #fff;
-    margin-bottom: 1.2px;
+    /*margin-bottom: 1.2px;*/
     cursor: pointer;
     padding: 7px 10px;
   }
 
    .combined-class {
-    /* styles from walletbalance class */
-    font-size: 16px;
-    font-weight: bold;
-    color: #333; /* Example text color */
     
     /* styles from disconnect-button class */
-    background-color: #ff0000; /* Example background color */
-    color: #fff; /* Example text color for the button */
-    border: none;
+    background-color: #1f2639;
+    display: flex;
+    color: #333;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
     padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
   }
   
   .combined-class:hover {
-    background-color: #cc0000; /* Example background color on hover */
+    background-color: #192134; /* Example background color on hover */
   }
   
   
