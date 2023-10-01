@@ -594,7 +594,7 @@ header {
   background: #192134;
   border-radius: 7px;
   color: #fff;
-  margin-bottom: 1.5rem;
+  /*margin-bottom: 1.5rem;*/
   opacity: .8;
   padding: 5px 5px 6px 5px;
   /* text-align: left; */
