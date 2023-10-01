@@ -67,10 +67,11 @@
   .address {
     text-transform: capitalize;
     display: flex;
-    margin-top: -1px;
     color: #5f6783;
-    margin-right: 5px;
     font-size: 16px;
+    background: #1f2639;
+    margin-right: 5px;
+    border-radius: 7px;
   }
   
   .name {
