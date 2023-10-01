@@ -132,5 +132,14 @@
   .combined-class:hover {
     background-color: #192134; /* Example background color on hover */
   }
+
+  .walletcard{
+    background: #1f2639;
+    /* border-radius: 5px; */
+    color: #fff;
+    font-size: 15px;
+    padding-left: 5px;
+    border: 0;
+  }
   
   
