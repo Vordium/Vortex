@@ -17,9 +17,10 @@ function Tokens() {
 
   return (
   <div className="tokenshow" >
-     <div className="searchInputtoken" >
+     
     {/* Search input field */}
      <input
+     className="searchInputtoken" 
     type="text"
     placeholder="Search by name or address"
     value={searchQuery}
@@ -46,7 +47,6 @@ function Tokens() {
       ))}
     </div>
    </div>
-</div>
 
   );
 }
