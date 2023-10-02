@@ -56,7 +56,7 @@ root.render(
   <React.StrictMode>
     <WagmiConfig config={config}>
       <BrowserRouter>
-        <Profile />
+        <App />
       </BrowserRouter>
     </WagmiConfig>
   </React.StrictMode>

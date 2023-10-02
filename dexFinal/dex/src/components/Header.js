@@ -3,7 +3,7 @@ import Logo from "../moralis-logo.svg";
 import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 import Modal from './Model';
-import { Profile } from "./profile";
+import { Profile } from "../profile";
 import {
   useAccount,
   useDisconnect,
