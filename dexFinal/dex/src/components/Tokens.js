@@ -23,6 +23,7 @@ function Tokens() {
     placeholder="Search by name or address"
     value={searchQuery}
     onChange={(e) => setSearchQuery(e.target.value)}
+    onTouchStart={(e) => e.preventDefault()} 
     />
   <div class="rowtoken" >
     {filteredTokens.map((token) => (
