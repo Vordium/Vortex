@@ -289,9 +289,9 @@ function Swap(props) {
     <DownOutlined />
   </div>
   <div className="balance2">
-  Balance: {balance2.data?.formatted}
-  </div>
-</div>
+       Balance: {balance2.data?.formatted}
+    </div>
+      </div>
 
         <div
           className="swapButton"
