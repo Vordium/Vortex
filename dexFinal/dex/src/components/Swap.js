@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Popover, Radio, Modal, message } from "antd";
 import Gas from "./Gas";
+import TokenSearch from "./tokenSearch";
 import {
   ArrowDownOutlined,
   DownOutlined,
@@ -216,7 +217,12 @@ function Swap(props) {
         footer={null}
         onCancel={() => setIsOpen(false)}
         title="Select a token"
+        
       >
+        <div className="App">
+            <h1>ERC-20 Token Search</h1>
+            <TokenSearch />
+        </div>
         <div className="modalContent">
           <Input
             placeholder="Search tokens..."
