@@ -6,7 +6,7 @@ function WalletCard({ onClose }) {
     <div className="card-modal-overlay" onClick={onClose}>
       <div className="card-modal" onClick={(e) => e.stopPropagation()}>
         <div>
-          <CustomComponent />
+          
           {/* Additional components or logic */}
         </div>
       </div>
