@@ -16,6 +16,7 @@ import coinBaseWalletLogo from '../assets/coinbase-wallet-logo.png'; // Replace 
 import walletConnectLogo from '../assets/wallet-connect-logo.png'; // Replace with the actual image path
 import injectedConnectorLogo from '../assets/injected-connector-logo.png';
 import ledgerConnectorLogo from '../assets/Ledger.png'; // Replace with the actual image path
+import WalletCard from './walletCard';
 
 export function Profile() {
   const { address, connector, isConnected } = useAccount();

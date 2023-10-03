@@ -4,7 +4,6 @@ import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 import Modal from './Model';
 import { Profile } from "./profile";
-import WalletCard from './walletCard';
 import {
   useAccount,
   useDisconnect,
