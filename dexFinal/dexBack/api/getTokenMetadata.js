@@ -1,7 +1,15 @@
 // api/getTokenList.js
+const cors = require("cors"); // Import the cors middleware
 
 const Moralis = require("moralis").default;
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
+const corsOptions = {
+  origin: "https://swap.vordium.com",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow specific HTTP methods
+  credentials: true, // Include credentials like cookies in the request
+};
+
+app.use(cors(corsOptions)); // Use the cors middleware with specific origin
 
 Moralis.start({
     apiKey: process.env.MORALIS_KEY,
