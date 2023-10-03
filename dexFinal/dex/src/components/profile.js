@@ -32,19 +32,16 @@ export function Profile() {
     Ledger: ledgerConnectorLogo,
   };
 
-  const [isWalletCard, setIsWalletCardOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = React.useState(false);
 
-  const openWalletCard = () => {
-    setIsWalletCardOpen(true);
-    setIsContentVisible(false); // Hide content when the modal is opened
+  const handleOpenModal = () => {
+    setModalOpen(true);
   };
 
-  const closeWalletCard = () => {
-    setIsWalletCardOpen(false);
-    setIsContentVisible(true); // Show content when the modal is closed
+  const handleCloseModal = () => {
+    setModalOpen(false);
   };
-  
-  const defaultConnectorImage = '../assets/coinbase-wallet-logo.png';
+
   if (isConnected) {
     const addressToShow = `${address.substring(0, 3)}...${address.substring(address.length - 3)}`;
 
@@ -58,7 +55,8 @@ export function Profile() {
             {ensName ? `${ensName}` : 'NoEns'}
           </div>
           <div className="address-text">
-          <button onClick={isModalOpen && <Modal onClose={closeModal} />} className="walletcardbuttom">{addressToShow}</button>
+          <button onClick={handleOpenModal} className="walletcardbuttom">{addressToShow}</button>
+          {isModalOpen && <WalletCard onClose={handleCloseModal} />}
           </div>
           <div className="disconnect">
          <button onClick={disconnect} className="disconnect-button">
