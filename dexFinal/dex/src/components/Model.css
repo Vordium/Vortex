@@ -26,15 +26,22 @@
 
   
   .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
+    background: #0e111b;
     border: none;
     cursor: pointer;
     font-size: 18px;
+    color: white;
+    position: absolute;
+    right: 10px;
+    /* padding: 5px; */
+    padding-top: 3px;
+    border-radius: 7px;
+    top: 15px;
   }
   
+  .close-button:hover {
+  background:#1f2639;
+  }
   /* Modal.css */
 
 .card-modal-overlay {
@@ -74,4 +81,7 @@
     justify-content: space-between;
     align-items: center;
     margin: 2px 0 16px;
+}
+.account-card-header{
+    margin: -20px 0 16px;
 }
