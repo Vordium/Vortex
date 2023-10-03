@@ -69,4 +69,9 @@
     padding-right: 30px;
     width: 400px;
    }
-
+.account-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px 0 16px;
+}
