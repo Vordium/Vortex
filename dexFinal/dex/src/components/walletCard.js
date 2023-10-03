@@ -12,11 +12,13 @@ function WalletCard({ onClose }) {
     <div className="card-modal-overlay" onClick={onClose}>
       <div className="card-modal" onClick={(e) => e.stopPropagation()}>
         <div>
+          <div className="account-card">
           <div className="account-card-header">
             <h4>Account</h4>
             <button className="close-button" onClick={handleClose}>
               <FontAwesomeIcon icon={faTimes} />
             </button>
+          </div>
           </div>
           {/* Additional components or logic */}
         </div>
