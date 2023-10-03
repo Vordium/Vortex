@@ -31,6 +31,18 @@ export function Profile() {
     Injected: injectedConnectorLogo,
     Ledger: ledgerConnectorLogo,
   };
+
+  const [isWalletCard, setIsWalletCardOpen] = useState(false);
+
+  const openWalletCard = () => {
+    setIsWalletCardOpen(true);
+    setIsContentVisible(false); // Hide content when the modal is opened
+  };
+
+  const closeWalletCard = () => {
+    setIsWalletCardOpen(false);
+    setIsContentVisible(true); // Show content when the modal is closed
+  };
   
   const defaultConnectorImage = '../assets/coinbase-wallet-logo.png';
   if (isConnected) {
@@ -46,7 +58,7 @@ export function Profile() {
             {ensName ? `${ensName}` : 'NoEns'}
           </div>
           <div className="address-text">
-          <button onClick={addressToShow} className="walletcard">{addressToShow}</button>
+          <button onClick={isModalOpen && <Modal onClose={closeModal} />} className="walletcardbuttom">{addressToShow}</button>
           </div>
           <div className="disconnect">
          <button onClick={disconnect} className="disconnect-button">

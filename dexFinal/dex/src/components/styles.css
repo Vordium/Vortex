@@ -97,7 +97,7 @@
     padding-left: 5px;
   }
 
-  .walletcard:hover{
+  .walletcardbuttom:hover{
     color: #d6d1d1;
   }
   
@@ -133,7 +133,7 @@
     background-color: #192134; /* Example background color on hover */
   }
 
-  .walletcard{
+  .walletcardbuttom{
     background: #1f2639;
     /* border-radius: 5px; */
     color: #fff;

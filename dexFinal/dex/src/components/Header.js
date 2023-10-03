@@ -4,6 +4,7 @@ import Eth from "../eth.svg";
 import { Link } from "react-router-dom";
 import Modal from './Model';
 import { Profile } from "./profile";
+import WalletCard from './walletCard';
 import {
   useAccount,
   useDisconnect,
@@ -45,6 +46,7 @@ function Header() {
     setIsContentVisible(true); // Show content when the modal is closed
   };
 
+
   const connectWallet = () => {
     // Simulate connecting to the wallet
     closeMenu();
@@ -57,6 +59,7 @@ function Header() {
       closeModal();
     }
   }, [isConnected]);
+
 
   const [isBoxExpanded, setIsBoxExpanded] = useState(false);
 
