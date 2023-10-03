@@ -9,7 +9,7 @@ const TokenSearch = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`/api/getTokenMetadata?address=${tokenAddress}`);
+      const response = await axios.get(`https://api.vordium.com/api/getTokenMetadata?address=${tokenAddress}`);
       setTokens(response.data);
     } catch (error) {
       console.error(error);
