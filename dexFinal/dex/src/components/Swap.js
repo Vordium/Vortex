@@ -219,7 +219,7 @@ function Swap(props) {
         title="Select a token"
         
       >
-        <div className="App">
+        <div className="Tokensearch">
             <h1>ERC-20 Token Search</h1>
             <TokenSearch />
         </div>
