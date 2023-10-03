@@ -69,7 +69,7 @@
     padding-right: 30px;
     width: 400px;
    }
-.account-header{
+.account-card{
     display: flex;
     justify-content: space-between;
     align-items: center;
